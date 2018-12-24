@@ -1,3 +1,4 @@
+import { RegistroMateriasComponent } from './registro-materias/registro-materias.component';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { BodyPageComponent } from './body-page/body-page.component';
@@ -11,6 +12,7 @@ const routes: Routes = [
   {path: 'registro-aulas', component: RegistroAulasComponent},
   {path: 'registro-docente', component: RegistroDocenteComponent},
   {path: 'registro-estudiante', component: RegistroEstudiantesComponent},
+  {path: 'registro-materia', component: RegistroMateriasComponent},
  
 ];
 

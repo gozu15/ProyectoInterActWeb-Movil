@@ -47,4 +47,6 @@ app.use("/api/materia",require("./routes/materia_route"));
 app.use("/api/registro",require("./routes/registro_route"));
 app.use("/api/toma/profesor",require("./routes/tomamateriaprofe_route"));
 app.use("/api/toma/estudiante",require("./routes/tomamateriaestu"));
+app.use("/api/estudiante",require("./routes/estudiante_route"));
+app.use("/api/docente",require("./routes/docente_route"));
 module.exports = app;

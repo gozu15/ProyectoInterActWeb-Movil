@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-
+import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HeaderPageComponent } from './header-page/header-page.component';
@@ -12,6 +12,7 @@ import { RegistroDocenteComponent } from './registro-docente/registro-docente.co
 import { RegistroAulasComponent } from './registro-aulas/registro-aulas.component';
 import { RegistroNotasComponent } from './registro-notas/registro-notas.component';
 import { LoginPageComponent } from './login-page/login-page.component';
+import { FormsModule, ReactiveFormsModule  } from '@angular/forms';
 
 
 @NgModule({
@@ -29,7 +30,10 @@ import { LoginPageComponent } from './login-page/login-page.component';
     
   ],
   imports: [
+    HttpClientModule,
     BrowserModule,
+    FormsModule,
+    ReactiveFormsModule,
     AppRoutingModule
   ],
   providers: [],
