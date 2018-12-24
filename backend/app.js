@@ -43,4 +43,8 @@ app.use("/api/gestion",gestionroute);
 var horarioroute=require("./routes/horario_route");
 app.use("/api/horario",horarioroute);
 
+app.use("/api/materia",require("./routes/materia_route"));
+app.use("/api/registro",require("./routes/registro_route"));
+app.use("/api/toma/profesor",require("./routes/tomamateriaprofe_route"));
+app.use("/api/toma/estudiante",require("./routes/tomamateriaestu"));
 module.exports = app;
