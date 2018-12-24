@@ -43,4 +43,6 @@ app.use("/api/gestion",gestionroute);
 var horarioroute=require("./routes/horario_route");
 app.use("/api/horario",horarioroute);
 
+app.use("/api/materia",require("./routes/materia_route"));
+
 module.exports = app;
