@@ -12,22 +12,22 @@ var Registro = sequelize.define('registro', {
 		allowNull: false
 	},
 	fecha_registro: {
-		type: Sequelize.STRING(50),
+		type: Sequelize.DATE,
 		allowNull: false,
 		unique: true,
 	},
     categoria_estudio: {
-		type: Sequelize.STRING(50),
+		type: Sequelize.STRING(45),
 		allowNull: false,
 		unique: true,
     },
     turno_estudio: {
-		type: Sequelize.STRING(20),
+		type: Sequelize.STRING(45),
 		allowNull: false,
 		
     },
     descripcion:{
-        type: Sequelize.DATE,
+        type: Sequelize.STRING(50),
 		allowNull: false,
     },
     USUARIO_idUSUARIO: {
