@@ -12,6 +12,8 @@ import { RegistroDocenteComponent } from './registro-docente/registro-docente.co
 import { RegistroAulasComponent } from './registro-aulas/registro-aulas.component';
 import { RegistroNotasComponent } from './registro-notas/registro-notas.component';
 import { LoginPageComponent } from './login-page/login-page.component';
+import { AgmCoreModule } from '@agm/core';
+import { LoginRegistroComponent } from './login-registro/login-registro.component';
 
 
 @NgModule({
@@ -26,11 +28,16 @@ import { LoginPageComponent } from './login-page/login-page.component';
     RegistroAulasComponent,
     RegistroNotasComponent,
     LoginPageComponent,
+    LoginRegistroComponent,
+   
     
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    AgmCoreModule.forRoot({
+      apiKey: 'AIzaSyAFgM81Qz-SwfTzUsr4F51AgDj0HdN88CQ'
+    }),
   ],
   providers: [],
   bootstrap: [AppComponent]
