@@ -35,4 +35,12 @@ app.use("/api/aulas",aularoute);
 var cursoroute=require("./routes/curso_route");
 app.use("/api/cursos",cursoroute);
 
+
+var gestionroute=require("./routes/gestion_route");
+app.use("/api/gestion",gestionroute);
+
+
+var horarioroute=require("./routes/horario_route");
+app.use("/api/horario",horarioroute);
+
 module.exports = app;
