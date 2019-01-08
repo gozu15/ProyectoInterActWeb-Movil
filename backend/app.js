@@ -17,36 +17,12 @@ app.use(function (req, res, next) {
     res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
 
     // Solicitar encabezados que desees permitir
-    res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With,content-type');
+    res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With,content-type, Authorization');
 
     res.setHeader('Access-Control-Allow-Credentials', true);
 
     // Pase a la siguiente capa de middleware
     next();
 });
-//Rutas de Acceso a los controladores
 
-var userroute=require("./routes/usuario_route");
-app.use("/api/usuarios",userroute);
-
-var aularoute=require("./routes/aula_route");
-app.use("/api/aulas",aularoute);
-
-var cursoroute=require("./routes/curso_route");
-app.use("/api/cursos",cursoroute);
-
-
-var gestionroute=require("./routes/gestion_route");
-app.use("/api/gestion",gestionroute);
-
-
-var horarioroute=require("./routes/horario_route");
-app.use("/api/horario",horarioroute);
-
-app.use("/api/materia",require("./routes/materia_route"));
-app.use("/api/registro",require("./routes/registro_route"));
-app.use("/api/toma/profesor",require("./routes/tomamateriaprofe_route"));
-app.use("/api/toma/estudiante",require("./routes/tomamateriaestu"));
-app.use("/api/estudiante",require("./routes/estudiante_route"));
-app.use("/api/docente",require("./routes/docente_route"));
 module.exports = app;
