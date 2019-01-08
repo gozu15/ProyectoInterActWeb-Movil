@@ -15,15 +15,12 @@ const routes: Routes = [
   {path: 'registro-docente', component: RegistroDocenteComponent},
   {path: 'registro-estudiante', component: RegistroEstudiantesComponent},
   {path: 'registro-materia', component: RegistroMateriasComponent},
-
   {path: 'registro-login', component: LoginPageComponent},
-  {path: 'registrologin', component: LoginRegistroComponent}
-
- 
+  {path: 'registrologin', component: LoginRegistroComponent} 
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule]
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}

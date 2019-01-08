@@ -8,13 +8,18 @@ import * as $ from 'jquery';
 })
 export class HeaderPageComponent implements OnInit {
 
-  
+  funcionCerrar(){
+   
+    
+    
+}
 
   constructor() {
     
    }
 
   ngOnInit() {
+    this.funcionCerrar()
   }
 
 }
