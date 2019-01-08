@@ -24,5 +24,11 @@ app.use(function (req, res, next) {
     // Pase a la siguiente capa de middleware
     next();
 });
+var usuarioRoute=require("./routes/usuarioRoute");
+app.use("/api/usuarios",usuarioRoute);
 
+var rolRoute=require("./routes/rolRoute");
+
+app.use("/api/rols",rolRoute);
+//Modulo a exportar
 module.exports = app;

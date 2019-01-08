@@ -1,91 +1,82 @@
 {
-    ROLES:{
+    ROLES: {
         id:String,
         rol:String,
         nivel:String,
     }
 
-    USUARIOS:{
+    USUARIOS: {
         id:String,
         nombre:String,
         apellidos:String,
         genero:String,
         fecha_nacimiento:Date,
         ci:String
-        login:{
+        login: {
             usuario:String,
-            contracena:String,            
+            contracena:String,
         }
         rol:ROLES,
-        padres:[
+        padres: [
             padre:USUARIO,
             madre:USUARIO,
         ],
         foto:string
         numero_contacto:String,
-
     }
 
-    MATERIA:{
+    MATERIA: {
         id:String,
         nombre_materia:String,
         descripcion:String,
     }
 
-    CURSOS:{
+    CURSOS: {
         id:String,
         nombre_curso:String,
         paralelo:String,
-        materias:[idmateria],
+        materias: [idmateria
+        ],
     }
 
-    AULA:{
+    AULA: {
         id:String,
         nombre_aula:String,
-        cursos:[idcursos]        
+        cursos: [idcursos
+        ]
     }
 
-    GESTION:{
+    GESTION: {
         id:String,
-        anio:String,        
+        anio:String,
     }
 
-    TIEMPO_EVALUACION:{
+    TIEMPO_EVALUACION: {
         id:String,
         tiempo_evaluacion:String,
     }
 
-    ASIGNACION_MATERIA:{
+    ASIGNACION_MATERIA: {
         id:String,
         usuario:USUARIO,
-        materias:[idmateria],
+        materias: [idmateria
+        ],
         fecha_asignacion:Date
     }
 
-    EVALUACION_DOCENTE:{
+    EVALUACION_DOCENTE: {
         id:String,
         docente:idusuario,
         nota:int,
         fecha:Date,
         materia:idmateria,
         tiempo_evaluacion:idtiempoevaluacion,
-        
     }
 
-    KARDEX_NOTAS:{
+    KARDEX_NOTAS: {
         id:String,
         alumno:idalumno,
-        notas_materias:[EVALUACION_DOCENTE],
-        
+        notas_materias: [EVALUACION_DOCENTE
+        ],
     }
-
-
-
-
-
-
-
-
-
-
 }
