@@ -11,7 +11,7 @@ function GetUsuarios(req, res) {
             res.status(500).send({ mensaje: "Error al listar" })
         } else {
             if (!lista) {
-                res.status(404).send({ mensaje: "Error al listar" })
+                res.status(404).send({ mensaje: "no ay usuarios" })
             } else {
 
 
@@ -25,14 +25,14 @@ function GetUsuarios(req, res) {
 
 function Borrar(req,res){
   
-  var datos={eliminado:true,razoneliminacion:req.query.razon}
+  var datos={eliminado:true,razoneliminacion:req.query.razon,modificacion:{fecha:"12-12-5",usuario:"5c34b3a83619a9178c5902f1"}}
    
     Usuario.findByIdAndUpdate(req.params.id,datos,{new: true}, function (error, lista) {
         if (error) {
-            res.status(500).send({ mensaje: "Error al listar" })
+            res.status(500).send({ mensaje: "Error " })
         } else {
             if (!lista) {
-                res.status(404).send({ mensaje: "Error al listar" })
+                res.status(404).send({ mensaje: "Error no de pudo borrar" })
             } else {
 
 
@@ -46,12 +46,12 @@ function Borrar(req,res){
 function Buscar(req,res){
     var termino=req.body.termino;
 
-    Usuario.find({$or:[{nombre: new RegExp(Termino, 'i')},{apellidos: new RegExp(Termino, 'i')}]}, function (error, lista) {
+    Usuario.find({$or:[{nombre: new RegExp(termino, 'i')},{apellidos: new RegExp(termino, 'i')}]},{'perfil.foto':0,tutores:0}, function (error, lista) {
         if (error) {
             res.status(500).send({ mensaje: "Error al listar" })
         } else {
             if (!lista) {
-                res.status(404).send({ mensaje: "Error al listar" })
+                res.status(404).send({ mensaje: "Sin resultados" })
             } else {
 
 
@@ -75,13 +75,14 @@ function Actualizar(req,res){
     usuario.login=params.login;
     usuario.numero_contacto=params.numero_contacto;
     usuario.perfil=params.perfil;
-
+    usuario.creacion=params.creacion;
+    usuario.modificacion=params.modificacion;
           Usuario.findByIdAndUpdate(req.params.id,usuario,{new: true}, function (error, lista) {
               if (error) {
-                  res.status(500).send({ mensaje: "Error al listar" })
+                  res.status(500).send({ mensaje: "Error desconocido" })
               } else {
                   if (!lista) {
-                      res.status(404).send({ mensaje: "Error al listar" })
+                      res.status(404).send({ mensaje: "Error no se pudo actualizar" })
                   } else {
       
       
@@ -97,10 +98,10 @@ function GetUsuario(req,res){
     var id=req.params.id;
     Usuario.findById(id, function (error, lista) {
         if (error) {
-            res.status(500).send({ mensaje: "Error al listar" })
+            res.status(500).send({ mensaje: "Error" })
         } else {
             if (!lista) {
-                res.status(404).send({ mensaje: "Error al listar" })
+                res.status(404).send({ mensaje: "usuario no existe" })
             } else {
 
 
@@ -113,7 +114,6 @@ function GetUsuario(req,res){
 }
 
 function Login(req,res){
-    console.log(req.body);
     var params = req.body;
     var usuario = params.usuario;
     var pass = params.password;
@@ -129,19 +129,53 @@ function Login(req,res){
                 res.status(404).send({ mensaje: "usuario no existe " })
             } else {
                 // res.status(200).send({ user });
-                bcript.compare(pass, user.login.password, function(error, ok) {
-                    if (ok) {
-                      
-                            res.status(200).send({ token: token.crearToken(user), datos:user });
+                if(user.login.estado!=true){
+                    var usuario=new Usuario();
+                    usuario._id=user._id;
+                    usuario.login={usuario:user.login.usuario,password:user.login.password,estado:true}
+                  
+                     Usuario.findByIdAndUpdate(user._id,usuario,{new: true}, function (error, lista) {
                         
-                    }
-                    else{
-                        res.status(404).send({ mensaje: "usuario o contraseña incorrectas " })
-                    }
-                });
+                
+                                bcript.compare(pass, user.login.password, function(error, ok) {
+                                    if (ok) {
+                                      
+                                            res.status(200).send({ token: token.crearToken(user), datos:user });
+                                        
+                                    }
+                                    else{
+                                        res.status(404).send({ mensaje: "usuario o contraseña incorrectas " })
+                                    }
+                                });
+                     
+                    });      
+                }else{
+                    res.status(401).send({ mensaje: "Usuario activo actualmente" })
+                }
             }
         }
     });
+}
+
+async function LogOut(req,res){
+
+    var datos= await Usuario.findById(req.params.id);
+    var usuario=new Usuario();
+                    usuario._id=req.params.id;
+                    usuario.login={usuario:datos.login.usuario,password:datos.login.password,estado:false};
+                  
+                     Usuario.findByIdAndUpdate(req.params.id,usuario,{new: true}, function (error, lista) {
+                         console.log(lista);
+                        if (error) {
+                            res.status(500).send({ mensaje: "Error desconocido" })
+                        } else {
+                            if (!lista) {
+                                res.status(404).send({ mensaje: "Error no se  pudo cerrar secion" })
+                            } else {
+                                res.status(200).send(true)
+                            }
+                        }
+                    });     
 }
 async function Registrar(req, res) {
     // console.log(req.body,req.files.perfil);
@@ -159,6 +193,8 @@ async function Registrar(req, res) {
     usuario.numero_contacto=params.numero_contacto;
     usuario.perfil=params.perfil;
     usuario.rol=await Rol.findById(params.rol);
+    usuario.creacion=params.creacion;
+    usuario.modificacion=params.modificacion;
     usuario.eliminado=false;
    // console.log(usuario.rol);
     if (params.login.password) {
@@ -190,4 +226,4 @@ async function Registrar(req, res) {
 
 
 //exporta los metodos usados en otras partes
-module.exports = { Actualizar,GetUsuarios, Registrar,GetUsuario,Login,Borrar,Buscar}
+module.exports = { Actualizar,GetUsuarios, Registrar,GetUsuario,Login,Borrar,Buscar,LogOut}

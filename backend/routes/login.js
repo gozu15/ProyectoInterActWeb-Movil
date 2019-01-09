@@ -6,6 +6,7 @@ var api = express.Router();
 //Rutas de usado en el HTTP para acceder a los metodos del controlador de producto
 //llamar usando url/api/productos -- debuelve lista de producto
 api.post("/",usuariosController.Login);
+api.get("/:id",usuariosController.LogOut);
 /*api.get("/:id",md_aut.autentication,ventasController.getVenta);
 api.post("/",md_aut.autentication,ventasController.addVentas);
 api.put("/:id",md_aut.autentication,ventasController.updated);
