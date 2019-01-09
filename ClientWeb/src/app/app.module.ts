@@ -24,6 +24,8 @@ import {
 } from '@agm/core';
 import { AdminLayoutComponent } from './layouts/admin-layout/admin-layout.component';
 import { WebLayoutComponent } from './layouts/web-layout/web-layout.component';
+import { RegistroUsuariosPageComponent } from './registro-usuarios-page/registro-usuarios-page.component';
+
 
 @NgModule({
   imports: [
@@ -42,6 +44,9 @@ import { WebLayoutComponent } from './layouts/web-layout/web-layout.component';
     AppComponent,
     AdminLayoutComponent,
     WebLayoutComponent,
+    RegistroUsuariosPageComponent,
+    
+    
   ],
   providers: [],
   bootstrap: [AppComponent],
