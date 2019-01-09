@@ -7,12 +7,18 @@
                 <img class="profile-img" src="../../assets/imagenes/loging.png"
                     alt="">
                 <form class="form-signin">
-                <input type="text" class="form-control" placeholder="Usuario" required autofocus>
-                <input type="password" class="form-control" placeholder="Contracena" required>
-                <button class="btn btn-lg btn-primary btn-block" type="submit">
+                <input type="text" [(ngModel)]="login.usuario" name="usuario" class="form-control" placeholder="Usuario" required autofocus>
+                <input type="password" [(ngModel)]="login.password" name="password" class="form-control" placeholder="Contracena" required>
+                <div class="alert alert-danger"*ngIf="isError" >
+                    <a class="close font-weight-light" data-dismiss="alert" href="#">×</a>Error revisa tu usuario y contraseña
+                </div>
+                <div class="alert alert-danger" *ngIf="isRequired" >
+                    <a class="close font-weight-light" data-dismiss="alert" href="#">×</a>Ingrese datos correctos
+                </div>
+                <button  (click)="LoginAtion()"  class="btn btn-lg btn-primary btn-block" type="submit">
                     Entrar</button>
-                <label class="checkbox pull-left">
-                    <input type="checkbox" value="remember-me">
+                <label  class="checkbox pull-left">
+                    <input type="checkbox" [(ngModel)]="recordar" name="recordar" value="remember-me">
                     Recordarme
                 </label>
                 <a href="#" class="pull-right need-help">Necesita Ayuda? </a><span class="clearfix"></span>

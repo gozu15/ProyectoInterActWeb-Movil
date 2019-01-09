@@ -13,7 +13,7 @@ const httpOptions = {
 export class MateriaService {
   urlMateria:string;
   constructor(private http: HttpClient) {
-    this.urlMateria = Ruta.url + "materia";
+    this.urlMateria = Ruta.url + "materias";
 
   }
   CrearMateria(materia: any): Observable<Materia> {

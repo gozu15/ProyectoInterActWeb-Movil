@@ -15,7 +15,7 @@ MÉTODO DEL TOKEN
 exports.crearToken = function(selectet){
 
 	//Datos que vamos a codificar
-          console.log(selectet.login);
+        
 	var LoadToken = {
 		//Se usa para guardar el id del objeto
 		id: selectet._id,

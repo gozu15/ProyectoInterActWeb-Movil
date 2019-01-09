@@ -10,8 +10,10 @@ var UsuariosSchema = Schema({
     ci:String,
     login:{usuario:String,password:String},
     numero_contacto:String,
-    perfil:{foto:String,tipo:String},
+    perfil:{foto:String,tipo:String,miniatura:String},
     tutores:[String],
-    rol:rolSchema
+    rol:rolSchema,
+    eliminado:Boolean,
+    razoneliminacion:String
 })
 module.exports = mongose.model("Usuarios", UsuariosSchema)
