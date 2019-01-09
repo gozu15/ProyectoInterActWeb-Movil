@@ -17,6 +17,7 @@ import { ToastrModule } from 'ngx-toastr';
 import { RegistroDocentePageComponent } from 'src/app/registro-docente-page/registro-docente-page.component';
 import { RegistroMateriasPageComponent } from 'src/app/registro-materias-page/registro-materias-page.component';
 import { RegistroAulasPageComponent } from 'src/app/registro-aulas-page/registro-aulas-page.component';
+import { AsignacionMateriasPageComponent } from 'src/app/asignacion-materias-page/asignacion-materias-page.component';
 
 @NgModule({
   imports: [
@@ -39,6 +40,7 @@ import { RegistroAulasPageComponent } from 'src/app/registro-aulas-page/registro
     RegistroDocentePageComponent,
     RegistroMateriasPageComponent,
     RegistroAulasPageComponent,
+    AsignacionMateriasPageComponent
   ]
 })
 

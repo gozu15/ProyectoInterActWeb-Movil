@@ -10,6 +10,7 @@ export const ROUTES: RouteInfo[] = [
   { path: '/home', title: 'Inicio',  icon: 'ui-1_simple-add', class: '' },
   { path: '/contact', title: 'Contactenos',  icon: 'design_vector', class: '' },
   { path: '/login', title: 'Iniciar Sesion',  icon: 'design_bullet-list-67', class: '' },
+  
 ];
 
 @Component({
