@@ -20,6 +20,89 @@ function GetAulas(req, res) {
         }
     });
 }
+function GetAula(req,res){
+    var id=req.params.id;
+    Aula.findById(id, function (error, lista) {
+        if (error) {
+            res.status(500).send({ mensaje: "Error desconocido" })
+        } else {
+            if (!lista) {
+                res.status(404).send({ mensaje: "Error no se encontro la materia" })
+            } else {
+
+
+                res.status(200).send(lista)
+
+
+            }
+        }
+    });
+}
+function Actualizar(req,res){
+    //console.log(req.body);
+var aula = new Aula();
+var params = req.body;
+aula._id=req.params.id;
+aula.nombre=params.nombre;
+aula.materias=params.materias;
+aula.descripcion=params.descripcion;
+aula.modificacion=params.modificacion;
+     Materia.findByIdAndUpdate(req.params.id,materia,{new: true}, function (error, lista) {
+         if (error) {
+             res.status(500).send({ mensaje: "Error al listar" })
+         } else {
+             if (!lista) {
+                 res.status(404).send({ mensaje: "no se pudo actualizar" })
+             } else {
+ 
+ 
+                 res.status(200).send(lista)
+ 
+ 
+             }
+         }
+     });
+ 
+}
+function Borrar(req,res){
+    var datos={eliminado:{estado:true,razon:req.query.razon},modificacion:{fecha:"12-12-5",usuario:"5c34b3a83619a9178c5902f1"
+   }}
+  
+   Aula.findByIdAndUpdate(req.params.id,datos,{new: true}, function (error, lista) {
+       if (error) {
+           res.status(500).send({ mensaje: "Error al listar" })
+       } else {
+           if (!lista) {
+               res.status(404).send({ mensaje: "Error al listar" })
+           } else {
+
+
+               res.status(200).send(lista)
+
+
+           }
+       }
+   });
+}
+function Buscar(req,res){
+   var termino=req.body.termino;
+
+   Aula.find({nombre: new RegExp(termino, 'i')}, function (error, lista) {
+       if (error) {
+           res.status(500).send({ mensaje: "Error al listar" })
+       } else {
+           if (!lista) {
+               res.status(404).send({ mensaje: "Sin resultado" })
+           } else {
+
+
+               res.status(200).send(lista)
+
+
+           }
+       }
+   });
+}
 function Registrar(req, res) {
     // console.log(req.body,req.files.perfil);
 
@@ -28,7 +111,9 @@ function Registrar(req, res) {
     var params = req.body;
     aula.nombre = params.nombre;
     aula.materias=params.materias;
-   
+    materia.creacion=params.creacion;
+    materia.modificacion=params.modificacion;
+    materia.eliminado={estado:false}
                 //guarda al nuevo usuario en la bd
                 aula.save((error, nuevaAula) => {
                     if (error) {
@@ -51,4 +136,4 @@ function Registrar(req, res) {
 
 
 //exporta los metodos usados en otras partes
-module.exports = { GetAulas, Registrar}
+module.exports = { GetAulas, Registrar,Actualizar,Borrar,Buscar,GetAula}
