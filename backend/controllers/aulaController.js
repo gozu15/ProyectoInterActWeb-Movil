@@ -1,10 +1,10 @@
 "use strict"
-var Rol = require("../schemas/rolSchema");
+var Aula = require("../schemas/aulaSchema");
 //metodo para sacar todos los usuarios de la base de datos
 
-function GetRoles(req, res) {
+function GetAulas(req, res) {
 
-    Rol.find({}, function (error, lista) {
+    Aula.find({}, function (error, lista) {
         if (error) {
             res.status(500).send({ mensaje: "Error al listar" })
         } else {
@@ -24,18 +24,18 @@ function Registrar(req, res) {
     // console.log(req.body,req.files.perfil);
 
     //console.log(req.body);
-    var rol = new Rol();
+    var aula = new Aula();
     var params = req.body;
-    rol.rol = params.rol;
-    rol.nivel=params.nivel;
+    aula.nombre = params.nombre;
+    aula.materias=params.materias;
    
                 //guarda al nuevo usuario en la bd
-                rol.save((error, nuevoRol) => {
+                aula.save((error, nuevaAula) => {
                     if (error) {
             
                         res.status(500).send({ mensaje: "error al guradar" })
                     } else {
-                        res.status(200).send(nuevoRol)
+                        res.status(200).send(nuevaAula)
                     }
                 })
          
@@ -51,4 +51,4 @@ function Registrar(req, res) {
 
 
 //exporta los metodos usados en otras partes
-module.exports = { GetRoles, Registrar}
+module.exports = { GetAulas, Registrar}
