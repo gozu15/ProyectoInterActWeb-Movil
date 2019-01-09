@@ -26,6 +26,8 @@ import {
 import { AdminLayoutComponent } from './layouts/admin-layout/admin-layout.component';
 import { WebLayoutComponent } from './layouts/web-layout/web-layout.component';
 
+
+
 @NgModule({
   imports: [
     BrowserAnimationsModule,
@@ -44,6 +46,9 @@ import { WebLayoutComponent } from './layouts/web-layout/web-layout.component';
     AppComponent,
     AdminLayoutComponent,
     WebLayoutComponent,
+   
+    
+    
   ],
   providers: [],
   bootstrap: [AppComponent],

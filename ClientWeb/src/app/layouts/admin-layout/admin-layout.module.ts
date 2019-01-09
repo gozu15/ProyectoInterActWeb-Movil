@@ -14,6 +14,9 @@ import { UpgradeComponent } from '../../upgrade/upgrade.component';
 import { ChartsModule } from 'ng2-charts';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { ToastrModule } from 'ngx-toastr';
+import { RegistroDocentePageComponent } from 'src/app/registro-docente-page/registro-docente-page.component';
+import { RegistroMateriasPageComponent } from 'src/app/registro-materias-page/registro-materias-page.component';
+import { RegistroAulasPageComponent } from 'src/app/registro-aulas-page/registro-aulas-page.component';
 
 @NgModule({
   imports: [
@@ -33,6 +36,9 @@ import { ToastrModule } from 'ngx-toastr';
     MapsComponent,
     NotificationsComponent,
     UpgradeComponent,
+    RegistroDocentePageComponent,
+    RegistroMateriasPageComponent,
+    RegistroAulasPageComponent,
   ]
 })
 

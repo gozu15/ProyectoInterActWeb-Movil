@@ -15,21 +15,15 @@ import { LoginPageComponent } from './login-page/login-page.component';
 import { FormsModule, ReactiveFormsModule  } from '@angular/forms';
 import { AgmCoreModule } from '@agm/core';
 import { LoginRegistroComponent } from './login-registro/login-registro.component';
+import { ContenedorPageComponent } from './layout/contenedor-page/contenedor-page.component';
 
 
 @NgModule({
   declarations: [
-    AppComponent,
-    HeaderPageComponent,
-    BodyPageComponent,
-    FooterPageComponent,
-    RegistroEstudiantesComponent,
-    RegistroMateriasComponent,
-    RegistroDocenteComponent,
-    RegistroAulasComponent,
-    RegistroNotasComponent,
+    AppComponent,   
     LoginPageComponent,
     LoginRegistroComponent,
+    ContenedorPageComponent,
    
     
   ],
