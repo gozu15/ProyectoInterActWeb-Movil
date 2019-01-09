@@ -1,3 +1,36 @@
-<p>
-  XtremeForce
-</p>
+<section id="footer">
+  <div class="container">
+    <div class="row text-center text-xs-center text-sm-left text-md-left">
+      <div class="col-xs-12 col-sm-6 col-md-6">
+        <h5>CONTACTO</h5>
+        <ul class="list-unstyled quick-links"><br>
+          <li class="textoCol"><i class="fa fa-bullseye"></i> Direccion: C. Ecuadro #456</li>
+          <li class="textoCol"><i class="fa fa-phone-square"></i> Telefono: 4562356</li>
+          <li class="textoCol"><i class="fa fa-phone"></i> Celular: 75758292</li>
+          <li class="textoCol"><i class="fa fa-envelope"></i> Correo: Interact@gmail.com</li>
+        </ul>
+      </div>
+      <div class="col-xs-12 col-sm-6 col-md-6">
+        <h5>UBICACION</h5>
+        <agm-map [latitude]="lat" [longitude]="lng">
+          <agm-marker [latitude]="lat" [longitude]="lng"></agm-marker>
+        </agm-map>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-xs-12 col-sm-12 col-md-12 mt-2 mt-sm-5">
+        <ul class="list-unstyled list-inline social text-center">
+          <li class="list-inline-item"><a href="https://www.facebook.com/seadSeguridad/"><i class="fa fa-facebook"></i></a></li>
+          <li class="list-inline-item"><a href=""><i class="fa fa-twitter"></i></a></li>
+          <li class="list-inline-item"><a href=""><i class="fa fa-instagram"></i></a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-xs-12 col-sm-12 col-md-12 mt-2 mt-sm-2 text-center text-white">
+        <p>Interact 2018 © Todos los derechos reservados.</p>
+        <p class="h6"><a class="text-green ml-2" href="" target="_blank">XtremeForce Developers</a></p>
+      </div>
+    </div>
+  </div>
+</section>

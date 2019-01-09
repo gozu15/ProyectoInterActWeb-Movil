@@ -6,7 +6,9 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./footer-web.component.css']
 })
 export class FooterWebComponent implements OnInit {
-
+  lat = -17.376173;
+  lng = -66.17378415;
+  
   constructor() { }
 
   ngOnInit() {
