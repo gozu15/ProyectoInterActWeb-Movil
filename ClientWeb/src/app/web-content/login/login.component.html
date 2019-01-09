@@ -1,4 +1,31 @@
-<p>
-  LOGIN
-  <button routerLink='/dashboard'>ingresar</button>
-</p>
+<div class="container">
+  <div class="row">
+      <div class="col-3"></div>
+      <div class="col-md-5">
+          <h1 class="text-center login-title">Iniciar Sesion</h1>
+          <div class="account-wall">
+              <img class="profile-img" src="../../assets/img/loging.png"
+                  alt="">
+              <form class="form-signin">
+              <input type="text" [(ngModel)]="login.usuario" name="usuario" class="form-control" placeholder="Usuario" required autofocus>
+              <input type="password" [(ngModel)]="login.password" name="password" class="form-control" placeholder="Contracena" required>
+              <div class="alert alert-danger"*ngIf="isError" >
+                  <a class="close font-weight-light" data-dismiss="alert" href="#">×</a>Error revisa tu usuario y contraseña
+              </div>
+              <div class="alert alert-danger" *ngIf="isRequired" >
+                  <a class="close font-weight-light" data-dismiss="alert" href="#">×</a>Ingrese datos correctos
+              </div>
+              <button  (click)="LoginAtion()"  class="btn btn-lg btn-primary btn-block" type="submit">
+                  Entrar</button>
+              <label  class="checkbox pull-left">
+                  <input type="checkbox" [(ngModel)]="recordar" name="recordar" value="remember-me">
+                  Recordarme
+              </label>
+              <a href="#" class="pull-right need-help">Necesita Ayuda? </a><span class="clearfix"></span>
+              </form>
+          </div>
+          <a routerLink="/registrologin" class="text-center new-account">Crear nueva cuenta... </a>
+      </div>
+      <div class="col-3"></div>
+  </div>
+</div>
