@@ -24,11 +24,12 @@ export const ROUTES: RouteInfo[] = [
 ];
 
 export const RoutsChilds:RouteInfoChilds[]=[
-    { path: '/registro-docentes', title: 'Registro Docentes',  icon: 'ui-1_simple-add', class: ''},
-    { path: '/registro-aulas', title: 'Registro Aulas',  icon: 'design_vector', class: '' },
-    { path: '/registro-materias', title: 'Registro Materias',  icon: 'design_bullet-list-67', class: '' },
-    { path: '/dashboard', title: 'Asignacion de Materias',  icon: 'ui-1_simple-add', class: ''},
-    { path: '/table-list', title: 'Registro de tiempos de Evaluacion',  icon: 'design_vector', class: '' },
+    { path: '/registro-docentes', title: 'Docentes',  icon: '', class: ''},
+    { path: '/registro-aulas', title: 'Aulas',  icon: '', class: '' },
+    { path: '/registro-materias', title: 'Materias',  icon: '', class: '' },
+    { path: '/registro-toma', title: 'Asignacion de Materias',  icon: '', class: ''},
+    { path: '/registro-estudiantes', title: 'Estudiantes',  icon: '', class: ''},
+    { path: '/table-list', title: 'Tiempos de evaluacion',  icon: '', class: '' },
     
 
 ];
