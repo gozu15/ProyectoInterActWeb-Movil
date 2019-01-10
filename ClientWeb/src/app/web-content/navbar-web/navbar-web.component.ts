@@ -19,11 +19,14 @@ export const ROUTES: RouteInfo[] = [
 })
 export class NavbarWebComponent implements OnInit {
   menuItems: any[];
+  titleSchool: string;
+  isNavbarCollapsed: boolean = true;
 
   constructor() { }
 
   ngOnInit() {
     this.menuItems = ROUTES.filter(menuItem => menuItem);
+    this.titleSchool = 'Colegio'
   }
 
   isMobileMenu() {
