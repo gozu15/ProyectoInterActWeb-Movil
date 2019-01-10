@@ -1,18 +1,11 @@
 
 <div class="logo">
-    <a class="simple-text logo-mini">
-      <div class="logo-img">
-          <img src="./assets/img/angular2-logo-white.png"/>
-      </div>
-    </a>
-    <h3 class="simple-text logo-normal">
-        Colegio
-    </h3>
+    <img src="../../../assets/img/banners/logoColegio.png"/><br>
 </div>
 <div class="sidebar-wrapper">
     <ul class="nav">
         
-        <li *ngFor="let menuItem of menuItems" class="{{menuItem.class}} nav-item">
+        <li *ngFor="let menuItem of menuItems" class="{{menuItem.class}} nav-item textMenu">
             
             
                     <a *ngIf="menuItem.title!= 'Registro'" [routerLink]="[menuItem.path]">

@@ -1,8 +1,13 @@
-
 .reg:hover{
     color: white !important;
 }
-
-.menuchild p{
-    font-size: 1.7em;
+.menuchild{
+    font-size: 1.5em;
+}
+.img{
+    width: 60px;
+    height: 60px;
+}
+.logo{
+    background: black;
 }
