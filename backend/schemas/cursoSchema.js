@@ -4,8 +4,11 @@ var Schema = mongose.Schema;
 var cursoSchema = Schema({
    nombre:String,
    paralelo:String,
-   materias: [{ type: Schema.Types.ObjectId, ref: 'materias' }]
-   
+   materias: [{ type: Schema.Types.ObjectId, ref: 'materias' }],
+    eliminado:{estado:Boolean,razon:String},
+   creacion: {usuario:{type: Schema.ObjectId, ref: "Usuarios"},fecha:Date },
+   modificacion:{fecha:Date,usuario:{ type: Schema.ObjectId, ref: "Usuarios" }}
+
 
 })
 module.exports = mongose.model("cursos", cursoSchema)

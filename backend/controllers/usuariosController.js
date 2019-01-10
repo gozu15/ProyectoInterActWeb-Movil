@@ -178,8 +178,7 @@ async function LogOut(req,res){
                     });     
 }
 async function Registrar(req, res) {
-    // console.log(req.body,req.files.perfil);
-    console.log(req.body);
+   
 
     //console.log(req.body);
     var usuario = new Usuario();
@@ -215,15 +214,8 @@ async function Registrar(req, res) {
 
         });
     } 
-    //verifica que el usuario tenga el password
-
-    //guarda al nuevo usuario en la bd
    
 }
 
 
-//metod para borrar un usuario
-
-
-//exporta los metodos usados en otras partes
 module.exports = { Actualizar,GetUsuarios, Registrar,GetUsuario,Login,Borrar,Buscar,LogOut}
