@@ -1,9 +1,140 @@
 <app-navbar-web></app-navbar-web>
-  <section>
-
-  </section>
-  <p style="color: green">
-  Contenedor
-</p>
+<section class="bodyHome">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-9">
+        <ngb-carousel *ngIf="images">
+          <ng-template ngbSlide>
+            <img [src]="images[0]" alt="Random first slide">
+            <div class="carousel-caption">
+              <h3>10 seconds between slides...</h3>
+              <p>This carousel uses customized default values.</p>
+            </div>
+          </ng-template>
+          <ng-template ngbSlide>
+            <img [src]="images[1]" alt="Random second slide">
+            <div class="carousel-caption">
+              <h3>No mouse events...</h3>
+              <p>This carousel doesn't pause or resume on mouse events</p>
+            </div>
+          </ng-template>
+          <ng-template ngbSlide>
+            <img [src]="images[2]" alt="Random third slide">
+            <div class="carousel-caption">
+              <h3>No keyboard...</h3>
+              <p>This carousel uses customized default values.</p>
+            </div>
+          </ng-template>
+          <ng-template ngbSlide>
+            <img [src]="images[3]" alt="Random fourth slide">
+            <div class="carousel-caption">
+              <h3>And no wrap after last slide.</h3>
+              <p>This carousel uses customized default values.</p>
+            </div>
+          </ng-template>
+        </ngb-carousel>
+      </div>
+      <div class="col-md-3">
+        <h4>Palabras del Director</h4>
+        <p>Donec id elit non mi porta gravida at eget metus. Maecenas faucibus mollis interdum.</p>
+        <h4>Mision</h4>
+        <p>Morbi leo risus, porta ac consectetur ac, vestibulum at eros. Cras mattis consectetur purus sit amet
+          fermentum.</p>
+        <h4>Vision</h4>
+        <p>Maecenas sed diam eget risus varius blandit sit amet non magna.</p>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-9">
+        <h2>Últimas Noticias</h2>
+        <div class="row">
+          <div class="media">
+            <a class="media-left media-middle" href="#">
+              <img class="img-media media-object" src="http://s3.amazonaws.com/libapps/accounts/10097/images/blog.png"
+                alt="Photo of Pukeko in New Zealand">
+            </a>
+            <div class="media-body">
+              <h4 class="media-heading">Nombre del Articulo</h4>
+              <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium,
+                totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta
+                sunt explicabo.</p>
+              <p>Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur
+                magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum
+                quia dolor sit amet, consectetur, adipisci velit, sed quia</p>
+              <ul class="list-inline">
+                <li class="list-inline-item"><a href="#"><i class="fa fa-user"></i> Escrito por:</a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="media">
+            <a class="media-left media-middle" href="#">
+              <img class="img-media media-object" src="http://s3.amazonaws.com/libapps/accounts/10097/images/blog.png"
+                alt="Photo of Pukeko in New Zealand">
+            </a>
+            <div class="media-body">
+              <h4 class="media-heading">Article Name</h4>
+              <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium,
+                totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta
+                sunt explicabo.</p>
+              <p>Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur
+                magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum
+                quia dolor sit amet, consectetur, adipisci velit, sed quia</p>
+              <ul class="list-inline">
+                <li class="list-inline-item"><a href="#"><i class="fa fa-user"></i> Escrito por:</a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="media">
+            <a class="media-left media-middle" href="#">
+              <img class="img-media media-object" src="http://s3.amazonaws.com/libapps/accounts/10097/images/blog.png"
+                alt="Photo of Pukeko in New Zealand">
+            </a>
+            <div class="media-body">
+              <h4 class="media-heading">Article Name</h4>
+              <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium,
+                totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta
+                sunt explicabo.</p>
+              <p>Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur
+                magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum
+                quia dolor sit amet, consectetur, adipisci velit, sed quia</p>
+              <ul class="list-inline">
+                <li class="list-inline-item"><a href="#"><i class="fa fa-user"></i> Escrito por:</a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-3">
+        <h2>Publicaciones de Atencion</h2>
+        <div class="media">
+          <a class="media-left media-middle" href="#">
+            <img class="img-media media-object" src="http://s3.amazonaws.com/libapps/accounts/10097/images/blog.png"
+              alt="Photo of Pukeko in New Zealand">
+          </a>
+          <div class="media-body">
+            <h4 class="media-heading">Title</h4>
+            <p>totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta
+              sunt explicabo.<a href="#"><i class="fa fa-link"></i>Ver mas</a></p>
+          </div>
+        </div>
+        <div class="media">
+          <a class="media-left media-middle" href="#">
+            <img class="img-media media-object" src="http://s3.amazonaws.com/libapps/accounts/10097/images/blog.png"
+              alt="Photo of Pukeko in New Zealand">
+          </a>
+          <div class="media-body">
+            <h4 class="media-heading">Title 2</h4>
+            <p>totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta
+              sunt explicabo.<a href="#"><i class="fa fa-link"></i>Ver mas</a></p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
 
 <app-footer-web></app-footer-web>

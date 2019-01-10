@@ -1,7 +1,87 @@
 <app-navbar-web></app-navbar-web>
 
-<p>
-  YO SOY EL CONTACTO
-</p>
+<section class="Contacto">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-2"> </div>
+      <div class="col-md-8">
+        <h1>Contáctanos</h1>
+        <p class="lead">¿Tienes una pregunta o necesitas más información?</p>
+        <p>Llena el formulario y nos pondremos en contacto contigo lo antes posible.</p> <br>
+        <!-- FORMULARIO -->
+        <div class="panel panel-default well">
+          <div class="panel-body">
+            <form action="" class="form-horizontal track-event-form bv-form" data-goaltype="”General”" data-formname="”ContactUs”"
+              method="post" id="contact-us-all" novalidate="novalidate">
+              <input name="elqSiteId" type="hidden" value="928">
+              <input name="sFDCLastCampaignID" type="hidden" value="701400000012Lql">
+              <input name="elqFormName" type="hidden" value="EMEAAllContactUsSubmissions">
+              <input name="nexturl" type="hidden" value="">
+              <input name="Partner" type="hidden" value="">
+              <input name="language" type="hidden" value="en">
+
+              <!--NOMBRE-->
+              <div class="form-group">
+                <div class="col-sm-12">
+                  <div class="input-group">
+
+                    <input type="text" class="form-control" id="exampleInputFirstName" placeholder="Nombre(s)" name="C_FirstName"
+                      data-bv-field="C_FirstName">
+                  </div>
+                  <small data-bv-validator="notEmpty" data-bv-validator-for="C_FirstName" class="help-block" style="display: none;">Required</small>
+                </div>
+              </div>
+              <!--APELLIDO-->
+              <div class="form-group">
+                <div class="col-sm-12">
+                  <div class="input-group">
+
+                    <input type="text" class="form-control" id="exampleInputLastName" placeholder="Apellido(s)" name="C_LastName"
+                      data-bv-field="C_LastName">
+                  </div>
+                  <small data-bv-validator="notEmpty" data-bv-validator-for="C_LastName" class="help-block" style="display: none;">Required</small>
+                </div>
+              </div>
+              <!--EMAIL-->
+              <div class="form-group">
+                <div class="col-sm-12">
+                  <div class="input-group">
+                    <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Ingresa email" name="C_EmailAddress"
+                      data-bv-field="C_EmailAddress">
+                  </div>
+                  <small data-bv-validator="notEmpty" data-bv-validator-for="C_EmailAddress" class="help-block" style="display: none;">Required</small>
+                </div>
+              </div>
+              <!--TELEFONO-->
+              <div class="form-group">
+                <div class="col-sm-12">
+                  <div class="input-group">
+                    <input type="text" class="form-control" id="C_BusPhone" placeholder="Teléfono" name="C_BusPhone">
+                  </div>
+                </div>
+              </div>
+              <!--DESCRIPCION-->
+              <div class="form-group">
+                <div class="col-sm-12">
+                  <div class="input-group">
+                    <textarea class="form-control" name="Comments" id="Comments" rows="5" style="width:99.9%"
+                      placeholder="Ingresa tu mensaje"></textarea>
+                  </div>
+                </div>
+              </div>
+              <div class="form-group">
+                <div class="col-sm-12">
+                  <button id="contacts-submit" type="submit" class="btn btn-default btn-info">CONTACTANOS</button>
+                </div>
+              </div>
+              <input type="hidden" value="">
+            </form>
+          </div>
+        </div>
+        <!-- END FORMULARIO -->
+      </div>
+    </div>
+  </div>
+</section>
 
 <app-footer-web></app-footer-web>

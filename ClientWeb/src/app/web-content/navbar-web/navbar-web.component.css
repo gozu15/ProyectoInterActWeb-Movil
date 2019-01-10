@@ -7,18 +7,20 @@
 	height: 50px;
 }
 .navbar{
-	background: rgba(0, 0, 0, 0.788);
+	background: rgba(0, 0, 0, 0.979);
 	margin: 0 0;
+	z-index: 1000;
+	text-align: right;
 }
 .navbar-nav {
 	padding-top: .425rem;
 	padding-left: 0.75rem;
 }
 .navbar-nav .nav-item {
-	float: none;
+	float: left;
 }
 .navbar-brand {
-	float: right;
+	float: left;
 }
 .navbar-brand,
 .navbar-nav .nav-item {

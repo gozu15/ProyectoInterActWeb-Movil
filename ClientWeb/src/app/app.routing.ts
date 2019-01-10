@@ -9,7 +9,7 @@ import { WebLayoutComponent } from './layouts/web-layout/web-layout.component';
 const routes: Routes = [
   {
     path: '',
-    redirectTo: 'home',
+    redirectTo: 'inicio',
     pathMatch: 'full',
   },
   {

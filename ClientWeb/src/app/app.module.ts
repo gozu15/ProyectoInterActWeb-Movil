@@ -47,10 +47,6 @@ import { AsignacionMateriasPageComponent } from './asignacion-materias-page/asig
     AppComponent,
     AdminLayoutComponent,
     WebLayoutComponent,
-    
-   
-    
-    
   ],
   providers: [],
   bootstrap: [AppComponent],

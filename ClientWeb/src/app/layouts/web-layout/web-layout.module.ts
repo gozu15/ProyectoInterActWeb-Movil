@@ -11,6 +11,7 @@ import { FooterWebComponent } from 'src/app/web-content/footer-web/footer-web.co
 import { NavbarWebComponent } from 'src/app/web-content/navbar-web/navbar-web.component';
 import { HomeComponent } from 'src/app/web-content/home/home.component';
 import { ContactComponent } from 'src/app/web-content/contact/contact.component';
+import { PanelAdminComponent } from 'src/app/web-content/panel-admin/panel-admin.component';
 
 
 @NgModule({
@@ -29,7 +30,7 @@ import { ContactComponent } from 'src/app/web-content/contact/contact.component'
     LoginComponent,
     HomeComponent,
     ContactComponent,
-   
+    PanelAdminComponent,
   ]
 })
 
