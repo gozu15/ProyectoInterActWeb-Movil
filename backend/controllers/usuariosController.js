@@ -5,8 +5,12 @@ var Rol = require("../schemas/rolSchema");
 var bcript = require("bcrypt-nodejs");
 var token =require("../token/token");
 function GetUsuarios(req, res) {
+    var rol={estudent:"Estudiante",edm:"Admin",doc:"Docente",att:"Tutor"};
+    var sort={name:"nombre",surna:"pellido"};
+    var order={desc:1,asc:-1,default:3}
+    var nquery='{"'+sort[req.query.sort]+'":'+parseInt(order[req.query.order])+'}';
 
-    Usuario.find({},{'perfil.foto':0,tutores:0}, function (error, lista) {
+    Usuario.find({'rol.rol':rol[req.query.rol]},{'perfil.foto':0,tutores:0},{sort:JSON.parse(nquery)}, function (error, lista) {
         if (error) {
             res.status(500).send({ mensaje: "Error al listar" })
         } else {
