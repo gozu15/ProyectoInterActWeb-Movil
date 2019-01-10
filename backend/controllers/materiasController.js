@@ -39,7 +39,8 @@ function GetMateria(req,res){
     });
 }
 function Borrar(req,res){
-     var datos={eliminado:true}
+     var datos={eliminado:{estado:true,razon:req.query.razon},modificacion:{fecha:"12-12-5",usuario:"5c34b3a83619a9178c5902f1"
+    }}
    
     Materia.findByIdAndUpdate(req.params.id,datos,{new: true}, function (error, lista) {
         if (error) {
@@ -65,7 +66,7 @@ function Buscar(req,res){
             res.status(500).send({ mensaje: "Error al listar" })
         } else {
             if (!lista) {
-                res.status(404).send({ mensaje: "Error al listar" })
+                res.status(404).send({ mensaje: "Sin resultado" })
             } else {
 
 
@@ -83,13 +84,13 @@ function Actualizar(req,res){
     materia._id=req.params.id;
     materia.nombre=params.nombre;
     materia.descripcion=params.descripcion;
-
+    materia.modificacion=params.modificacion;
           Materia.findByIdAndUpdate(req.params.id,materia,{new: true}, function (error, lista) {
               if (error) {
                   res.status(500).send({ mensaje: "Error al listar" })
               } else {
                   if (!lista) {
-                      res.status(404).send({ mensaje: "Error al listar" })
+                      res.status(404).send({ mensaje: "no se pudo actualizar" })
                   } else {
       
       
@@ -109,6 +110,9 @@ function Registrar(req, res) {
     var params = req.body;
     materia.nombre = params.nombre;
     materia.descripcion=params.descripcion;
+    materia.creacion=params.creacion;
+    materia.modificacion=params.modificacion;
+    materia.eliminado={estado:false}
    
                 //guarda al nuevo usuario en la bd
                 materia.save((error, nuevaMateria) => {

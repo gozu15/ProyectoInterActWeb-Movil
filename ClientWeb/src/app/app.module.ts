@@ -25,6 +25,7 @@ import {
 } from '@agm/core';
 import { AdminLayoutComponent } from './layouts/admin-layout/admin-layout.component';
 import { WebLayoutComponent } from './layouts/web-layout/web-layout.component';
+import { AsignacionMateriasPageComponent } from './asignacion-materias-page/asignacion-materias-page.component';
 
 
 
@@ -46,6 +47,7 @@ import { WebLayoutComponent } from './layouts/web-layout/web-layout.component';
     AppComponent,
     AdminLayoutComponent,
     WebLayoutComponent,
+    
    
     
     

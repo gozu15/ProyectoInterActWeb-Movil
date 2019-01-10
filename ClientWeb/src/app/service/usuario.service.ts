@@ -12,6 +12,7 @@ export class UsuarioService {
 
   urlUsuarios: string;
   urlDocente: string;
+  urlLogin:string;
   httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' })
   };
@@ -20,6 +21,9 @@ export class UsuarioService {
     this.httpOptions = {
       headers: new HttpHeaders({ 'Content-Type': 'application/json'})
     };
+
+    this.urlLogin= Ruta.url+'inicio';
+
 
     this.urlUsuarios = Ruta.url + 'usuarios';
     // this.urlDocente = Ruta.url + "docentes";
@@ -34,7 +38,7 @@ export class UsuarioService {
   }
 
   Login(login: Login): Observable<any> {
-    return this.http.post<any>('http://localhost:3000/api/inicio', login, this.httpOptions);
+    return this.http.post<any>(this.urlLogin, login, this.httpOptions);
   }
 
 }

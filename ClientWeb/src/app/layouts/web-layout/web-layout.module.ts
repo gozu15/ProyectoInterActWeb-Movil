@@ -12,6 +12,7 @@ import { NavbarWebComponent } from 'src/app/web-content/navbar-web/navbar-web.co
 import { HomeComponent } from 'src/app/web-content/home/home.component';
 import { ContactComponent } from 'src/app/web-content/contact/contact.component';
 
+
 @NgModule({
   imports: [
     CommonModule,
@@ -28,6 +29,7 @@ import { ContactComponent } from 'src/app/web-content/contact/contact.component'
     LoginComponent,
     HomeComponent,
     ContactComponent,
+   
   ]
 })
 
