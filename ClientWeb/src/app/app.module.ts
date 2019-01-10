@@ -25,10 +25,6 @@ import {
 } from '@agm/core';
 import { AdminLayoutComponent } from './layouts/admin-layout/admin-layout.component';
 import { WebLayoutComponent } from './layouts/web-layout/web-layout.component';
-import { AsignacionMateriasPageComponent } from './asignacion-materias-page/asignacion-materias-page.component';
-import { RegistroEstudiantePageComponent } from './registro-estudiante-page/registro-estudiante-page.component';
-
-
 
 @NgModule({
   imports: [
@@ -48,14 +44,6 @@ import { RegistroEstudiantePageComponent } from './registro-estudiante-page/regi
     AppComponent,
     AdminLayoutComponent,
     WebLayoutComponent,
-<<<<<<< HEAD
-=======
-    
-    
-   
-    
-    
->>>>>>> f7dae740c4038ed738084d2e1b2018168d199685
   ],
   providers: [],
   bootstrap: [AppComponent],
