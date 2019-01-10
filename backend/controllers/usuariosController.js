@@ -5,8 +5,12 @@ var Rol = require("../schemas/rolSchema");
 var bcript = require("bcrypt-nodejs");
 var token =require("../token/token");
 function GetUsuarios(req, res) {
+    var rol={estudent:"Estudiante",edm:"Admin",doc:"Docente",att:"Tutor"};
+    var sort={name:"nombre",surna:"pellido"};
+    var order={desc:1,asc:-1,default:3}
+    var nquery='{"'+sort[req.query.sort]+'":'+parseInt(order[req.query.order])+'}';
 
-    Usuario.find({},{'perfil.foto':0,tutores:0}, function (error, lista) {
+    Usuario.find({'rol.rol':rol[req.query.rol]},{'perfil.foto':0,tutores:0},{sort:JSON.parse(nquery)}, function (error, lista) {
         if (error) {
             res.status(500).send({ mensaje: "Error al listar" })
         } else {
@@ -178,8 +182,7 @@ async function LogOut(req,res){
                     });     
 }
 async function Registrar(req, res) {
-    // console.log(req.body,req.files.perfil);
-    console.log(req.body);
+   
 
     //console.log(req.body);
     var usuario = new Usuario();
@@ -215,15 +218,8 @@ async function Registrar(req, res) {
 
         });
     } 
-    //verifica que el usuario tenga el password
-
-    //guarda al nuevo usuario en la bd
    
 }
 
 
-//metod para borrar un usuario
-
-
-//exporta los metodos usados en otras partes
 module.exports = { Actualizar,GetUsuarios, Registrar,GetUsuario,Login,Borrar,Buscar,LogOut}

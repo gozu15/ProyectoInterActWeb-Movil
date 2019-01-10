@@ -11,6 +11,8 @@ import { UpgradeComponent } from '../../upgrade/upgrade.component';
 import { RegistroDocentePageComponent } from 'src/app/registro-docente-page/registro-docente-page.component';
 import { RegistroAulasPageComponent } from 'src/app/registro-aulas-page/registro-aulas-page.component';
 import { RegistroMateriasPageComponent } from 'src/app/registro-materias-page/registro-materias-page.component';
+import { RegistroUsuariosPageComponent } from 'src/app/registro-toma-materias-page/registro-usuarios-page.component';
+import { RegistroEstudiantePageComponent } from 'src/app/registro-estudiante-page/registro-estudiante-page.component';
 
 export const AdminLayoutRoutes: Routes = [
     { path: 'dashboard',      component: DashboardComponent },
@@ -24,6 +26,10 @@ export const AdminLayoutRoutes: Routes = [
     { path: 'registro-docentes',        component: RegistroDocentePageComponent },
     { path: 'registro-aulas',        component: RegistroAulasPageComponent },
     { path: 'registro-materias',        component: RegistroMateriasPageComponent },
+    { path: 'registro-toma',        component: RegistroUsuariosPageComponent },
+    { path: 'registro-estudiantes',        component: RegistroEstudiantePageComponent },
 
+
+    
 
 ];

@@ -13,8 +13,7 @@ var UsuariosSchema = Schema({
     perfil:{foto:String,tipo:String,miniatura:String},
     tutores:[String],
     rol:rolSchema,
-    eliminado:Boolean,
-    razoneliminacion:String,
+    eliminado:{estado:Boolean,razon:String},
     creacion: {usuario:{type: Schema.ObjectId, ref: "Usuarios"},fecha:Date },
     modificacion:{fecha:Date,usuario:{ type: Schema.ObjectId, ref: "Usuarios" }}
 })

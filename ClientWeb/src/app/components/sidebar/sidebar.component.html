@@ -12,7 +12,7 @@
 <div class="sidebar-wrapper">
     <ul class="nav">
         
-        <li routerLinkActive="active" *ngFor="let menuItem of menuItems" class="{{menuItem.class}} nav-item">
+        <li *ngFor="let menuItem of menuItems" class="{{menuItem.class}} nav-item">
             
             
                     <a *ngIf="menuItem.title!= 'Registro'" [routerLink]="[menuItem.path]">
@@ -20,13 +20,12 @@
                         <p >{{menuItem.title}}</p> 
                          
                     </a>   
-                    <a *ngIf="menuItem.title== 'Registro'"  (click)="isCollapsed = !isCollapsed"
+                    <a class="reg" *ngIf="menuItem.title== 'Registro'"  (click)="isCollapsed = !isCollapsed"
                     [attr.aria-expanded]="!isCollapsed" aria-controls="collapseExample">
                             <i class="now-ui-icons {{menuItem.icon}}"></i>
                             <p >{{menuItem.title}}</p> 
-                            <div id="collapseExample" [ngbCollapse]="isCollapsed">
-                                    <div class="card">
-                                      <div class="card-body">
+                            <div class="menuchild" id="collapseExample" [ngbCollapse]="isCollapsed">
+                                    
                                         <li  *ngFor="let menuItemchild of menuItemsChilds" class="{{menuItemchild.class}} nav-item">
                                                 <a [routerLink]="[menuItemchild.path]">
                                                     <i class="now-ui-icons {{menuItemchild.icon}}"></i>
@@ -34,8 +33,7 @@
                                                          
                                                 </a>   
                                         </li>
-                                      </div>
-                                    </div>
+                                    
                                   </div>
                              
                         </a>   

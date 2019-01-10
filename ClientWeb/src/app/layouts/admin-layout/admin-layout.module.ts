@@ -18,6 +18,8 @@ import { RegistroDocentePageComponent } from 'src/app/registro-docente-page/regi
 import { RegistroMateriasPageComponent } from 'src/app/registro-materias-page/registro-materias-page.component';
 import { RegistroAulasPageComponent } from 'src/app/registro-aulas-page/registro-aulas-page.component';
 import { AsignacionMateriasPageComponent } from 'src/app/asignacion-materias-page/asignacion-materias-page.component';
+import { RegistroUsuariosPageComponent } from 'src/app/registro-toma-materias-page/registro-usuarios-page.component';
+import { RegistroEstudiantePageComponent } from 'src/app/registro-estudiante-page/registro-estudiante-page.component';
 
 @NgModule({
   imports: [
@@ -40,7 +42,9 @@ import { AsignacionMateriasPageComponent } from 'src/app/asignacion-materias-pag
     RegistroDocentePageComponent,
     RegistroMateriasPageComponent,
     RegistroAulasPageComponent,
-    AsignacionMateriasPageComponent
+    AsignacionMateriasPageComponent,
+    RegistroUsuariosPageComponent,
+    RegistroEstudiantePageComponent
   ]
 })
 
