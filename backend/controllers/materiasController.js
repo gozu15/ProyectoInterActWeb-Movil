@@ -78,7 +78,6 @@ function Buscar(req,res){
     });
 }
 function Actualizar(req,res){
-         //console.log(req.body);
     var materia = new Materia();
     var params = req.body;
     materia._id=req.params.id;
@@ -103,9 +102,7 @@ function Actualizar(req,res){
       
 }
 function Registrar(req, res) {
-    // console.log(req.body,req.files.perfil);
 
-    //console.log(req.body);
     var materia = new Materia();
     var params = req.body;
     materia.nombre = params.nombre;
@@ -114,7 +111,7 @@ function Registrar(req, res) {
     materia.modificacion=params.modificacion;
     materia.eliminado={estado:false}
    
-                //guarda al nuevo usuario en la bd
+     
                 materia.save((error, nuevaMateria) => {
                     if (error) {
             
@@ -125,15 +122,10 @@ function Registrar(req, res) {
                 })
          
     
-    //verifica que el usuario tenga el password
 
-    //guarda al nuevo usuario en la bd
    
 }
 
 
-//metod para borrar un usuario
 
-
-//exporta los metodos usados en otras partes
 module.exports = { GetMaterias, Registrar,Actualizar,Borrar,GetMateria,Buscar}

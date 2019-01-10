@@ -47,7 +47,7 @@ aula.nombre=params.nombre;
 aula.materias=params.materias;
 aula.descripcion=params.descripcion;
 aula.modificacion=params.modificacion;
-     Materia.findByIdAndUpdate(req.params.id,materia,{new: true}, function (error, lista) {
+     Aula.findByIdAndUpdate(req.params.id,materia,{new: true}, function (error, lista) {
          if (error) {
              res.status(500).send({ mensaje: "Error al listar" })
          } else {
@@ -104,9 +104,7 @@ function Buscar(req,res){
    });
 }
 function Registrar(req, res) {
-    // console.log(req.body,req.files.perfil);
-
-    //console.log(req.body);
+  
     var aula = new Aula();
     var params = req.body;
     aula.nombre = params.nombre;
@@ -114,7 +112,7 @@ function Registrar(req, res) {
     materia.creacion=params.creacion;
     materia.modificacion=params.modificacion;
     materia.eliminado={estado:false}
-                //guarda al nuevo usuario en la bd
+               
                 aula.save((error, nuevaAula) => {
                     if (error) {
             
@@ -125,15 +123,10 @@ function Registrar(req, res) {
                 })
          
     
-    //verifica que el usuario tenga el password
-
-    //guarda al nuevo usuario en la bd
+    
    
 }
 
 
-//metod para borrar un usuario
 
-
-//exporta los metodos usados en otras partes
 module.exports = { GetAulas, Registrar,Actualizar,Borrar,Buscar,GetAula}
