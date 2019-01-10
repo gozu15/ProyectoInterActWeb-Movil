@@ -12,8 +12,8 @@
           
           <!-- Form Name -->
           <!--<legend>Pre-Inscripción | Doctorado en Derecho y Ciencias Políticas </legend>-->
-          <h1 > Universidad Nacional de Piura <br /> Escuela de Posgrado </h1>
-          <h3 > Sección de Posgrado en Derecho <br /> Programa de Doctorado en Derecho y Ciencias Políticas</h3>
+          <h1 > Registro Docentes </h1>
+          
           <br /> <br />
           
           
@@ -37,7 +37,7 @@
           
           <!-- Text input-->
           <div class="form-group">
-            <label class="col-md-4 control-label" for="txtDNI">DNI: </label>  
+            <label class="col-md-4 control-label" for="txtDNI">Ci: </label>  
             <div class="col-md-4">
             <input id="txtDNI" name="txtDNI" type="text" placeholder="DNI" class="form-control input-md" required="">
             </div>
@@ -45,89 +45,49 @@
           
           <!-- Select Basic -->
           <div class="form-group">
-            <label class="col-md-4 control-label" for="selectEstadoCivil">Estado Civil: </label>
+            <label class="col-md-4 control-label" for="selectEstadoCivil">Genero: </label>
             <div class="col-md-4">
               <select id="selectEstadoCivil" name="selectEstadoCivil" class="form-control">
-                <option value="s">Soltero</option>
-                <option value="c">Casado</option>
-                <option value="d">Divorciado</option>
-                <option value="v">Viudo</option>
+                <option value="s">Masculino</option>
+                <option value="c">Femenino</option>
+                <option value="d">Otros</option>
+                
               </select>
             </div>
           </div>
           
           <!-- Text input-->
-          <div class="form-group">
-            <label class="col-md-4 control-label" for="txtLugarNacimiento">Lugar Nacimiento: </label>  
-            <div class="col-md-4">
-            <input id="txtLugarNacimiento" name="txtLugarNacimiento" type="text" placeholder="Lugar Nacimiento" class="form-control input-md" required="">
-            </div>
+          <div>
+              <label class="col-md-4 control-label" for="selectEstadoCivil">Fecha de nacimiento: </label>
+              <form class="form-inline">
+                  <div class="form-group">
+                    <div class="input-group">
+                      <input class="form-control" placeholder="yyyy-mm-dd"
+                             name="dp" [(ngModel)]="model" ngbDatepicker #d="ngbDatepicker">
+                      <div class="input-group-append">
+                        <a class="btnfecha btn btn-outline-secondary calendar" (click)="d.toggle()" >
+                            <i class="now-ui-icons arrows-1_cloud-upload-94"></i>
+                        </a>
+                      </div>
+                    </div>
+                  </div>
+                </form>
           </div>
           
           <!-- Text input-->
-          <div class="form-group">
-            <label class="col-md-4 control-label" for="txtDomicioReal">Domicio Real: </label>  
-            <div class="col-md-4">
-            <input id="txtDomicioReal" name="txtDomicioReal" type="text" placeholder="Domicio Real" class="form-control input-md" required="">
-            </div>
+          
+
+          <div>
+              <div class="input-group-append">
+                  <a class="btnfecha btn btn-outline-secondary calendar"  >
+                      <i class="now-ui-icons arrows-1_cloud-upload-94"></i>
+                      Registrar Docente
+                  </a>
+                  </div>
+     
           </div>
           
-          <!-- Text input-->
-          <div class="form-group">
-            <label class="col-md-4 control-label" for="txtTelefonoFijo">Teléfono Fijo: </label>  
-            <div class="col-md-4">
-            <input id="txtTelefonoFijo" name="txtTelefonoFijo" type="text" placeholder="Teléfono Fijo" class="form-control input-md" required="">
-            </div>
-          </div>
-          
-          <!-- Text input-->
-          <div class="form-group">
-            <label class="col-md-4 control-label" for="txtCelular">Celular: </label>  
-            <div class="col-md-4">
-            <input id="txtCelular" name="txtCelular" type="text" placeholder="Celular" class="form-control input-md" required="">
-            </div>
-          </div>
-          
-          <!-- Text input-->
-          <div class="form-group">
-            <label class="col-md-4 control-label" for="txtEmail">E-mail: </label>  
-            <div class="col-md-4">
-            <input id="txtEmail" name="txtEmail" type="text" placeholder="E-mail" class="form-control input-md" required="">
-            </div>
-          </div>
-          
-          <!-- Text input-->
-          <div class="form-group">
-            <label class="col-md-4 control-label" for="txtProfesion">Profesión: </label>  
-            <div class="col-md-4">
-            <input id="txtProfesion" name="txtProfesion" type="text" placeholder="Profesión" class="form-control input-md" required="">
-            </div>
-          </div>
-          
-          <!-- Text input-->
-          <div class="form-group">
-            <label class="col-md-4 control-label" for="txtEspecialidad">Especialidad: </label>  
-            <div class="col-md-4">
-            <input id="txtEspecialidad" name="txtEspecialidad" type="text" placeholder="Especialidad" class="form-control input-md" required="">
-            </div>
-          </div>
-          
-          <!-- Text input-->
-          <div class="form-group">
-            <label class="col-md-4 control-label" for="txtCentroTrabajo">CentroTrabajo: </label>  
-            <div class="col-md-4">
-            <input id="txtCentroTrabajo" name="txtCentroTrabajo" type="text" placeholder="CentroTrabajo" class="form-control input-md" required="">
-            </div>
-          </div>
-          
-          <!-- Text input-->
-          <div class="form-group">
-            <label class="col-md-4 control-label" for="txtDireccionTrabajo">Dirección de Trabajo: </label>  
-            <div class="col-md-4">
-            <input id="txtDireccionTrabajo" name="txtDireccionTrabajo" type="text" placeholder="Dirección de Trabajo" class="form-control input-md" required="">
-            </div>
-          </div>
-          
+        
           
           
           </fieldset>

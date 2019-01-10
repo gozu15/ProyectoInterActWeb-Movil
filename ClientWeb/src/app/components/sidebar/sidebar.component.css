@@ -2,6 +2,7 @@
 .reg:hover{
     color: white !important;
 }
-.menuchild{
-    
+
+.menuchild p{
+    font-size: 1.7em;
 }

@@ -6,7 +6,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./registro-estudiante-page.component.css']
 })
 export class RegistroEstudiantePageComponent implements OnInit {
-
+  public isCollapsed = true;
+  model;
   constructor() { }
 
   ngOnInit() {

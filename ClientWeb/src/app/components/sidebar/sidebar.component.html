@@ -17,13 +17,13 @@
             
                     <a *ngIf="menuItem.title!= 'Registro'" [routerLink]="[menuItem.path]">
                         <i class="now-ui-icons {{menuItem.icon}}"></i>
-                        <p >{{menuItem.title}}</p> 
+                        <p style="font-size:1.3em" >{{menuItem.title}}</p> 
                          
                     </a>   
                     <a class="reg" *ngIf="menuItem.title== 'Registro'"  (click)="isCollapsed = !isCollapsed"
                     [attr.aria-expanded]="!isCollapsed" aria-controls="collapseExample">
                             <i class="now-ui-icons {{menuItem.icon}}"></i>
-                            <p >{{menuItem.title}}</p> 
+                            <p style="font-size:1.3em">{{menuItem.title}}</p> 
                             <div class="menuchild" id="collapseExample" [ngbCollapse]="isCollapsed">
                                     
                                         <li  *ngFor="let menuItemchild of menuItemsChilds" class="{{menuItemchild.class}} nav-item">

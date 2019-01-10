@@ -36,7 +36,7 @@
           
           <!-- Text input-->
           <div class="form-group">
-            <label class="col-md-4 control-label" for="txtDNI">DNI: </label>  
+            <label class="col-md-4 control-label" for="txtDNI">Ci: </label>  
             <div class="col-md-4">
             <input id="txtDNI" name="txtDNI" type="text" placeholder="DNI" class="form-control input-md" required="">
             </div>
@@ -44,89 +44,147 @@
           
           <!-- Select Basic -->
           <div class="form-group">
-            <label class="col-md-4 control-label" for="selectEstadoCivil">Estado Civil: </label>
+            <label class="col-md-4 control-label" for="selectEstadoCivil">Genero: </label>
             <div class="col-md-4">
               <select id="selectEstadoCivil" name="selectEstadoCivil" class="form-control">
-                <option value="s">Soltero</option>
-                <option value="c">Casado</option>
-                <option value="d">Divorciado</option>
-                <option value="v">Viudo</option>
+                <option value="s">Masculino</option>
+                <option value="c">Femenino</option>
+                <option value="d">Otros</option>
+                
               </select>
             </div>
           </div>
           
           <!-- Text input-->
-          <div class="form-group">
-            <label class="col-md-4 control-label" for="txtLugarNacimiento">Lugar Nacimiento: </label>  
-            <div class="col-md-4">
-            <input id="txtLugarNacimiento" name="txtLugarNacimiento" type="text" placeholder="Lugar Nacimiento" class="form-control input-md" required="">
-            </div>
+          <div>
+              <label class="col-md-4 control-label" for="selectEstadoCivil">Fecha de nacimiento: </label>
+              <form class="form-inline">
+                  <div class="form-group">
+                    <div class="input-group">
+                      <input class="form-control" placeholder="yyyy-mm-dd"
+                             name="dp" [(ngModel)]="model" ngbDatepicker #d="ngbDatepicker">
+                      <div class="input-group-append">
+                        <a class="btnfecha btn btn-outline-secondary calendar" (click)="d.toggle()" >
+                            <i class="now-ui-icons arrows-1_cloud-upload-94"></i>
+                        </a>
+                      </div>
+                    </div>
+                  </div>
+                </form>
           </div>
           
           <!-- Text input-->
           <div class="form-group">
-            <label class="col-md-4 control-label" for="txtDomicioReal">Domicio Real: </label>  
+            <label class="col-md-4 control-label" for="txtnumero">Numero de Contacto: </label>  
             <div class="col-md-4">
-            <input id="txtDomicioReal" name="txtDomicioReal" type="text" placeholder="Domicio Real" class="form-control input-md" required="">
+            <input id="txtnumero" name="txtnumero" type="text" placeholder="Numero de Contacto" class="form-control input-md" required="">
             </div>
           </div>
           
+          <div>
+              <label  for="lbfoto">Foto: </label>
+              <input id="lbfoto" name="lbfoto" type="file"  class="form-control input-md" required="">
+              
+          </div>
+             
+                     
           <!-- Text input-->
-          <div class="form-group">
-            <label class="col-md-4 control-label" for="txtTelefonoFijo">Teléfono Fijo: </label>  
+          <div >
+            <label class="col-md-4 control-label" for="txtEmail">Tutores: </label>  
             <div class="col-md-4">
-            <input id="txtTelefonoFijo" name="txtTelefonoFijo" type="text" placeholder="Teléfono Fijo" class="form-control input-md" required="">
-            </div>
+
+                <p>
+                    <a class="btn btn-outline-primary" (click)="isCollapsed = !isCollapsed"
+                            [attr.aria-expanded]="!isCollapsed" aria-controls="collapseExample">
+                      Registro de los tutores:
+                </a>
+                  </p>
+                  <div id="collapseExample" [ngbCollapse]="isCollapsed">
+                    <div >
+                      <div class="card-body">
+                          
+                       <form >
+                          <div class="form-group">
+                              <label  for="textNombres">Nombres: </label>  
+                              
+                              <input id="textNombres" name="textNombres" type="text" placeholder="Ingrese Nombres" class="form-control input-md" required="">
+                              
+                            </div>
+                            <div class="form-group">
+                                <label  for="textapellidos">Apellidos: </label>  
+                                
+                                <input id="textapellidos" name="textapellidos" type="text" placeholder="Ingrese Apellidos" class="form-control input-md" required="">
+                               
+                            </div>
+                            <div class="form-group">
+                                <label for="selecGenero">Genero: </label>
+                                
+                                  <select id="selectEstadoCivil" name="selecGenero" class="form-control">
+                                    <option value="s">Masculino</option>
+                                    <option value="c">Femenino</option>
+                                    <option value="d">Otros</option>
+                                    
+                                  </select>
+                                
+                            </div>
+
+                            <div class="form-group">
+                                <label  for="textci">CI: </label>  
+                                
+                                <input id="textci" name="textci" type="text" placeholder="Ingrese Ci" class="form-control input-md" required="">
+                               
+                            </div>
+
+                            <div class="form-group">
+                                <label  for="textcontact">Numero de Contacto: </label>  
+                                
+                                <input id="textcontact" name="textcontact" type="text" placeholder="Ingrese Numero de contacto" class="form-control input-md" required="">
+                               
+                            </div>
+
+                            
+                                
+                                  
+
+                            <div >
+                                <label  for="textcontact">Foto: </label>
+                                <input class="form-control input-md" id="txtfotopadre" name="txtfotopadre" type="file"  required="">
+                                      
+                            
+                            </div>
+                            
+
+                            <div>
+                              <button>Registrar tutor</button>
+
+                            </div>
+                            <div>
+                                <button>Limpiar</button>
+  
+                              </div>
+
+                       </form>
+                     
+
+                      </div>
+                    </div>
+                  </div>
+
+
+             </div>
+           </div><!--fin del toggle -->
+
+          <div>
+              <div class="input-group-append">
+                  <a class="btnfecha btn btn-outline-secondary calendar"  >
+                      <i class="now-ui-icons arrows-1_cloud-upload-94"></i>
+                      Registrar Estudiante
+                  </a>
+                  </div>
+     
           </div>
           
-          <!-- Text input-->
-          <div class="form-group">
-            <label class="col-md-4 control-label" for="txtCelular">Celular: </label>  
-            <div class="col-md-4">
-            <input id="txtCelular" name="txtCelular" type="text" placeholder="Celular" class="form-control input-md" required="">
-            </div>
-          </div>
-          
-          <!-- Text input-->
-          <div class="form-group">
-            <label class="col-md-4 control-label" for="txtEmail">E-mail: </label>  
-            <div class="col-md-4">
-            <input id="txtEmail" name="txtEmail" type="text" placeholder="E-mail" class="form-control input-md" required="">
-            </div>
-          </div>
-          
-          <!-- Text input-->
-          <div class="form-group">
-            <label class="col-md-4 control-label" for="txtProfesion">Profesión: </label>  
-            <div class="col-md-4">
-            <input id="txtProfesion" name="txtProfesion" type="text" placeholder="Profesión" class="form-control input-md" required="">
-            </div>
-          </div>
-          
-          <!-- Text input-->
-          <div class="form-group">
-            <label class="col-md-4 control-label" for="txtEspecialidad">Especialidad: </label>  
-            <div class="col-md-4">
-            <input id="txtEspecialidad" name="txtEspecialidad" type="text" placeholder="Especialidad" class="form-control input-md" required="">
-            </div>
-          </div>
-          
-          <!-- Text input-->
-          <div class="form-group">
-            <label class="col-md-4 control-label" for="txtCentroTrabajo">CentroTrabajo: </label>  
-            <div class="col-md-4">
-            <input id="txtCentroTrabajo" name="txtCentroTrabajo" type="text" placeholder="CentroTrabajo" class="form-control input-md" required="">
-            </div>
-          </div>
-          
-          <!-- Text input-->
-          <div class="form-group">
-            <label class="col-md-4 control-label" for="txtDireccionTrabajo">Dirección de Trabajo: </label>  
-            <div class="col-md-4">
-            <input id="txtDireccionTrabajo" name="txtDireccionTrabajo" type="text" placeholder="Dirección de Trabajo" class="form-control input-md" required="">
-            </div>
-          </div>
-          
+        
           
           
           </fieldset>
