@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
-import { CommonModule } from '@angular/common';
+import { CommonModule, DatePipe } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AdminLayoutRoutes } from './admin-layout.routing';
 import { DashboardComponent } from '../../dashboard/dashboard.component';
@@ -45,7 +45,8 @@ import { RegistroEstudiantePageComponent } from 'src/app/registro-estudiante-pag
     AsignacionMateriasPageComponent,
     RegistroUsuariosPageComponent,
     RegistroEstudiantePageComponent
-  ]
+  ],
+  providers: [DatePipe]
 })
 
 export class AdminLayoutModule {}

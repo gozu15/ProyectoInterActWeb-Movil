@@ -29,7 +29,8 @@ function GetUsuarios(req, res) {
 
 function Borrar(req,res){
   
-  var datos={eliminado:true,razoneliminacion:req.query.razon,modificacion:{fecha:"12-12-5",usuario:"5c34b3a83619a9178c5902f1"}}
+    var datos={eliminado:{estado:true,razon:req.query.razon},modificacion:{fecha:"12-12-5",usuario:"5c34b3a83619a9178c5902f1"
+    }}
    
     Usuario.findByIdAndUpdate(req.params.id,datos,{new: true}, function (error, lista) {
         if (error) {
@@ -79,8 +80,11 @@ function Actualizar(req,res){
     usuario.login=params.login;
     usuario.numero_contacto=params.numero_contacto;
     usuario.perfil=params.perfil;
-    usuario.creacion=params.creacion;
     usuario.modificacion=params.modificacion;
+//someString.replace(/cat/g, 'dog');
+    var login={usuario:params.ci,password:params.nombre.charAt(0)+params.apellidos.charAt(0)+params.fechadenacimiento.replace(/-/g, '')}
+        //usuario:carnet
+    //pass:primer caracter nombre y apellido mas fecha nacmeinto
           Usuario.findByIdAndUpdate(req.params.id,usuario,{new: true}, function (error, lista) {
               if (error) {
                   res.status(500).send({ mensaje: "Error desconocido" })
@@ -192,31 +196,37 @@ async function Registrar(req, res) {
     usuario.genero=params.genero;
     usuario.fechadenacimiento=params.fechadenacimiento;
     usuario.ci=params.ci;
-    usuario.login=params.login;
     usuario.numero_contacto=params.numero_contacto;
     usuario.perfil=params.perfil;
     usuario.rol=await Rol.findById(params.rol);
     usuario.creacion=params.creacion;
     usuario.modificacion=params.modificacion;
-    usuario.eliminado=false;
+    usuario.eliminado={estado:false}
+    var fecha = new Date(usuario.fechadenacimiento).toJSON().slice(0,10).replace(/-/g,'');
+
+    var login={usuario:params.ci,password:params.nombre.charAt(0)+params.apellidos.charAt(0)+fecha,estado:false}
+    
    // console.log(usuario.rol);
-    if (params.login.password) {
+    if (params.ci) {
         //encripta el pasword del usuario
-        bcript.hash(params.login.password, null, null, function(error, hash) {
-            usuario.login.password = hash;
-            if (usuario.login.usuario != null) {
+        bcript.hash(login.password, null, null, function(error, hash) {
+            login.password=hash;
+            usuario.login=login
+            if (login.usuario != null) {
                 //guarda al nuevo usuario en la bd
+            
                 usuario.save((error, nuevoUsuario) => {
                     if (error) {
             
                         res.status(500).send({ mensaje: "error al guradar" })
                     } else {
+                    
                         res.status(200).send(nuevoUsuario)
                     }
                 })
             }
 
-        });
+      });
     } 
    
 }
