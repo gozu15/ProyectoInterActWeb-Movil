@@ -1,8 +1,20 @@
-
-
 .txtfile{
     height: 100px;
 }
 .btnfecha{
     bottom:17%;
+}
+.lbfoto{
+    margin-left: 15px;
+}
+.card{
+    margin: 0 0;
+}
+
+/* BOTONES DE OPCION*/
+.btnOp{
+    margin: 5px;
+}
+.hedarTitleTable{
+    color: #2CA8FF;
 }

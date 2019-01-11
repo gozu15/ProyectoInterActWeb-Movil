@@ -1,198 +1,465 @@
 <div class="panel-header panel-header-sm">
-  </div>
-  
-  <div class="main-content">
-    <div class="row">
-      <div class="col-md-12">
-        <div class="card">
-  <div class="card-header">
-      <form class="form-horizontal">
-          <fieldset>
-          
-          <!-- Form Name -->
-          <!--<legend>Pre-Inscripción | Doctorado en Derecho y Ciencias Políticas </legend>-->
-          <h1 > Registro Estudiantes </h1>
-          
-          <br /> <br />
-          
-          
-          
-          <!-- Text input-->
-          <div class="form-group">
-            <label class="col-md-4 control-label" for="textNombres">Nombres: </label>  
-            <div class="col-md-4">
-            <input id="textNombres" name="textNombres" type="text" placeholder="Nombres" class="form-control input-md" required="">
+</div>
+<div class="main-content">
+  <div class="row">
+    <div class="col-md-12">
+      <div class="card">
+        <div class="card-header">
+          <h4 class="card-title"> ESTUDIANTES</h4>
+          <!--MODAL ESTUDIANTE-->
+          <ng-template #content let-modal>
+            <div class="modal-header">
+              <h4 class="modal-title" id="modal-basic-title">REGISTRO ESTUDIANTE</h4>
+              <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+                <span aria-hidden="true">&times;</span>
+              </button>
             </div>
-          </div>
-          
-          <!-- Text input-->
-          <div class="form-group">
-            <label class="col-md-4 control-label" for="txtApellidos">Apellidos: </label>  
-            <div class="col-md-4">
-            <input id="txtApellidos" name="txtApellidos" type="text" placeholder="Apellidos" class="form-control input-md" required="">
-            </div>
-          </div>
-          
-          
-          <!-- Text input-->
-          <div class="form-group">
-            <label class="col-md-4 control-label" for="txtDNI">Ci: </label>  
-            <div class="col-md-4">
-            <input id="txtDNI" name="txtDNI" type="text" placeholder="DNI" class="form-control input-md" required="">
-            </div>
-          </div>
-          
-          <!-- Select Basic -->
-          <div class="form-group">
-            <label class="col-md-4 control-label" for="selectEstadoCivil">Genero: </label>
-            <div class="col-md-4">
-              <select id="selectEstadoCivil" name="selectEstadoCivil" class="form-control">
-                <option value="s">Masculino</option>
-                <option value="c">Femenino</option>
-                <option value="d">Otros</option>
-                
-              </select>
-            </div>
-          </div>
-          
-          <!-- Text input-->
-          <div>
-              <label class="col-md-4 control-label" for="selectEstadoCivil">Fecha de nacimiento: </label>
-              <form class="form-inline">
-                  <div class="form-group">
-                    <div class="input-group">
-                      <input class="form-control" placeholder="yyyy-mm-dd"
-                             name="dp" [(ngModel)]="model" ngbDatepicker #d="ngbDatepicker">
-                      <div class="input-group-append">
-                        <a class="btnfecha btn btn-outline-secondary calendar" (click)="d.toggle()" >
+            <div class="modal-body">
+              <!--FORMULARIO DE REGISTRO-->
+              <form>
+                <!-- Text input NOMBRES-->
+                <div class="form-group">
+                  <label class=" control-label" for="textNombres">Nombres: </label>
+                  <div class="">
+                    <input id="textNombres" name="textNombres" type="text" placeholder="Nombres" class="form-control input-md"
+                      required="">
+                  </div>
+                </div>
+                <!-- Text input APELLIDOS-->
+                <div class="form-group">
+                  <label class=" control-label" for="txtApellidos">Apellidos: </label>
+                  <div class="">
+                    <input id="txtApellidos" name="txtApellidos" type="text" placeholder="Apellidos" class="form-control input-md"
+                      required="">
+                  </div>
+                </div>
+                <!-- Text input CI-->
+                <div class="form-group">
+                  <label class=" control-label" for="txtDNI">Ci: </label>
+                  <div class="">
+                    <input id="txtDNI" name="txtDNI" type="text" placeholder="DNI" class="form-control input-md"
+                      required="">
+                  </div>
+                </div>
+                <!-- Select Basic GENERO -->
+                <div class="form-group">
+                  <label class=" control-label" for="selectEstadoCivil">Genero: </label>
+                  <div class="">
+                    <select id="selectEstadoCivil" name="selectEstadoCivil" class="form-control">
+                      <option value="s">Masculino</option>
+                      <option value="c">Femenino</option>
+                      <option value="d">Otros</option>
+                    </select>
+                  </div>
+                </div>
+                <!-- Text input NUMERO DE CONTACTO-->
+                <div class="form-group">
+                  <label class=" control-label" for="txtnumero">Numero de Contacto: </label>
+                  <div class="">
+                    <input id="txtnumero" name="txtnumero" type="text" placeholder="Numero de Contacto" class="form-control input-md"
+                      required="">
+                  </div>
+                </div>
+                <!-- Text input FECHA DE NACIMIENTO-->
+                <div class="form-group">
+                  <label class=" control-label" for="selectEstadoCivil">Fecha de nacimiento: </label>
+                  <form class="form-inline">
+                    <div class="form-group">
+                      <div class="input-group">
+                        <input class="form-control" placeholder="yyyy-mm-dd" name="dp" [(ngModel)]="model"
+                          ngbDatepicker #d="ngbDatepicker">
+                        <div class="input-group-append">
+                          <a class="btnfecha btn btn-info calendar" (click)="d.toggle()">
                             <i class="now-ui-icons arrows-1_cloud-upload-94"></i>
-                        </a>
+                          </a>
+                        </div>
+                      </div>
+                    </div>
+                  </form>
+                </div>
+                <!-- LOAD FOTO-->
+                <div>
+                  <label class="lbfoto" for="lbfoto ">Foto: </label>
+                  <input id="lbfoto " name="lbfoto" type="file" class="form-control input-md" required="">
+                </div>
+                <hr>
+                <!-- FORMULARIO REGISTRO TUTOR-->
+                <div class="row">
+                  <div class="col-md-12">
+                    <a class="btn btn-info btn-block" (click)="isCollapsed = !isCollapsed"
+                      [attr.aria-expanded]="!isCollapsed" aria-controls="collapseExample">
+                      REGISTRO DE TUTOR O RESPONSABLE
+                    </a>
+                    <div id="collapseExample" [ngbCollapse]="isCollapsed">
+                      <div>
+                        <div class="card-body">
+                          <form>
+                            <!-- Text input NOMBRE TUTOR-->
+                            <div class="form-group">
+                              <label for="textNombres">Nombres: </label>
+                              <input id="textNombres" name="textNombres" type="text" placeholder="Ingrese Nombres"
+                                class="form-control input-md" required="">
+                            </div>
+                            <!-- Text input APELLIDO TUTOR-->
+                            <div class="form-group">
+                              <label for="textapellidos">Apellidos: </label>
+                              <input id="textapellidos" name="textapellidos" type="text" placeholder="Ingrese Apellidos"
+                                class="form-control input-md" required="">
+                            </div>
+                            <!-- Text input GENERO TUTOR-->
+                            <div class="form-group">
+                              <label for="selecGenero">Genero: </label>
+                              <select id="selectEstadoCivil" name="selecGenero" class="form-control">
+                                <option value="s">Masculino</option>
+                                <option value="c">Femenino</option>
+                                <option value="d">Otros</option>
+                              </select>
+                            </div>
+                            <!-- Text input CI TUTOR-->
+                            <div class="form-group">
+                              <label for="textci">CI: </label>
+                              <input id="textci" name="textci" type="text" placeholder="Ingrese Ci" class="form-control input-md"
+                                required="">
+                            </div>
+                            <!-- Text input NUMERO CONTACTO TUTOR-->
+                            <div class="form-group">
+                              <label for="textcontact">Numero de Contacto: </label>
+                              <input id="textcontact" name="textcontact" type="text" placeholder="Ingrese Numero de contacto"
+                                class="form-control input-md" required="">
+                            </div>
+                            <!-- LOAD FOTO TUTOR-->
+                            <div>
+                              <label for="textcontact">Foto: </label>
+                              <input class="form-control input-md" id="txtfotopadre" name="txtfotopadre" type="file"
+                                required="">
+                            </div>
+                          </form>
+                        </div>
                       </div>
                     </div>
                   </div>
-                </form>
-          </div>
-          
-          <!-- Text input-->
-          <div class="form-group">
-            <label class="col-md-4 control-label" for="txtnumero">Numero de Contacto: </label>  
-            <div class="col-md-4">
-            <input id="txtnumero" name="txtnumero" type="text" placeholder="Numero de Contacto" class="form-control input-md" required="">
+                </div>
+                <!--fin del toggle -->
+              </form>
             </div>
-          </div>
-          
-          <div>
-              <label  for="lbfoto">Foto: </label>
-              <input id="lbfoto" name="lbfoto" type="file"  class="form-control input-md" required="">
-              
-          </div>
-             
-                     
-          <!-- Text input-->
-          <div >
-            <label class="col-md-4 control-label" for="txtEmail">Tutores: </label>  
-            <div class="col-md-4">
+            <div class="modal-footer">
+              <button type="button" class="btn btn-success" (click)="modal.close('Save click')">GUARDAR</button>
+            </div>
+          </ng-template>
+          <!--END MODAL-->
 
-                <p>
-                    <a class="btn btn-outline-primary" (click)="isCollapsed = !isCollapsed"
-                            [attr.aria-expanded]="!isCollapsed" aria-controls="collapseExample">
-                      Registro de los tutores:
-                </a>
-                  </p>
-                  <div id="collapseExample" [ngbCollapse]="isCollapsed">
-                    <div >
-                      <div class="card-body">
-                          
-                       <form >
-                          <div class="form-group">
-                              <label  for="textNombres">Nombres: </label>  
-                              
-                              <input id="textNombres" name="textNombres" type="text" placeholder="Ingrese Nombres" class="form-control input-md" required="">
-                              
-                            </div>
+          <!--Boton registrar estudiante-->
+          <button class="btn btn-lg btn-info btn-icon btn-right" (click)="openModal(content)"><i class='now-ui-icons ui-1_simple-add'></i></button>
+          <hr>
+          <!--Mensaje Notifiacion de accion-->
+          <pre>{{closeResult}}</pre>
+        </div>
+
+        <!--FORMULARIO DE ACTUALIZACION-->
+        <ng-template #contentUpdate let-modal>
+            <div class="modal-header">
+              <h4 class="modal-title" id="modal-basic-title">ACTUALIZAR DATOS DEL ESTUDIANTE</h4>
+              <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <!--FORMULARIO DE ACTUALIZACION-->
+              <form>
+                <!-- Text input NOMBRES-->
+                <div class="form-group">
+                  <label class=" control-label" for="textNombres">Nombres: </label>
+                  <div class="">
+                    <input id="textNombres" name="textNombres" type="text" placeholder="Nombres" class="form-control input-md"
+                      required="">
+                  </div>
+                </div>
+                <!-- Text input APELLIDOS-->
+                <div class="form-group">
+                  <label class=" control-label" for="txtApellidos">Apellidos: </label>
+                  <div class="">
+                    <input id="txtApellidos" name="txtApellidos" type="text" placeholder="Apellidos" class="form-control input-md"
+                      required="">
+                  </div>
+                </div>
+                <!-- Text input CI-->
+                <div class="form-group">
+                  <label class=" control-label" for="txtDNI">Ci: </label>
+                  <div class="">
+                    <input id="txtDNI" name="txtDNI" type="text" placeholder="DNI" class="form-control input-md"
+                      required="">
+                  </div>
+                </div>
+                <!-- Select Basic GENERO -->
+                <div class="form-group">
+                  <label class=" control-label" for="selectEstadoCivil">Genero: </label>
+                  <div class="">
+                    <select id="selectEstadoCivil" name="selectEstadoCivil" class="form-control">
+                      <option value="s">Masculino</option>
+                      <option value="c">Femenino</option>
+                      <option value="d">Otros</option>
+                    </select>
+                  </div>
+                </div>
+                <!-- Text input NUMERO DE CONTACTO-->
+                <div class="form-group">
+                  <label class=" control-label" for="txtnumero">Numero de Contacto: </label>
+                  <div class="">
+                    <input id="txtnumero" name="txtnumero" type="text" placeholder="Numero de Contacto" class="form-control input-md"
+                      required="">
+                  </div>
+                </div>
+                <!-- Text input FECHA DE NACIMIENTO-->
+                <div class="form-group">
+                  <label class=" control-label" for="selectEstadoCivil">Fecha de nacimiento: </label>
+                  <form class="form-inline">
+                    <div class="form-group">
+                      <div class="input-group">
+                        <input class="form-control" placeholder="yyyy-mm-dd" name="dp" [(ngModel)]="model"
+                          ngbDatepicker #d="ngbDatepicker">
+                        <div class="input-group-append">
+                          <a class="btnfecha btn btn-info calendar" (click)="d.toggle()">
+                            <i class="now-ui-icons arrows-1_cloud-upload-94"></i>
+                          </a>
+                        </div>
+                      </div>
+                    </div>
+                  </form>
+                </div>
+                <!-- LOAD FOTO-->
+                <div>
+                  <label class="lbfoto" for="lbfoto ">Foto: </label>
+                  <input id="lbfoto " name="lbfoto" type="file" class="form-control input-md" required="">
+                </div>
+                <hr>
+                <!-- FORMULARIO REGISTRO TUTOR-->
+                <div class="row">
+                  <div class="col-md-12">
+                    <a class="btn btn-info btn-block" (click)="isCollapsed = !isCollapsed"
+                      [attr.aria-expanded]="!isCollapsed" aria-controls="collapseExample">
+                      ACTUALIZAR DATOS DE TUTOR O RESPONSABLE
+                    </a>
+                    <div id="collapseExample" [ngbCollapse]="isCollapsed">
+                      <div>
+                        <div class="card-body">
+                          <form>
+                            <!-- Text input NOMBRE TUTOR-->
                             <div class="form-group">
-                                <label  for="textapellidos">Apellidos: </label>  
+                              <label for="textNombres">Nombres: </label>
+                              <input id="textNombres" name="textNombres" type="text" placeholder="Ingrese Nombres"
+                                class="form-control input-md" required="">
+                            </div>
+                            <!-- Text input APELLIDO TUTOR-->
+                            <div class="form-group">
+                              <label for="textapellidos">Apellidos: </label>
+                              <input id="textapellidos" name="textapellidos" type="text" placeholder="Ingrese Apellidos"
+                                class="form-control input-md" required="">
+                            </div>
+                            <!-- Text input GENERO TUTOR-->
+                            <div class="form-group">
+                              <label for="selecGenero">Genero: </label>
+                              <select id="selectEstadoCivil" name="selecGenero" class="form-control">
+                                <option value="s">Masculino</option>
+                                <option value="c">Femenino</option>
+                                <option value="d">Otros</option>
+                              </select>
+                            </div>
+                            <!-- Text input CI TUTOR-->
+                            <div class="form-group">
+                              <label for="textci">CI: </label>
+                              <input id="textci" name="textci" type="text" placeholder="Ingrese Ci" class="form-control input-md"
+                                required="">
+                            </div>
+                            <!-- Text input NUMERO CONTACTO TUTOR-->
+                            <div class="form-group">
+                              <label for="textcontact">Numero de Contacto: </label>
+                              <input id="textcontact" name="textcontact" type="text" placeholder="Ingrese Numero de contacto"
+                                class="form-control input-md" required="">
+                            </div>
+                            <!-- LOAD FOTO TUTOR-->
+                            <div>
+                              <label for="textcontact">Foto: </label>
+                              <input class="form-control input-md" id="txtfotopadre" name="txtfotopadre" type="file"
+                                required="">
+                            </div>
+                          </form>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <!--fin del toggle -->
+              </form>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-success" (click)="modal.close('Save click')">ACTUALIZAR</button>
+            </div>
+          </ng-template>
+          <!--END MODAL-->
+
+        <!--MODAL DE VIEW INFO-->
+        <ng-template #contentModelView let-modal>
+            <div class="modal-header">
+              <h4 class="modal-title">PERFIL ESTUDIANTE</h4>
+              <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+                  <!-- LOAD FOTO-->
+                  <div class="form-group">
+                      <label for="lbfoto ">Foto: </label>
+                    
+                  </div>
+                  <!-- Text input NOMBRES-->
+                  <div class="form-group">
+                    <label class=" control-label" for="textNombres">Nombres: </label>
+                    
+                  </div>
+                  <!-- Text input APELLIDOS-->
+                  <div class="form-group">
+                    <label class=" control-label" for="txtApellidos">Apellidos: </label>
+                    
+                  </div>
+                  <!-- Text input CI-->
+                  <div class="form-group">
+                    <label class=" control-label" for="txtDNI">Ci: </label>
+                    
+                  </div>
+                  <!-- Select Basic GENERO -->
+                  <div class="form-group">
+                    <label class=" control-label" for="selectEstadoCivil">Genero: </label>
+                    
+                  </div>
+                  <!-- Text input NUMERO DE CONTACTO-->
+                  <div class="form-group">
+                    
+                  </div>
+                  <!-- Text input FECHA DE NACIMIENTO-->
+                  <div class="form-group">
+                    <label class=" control-label" for="selectEstadoCivil">Fecha de nacimiento: </label>
+                    
+                  </div>
+                  <hr>
+                  <!-- FORMULARIO REGISTRO TUTOR-->
+                  <div class="row">
+                    <div class="col-md-12">
+                      <a class="btn btn-info btn-block" (click)="isCollapsed = !isCollapsed"
+                        [attr.aria-expanded]="!isCollapsed" aria-controls="collapseExample">
+                        PERFIL DE TUTOR O RESPONSABLE
+                      </a>
+                      <div id="collapseExample" [ngbCollapse]="isCollapsed">
+                        <div>
+                          <div class="card-body">
+                              <!-- LOAD FOTO TUTOR-->
+                              <div class="form-group">
+                                <label for="lbfoto">Foto: </label>
                                 
-                                <input id="textapellidos" name="textapellidos" type="text" placeholder="Ingrese Apellidos" class="form-control input-md" required="">
+                              </div>
+                              <!-- Text input NOMBRE TUTOR-->
+                              <div class="form-group">
+                                <label for="textNombres">Nombres: </label>
+                                
+                              </div>
+                              <!-- Text input APELLIDO TUTOR-->
+                              <div class="form-group">
+                                <label for="textapellidos">Apellidos: </label>
                                
-                            </div>
-                            <div class="form-group">
+                              </div>
+                              <!-- Text input GENERO TUTOR-->
+                              <div class="form-group">
                                 <label for="selecGenero">Genero: </label>
                                 
-                                  <select id="selectEstadoCivil" name="selecGenero" class="form-control">
-                                    <option value="s">Masculino</option>
-                                    <option value="c">Femenino</option>
-                                    <option value="d">Otros</option>
-                                    
-                                  </select>
-                                
-                            </div>
-
-                            <div class="form-group">
-                                <label  for="textci">CI: </label>  
-                                
-                                <input id="textci" name="textci" type="text" placeholder="Ingrese Ci" class="form-control input-md" required="">
-                               
-                            </div>
-
-                            <div class="form-group">
-                                <label  for="textcontact">Numero de Contacto: </label>  
-                                
-                                <input id="textcontact" name="textcontact" type="text" placeholder="Ingrese Numero de contacto" class="form-control input-md" required="">
-                               
-                            </div>
-
-                            
-                                
-                                  
-
-                            <div >
-                                <label  for="textcontact">Foto: </label>
-                                <input class="form-control input-md" id="txtfotopadre" name="txtfotopadre" type="file"  required="">
-                                      
-                            
-                            </div>
-                            
-
-                            <div>
-                              <button>Registrar tutor</button>
-
-                            </div>
-                            <div>
-                                <button>Limpiar</button>
-  
                               </div>
-
-                       </form>
-                     
-
+                              <!-- Text input CI TUTOR-->
+                              <div class="form-group">
+                                <label for="textci">CI: </label>
+                                
+                              </div>
+                              <!-- Text input NUMERO CONTACTO TUTOR-->
+                              <div class="form-group">
+                                <label for="textcontact">Numero de Contacto: </label>
+                                
+                              </div>
+                          </div>
+                        </div>
                       </div>
                     </div>
                   </div>
+                  <!--fin del toggle ROW-->
+            </div>
+          </ng-template>
 
+        <!--Modal de Alertas -->
+        <!--AGREGAR-->
+        <ng-template #contentAdd let-modal>
+            <div class="modal-header">
+              <h4 class="modal-title">Agregar</h4>
+              <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <p>Registro Agregado, sadisfactoriamente.</p>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-light" (click)="modal.close('Close click')">Seguir</button>
+            </div>
+          </ng-template>
+        <!--ELIMINAR-->
+        <ng-template #contentDelete let-modal>
+            <div class="modal-header">
+              <h4 class="modal-title">Eliminar Registro</h4>
+              <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <p>¿Desea eliminar el registro?</p>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-light" (click)="modal.close('Close click')">Cancelar</button>
+              <button type="button" class="btn btn-danger" (click)="c('Save click')">Eliminar</button>
+            </div>
+          </ng-template>
 
-             </div>
-           </div><!--fin del toggle -->
-
-          <div>
-              <div class="input-group-append">
-                  <a class="btnfecha btn btn-outline-secondary calendar"  >
-                      <i class="now-ui-icons arrows-1_cloud-upload-94"></i>
-                      Registrar Estudiante
-                  </a>
-                  </div>
-     
+        <!--LISTA ESTUDIANTE-->
+        <div class="card-body">
+          <div class="table-responsive">
+            <table class="table">
+              <thead class=" text-primary">
+                <th class="hedarTitleTable" *ngFor="let cabezera of headElements">{{cabezera}}</th>
+                <th class="text-right hedarTitleTable">
+                  Opciones
+                </th>
+              </thead>
+              <tbody>
+                <tr *ngFor="let el of elements">
+                  <td>{{el.id}}</td>
+                  <td>{{el.apellidos}}</td>
+                  <td>{{el.nombres}}</td>
+                  <td>{{el.ci}}</td>
+                  <td>{{el.genero}}</td>
+                  <td>{{el.contacto}}</td>
+                  <td>{{el.curso}}</td>
+                  <td class="text-right">
+                    <a class="btn btnOp btn-info btn-icon btn-round" (click)="openModalView(contentModelView)">
+                      <i class='now-ui-icons gestures_tap-01'></i>
+                    </a>
+                    <a class="btn btnOp btn-warning btn-icon btn-round" (click)="openModalUpdate(contentUpdate)">
+                      <i class='now-ui-icons design-2_ruler-pencil'></i>
+                    </a>
+                    <a class="btn btnOp btn-danger btn-icon btn-round" (click)="openDelete(contentDelete)">
+                      <i class='now-ui-icons ui-1_simple-remove'></i>
+                    </a>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
           </div>
-          
-        
-          
-          
-          </fieldset>
-          </form>
+        </div>
+      </div>
     </div>
-  
-  </div><!-- div card-->
-  </div><!-- div col-->
-  </div><!-- div row-->
-    </div><!-- div content-->
+  </div>
+</div>
 
