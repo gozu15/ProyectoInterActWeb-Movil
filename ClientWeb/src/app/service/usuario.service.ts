@@ -1,3 +1,4 @@
+import { Docente } from './../models/docente';
 import { Tutor } from './../models/tutor';
 import { Login } from './../models/login';
 import { Usuario } from './../models/viewmodels/usuario';
@@ -50,7 +51,9 @@ BuscarUsuario(parametro:any): Observable<any>{
   RegistrarTutor(tutor:Tutor){
     return this.http.post<Estudiante>(this.urlUsuarios,tutor, this.httpOptions);
   }
-
+  RegistrarDocente(docente:Docente){
+    return this.http.post<Docente>(this.urlUsuarios,docente, this.httpOptions);
+  }
   Login(login: Login): Observable<any> {
     return this.http.post<any>(this.urlLogin, login, this.httpOptions);
   }

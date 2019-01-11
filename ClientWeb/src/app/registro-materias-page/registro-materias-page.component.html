@@ -12,21 +12,29 @@
     
     <!-- Text input-->
     <div class="form-group">
-      <label class="col-md-4 control-label" for="textNombres">Nombre de la materia: </label>  
+      <label class="col-md-4 control-label" >Nombre de la materia: </label>  
       <div class="col-md-4">
-      <input id="textNombres" name="textNombres" type="text" placeholder="Nombres" class="form-control input-md" required="">
+      <input  name="nombre" [(ngModel)]="materia.nombre" type="text" placeholder="Nombres" class="form-control input-md" required="">
       </div>
     </div>
     
     <!-- Text input-->
     <div class="form-group">
-      <label class="col-md-4 control-label" for="txtApellidos">Descripcion </label>  
+      <label class="col-md-4 control-label" >Descripcion </label>  
       <div class="col-md-4">
-      <input id="txtApellidos" name="txtApellidos" type="text" placeholder="Apellidos" class="form-control input-md" required="">
+      <input [(ngModel)]="materia.descripcion" name="Descripcion" type="text" placeholder="Descripcion" class="form-control input-md" required="">
       </div>
     </div>
-    
-     
+    <div class="alert alert-danger"*ngIf="isError" >
+      <a class="close font-weight-light" data-dismiss="alert" href="#">×</a>Error no se pudo guardar el registro
+  </div>
+  <div class="alert alert-success"*ngIf="isExito" >
+    <a class="close font-weight-light" data-dismiss="alert" href="#">×</a>registro guardado con exito
+</div>
+  <div class="alert alert-danger" *ngIf="isRequired" >
+      <a class="close font-weight-light" data-dismiss="alert" href="#">×</a>Ingrese datos correctos
+  </div>
+      <button (click)="registrarMateria()"  class="btn btn-default">Registrar</button>
     </fieldset>
     </form>
 </div>

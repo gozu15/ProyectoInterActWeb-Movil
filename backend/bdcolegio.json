@@ -59,8 +59,10 @@
     ASIGNACION_MATERIA: {
         id:String,
         usuario:USUARIO,
-        materias: [idmateria
+        curso: [idmateria
         ],
+        gestion:
+        curso:idcurso
         fecha_asignacion:Date
     }
 

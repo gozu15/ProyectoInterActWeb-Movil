@@ -2,8 +2,8 @@
 var express = require("express");
 var bodypaserser = require("body-parser");
 var app = express();
-app.use(bodypaserser.urlencoded({ extended: false }));
-app.use(bodypaserser.json());
+app.use(bodypaserser.urlencoded({limit: '50mb'}));
+app.use(bodypaserser.json({limit: '50mb'}));
 // middleware para permitir o denegar acceso a pagias usar la API
 
 app.use(function (req, res, next) {
