@@ -23,13 +23,13 @@ export class LoginComponent implements OnInit {
   LoginAtion() {
     this.isError = false;
     this.isRequired = false;
-    this.route.navigate(['/dashboard']);
+    this.route.navigate(['/administracion']);
     if (this.login.usuario.length > 2 && this.login.password.length > 2) {
       this.usuarioserv.Login(this.login).subscribe((usuario: any) => {
         if (usuario) {
           alert('inicio con exito');
           console.log(usuario);
-          this.route.navigate(['/dashboard']);
+          this.route.navigate(['/administracion']);
         } else {
           alert('error desconocido');
         }

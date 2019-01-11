@@ -16,11 +16,11 @@ declare interface RouteInfoChilds{
 }
 
 export const ROUTES: RouteInfo[] = [
-    { path: '/dashboard', title: 'Registro',  icon: 'ui-1_simple-add', class: ''},
-    { path: '/table-list', title: 'Agisnacion de Materias',  icon: 'design_vector', class: '' },
-    { path: '/typography', title: 'Informes de Actividad',  icon: 'design_bullet-list-67', class: '' },
-    { path: '/icons', title: 'Notificaciones',  icon: 'ui-1_bell-53', class: '' },
-    { path: '/user-profile', title: 'User Profile',  icon: 'users_single-02', class: '' },
+    { path: '/administracion', title: 'Administracion',  icon: 'ui-1_simple-add', class: ''},
+    { path: '/asignacion-materias', title: 'Agisnacion de Materias',  icon: 'design_vector', class: '' },
+    { path: '/informe-actividad', title: 'Informes de Actividad',  icon: 'design_bullet-list-67', class: '' },
+    { path: '/notificaciones', title: 'Notificaciones',  icon: 'ui-1_bell-53', class: '' },
+    { path: '/perfil-usuario', title: 'Perfil de Usuario',  icon: 'users_single-02', class: '' },
 ];
 
 export const RoutsChilds:RouteInfoChilds[]=[
@@ -30,8 +30,6 @@ export const RoutsChilds:RouteInfoChilds[]=[
     { path: '/registro-toma', title: 'Asignacion de Materias',  icon: '', class: ''},
     { path: '/registro-estudiantes', title: 'Estudiantes',  icon: '', class: ''},
     { path: '/table-list', title: 'Tiempos de evaluacion',  icon: '', class: '' },
-    
-
 ];
 
 @Component({

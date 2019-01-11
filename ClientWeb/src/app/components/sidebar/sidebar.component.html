@@ -8,12 +8,12 @@
         <li *ngFor="let menuItem of menuItems" class="{{menuItem.class}} nav-item textMenu">
             
             
-                    <a *ngIf="menuItem.title!= 'Registro'" [routerLink]="[menuItem.path]">
+                    <a *ngIf="menuItem.title != 'Administracion'" [routerLink]="[menuItem.path]">
                         <i class="now-ui-icons {{menuItem.icon}}"></i>
                         <p style="font-size:1.3em" >{{menuItem.title}}</p> 
                          
                     </a>   
-                    <a class="reg" *ngIf="menuItem.title== 'Registro'"  (click)="isCollapsed = !isCollapsed"
+                    <a class="reg" *ngIf="menuItem.title == 'Administracion'"  (click)="isCollapsed = !isCollapsed"
                     [attr.aria-expanded]="!isCollapsed" aria-controls="collapseExample">
                             <i class="now-ui-icons {{menuItem.icon}}"></i>
                             <p style="font-size:1.3em">{{menuItem.title}}</p> 

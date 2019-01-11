@@ -15,21 +15,14 @@ import { RegistroUsuariosPageComponent } from 'src/app/registro-toma-materias-pa
 import { RegistroEstudiantePageComponent } from 'src/app/registro-estudiante-page/registro-estudiante-page.component';
 
 export const AdminLayoutRoutes: Routes = [
-    { path: 'dashboard',      component: DashboardComponent },
-    { path: 'user-profile',   component: UserProfileComponent },
-    { path: 'table-list',     component: TableListComponent },
-    { path: 'typography',     component: TypographyComponent },
-    { path: 'icons',          component: IconsComponent },
-    { path: 'maps',           component: MapsComponent },
-    { path: 'notifications',  component: NotificationsComponent },
-    { path: 'upgrade',        component: UpgradeComponent },
+    { path: 'administracion',      component: DashboardComponent },
+    { path: 'perfil-usuario',   component: UserProfileComponent },
+    { path: 'asignacion-materias',     component: TableListComponent },
+    { path: 'informe-actividad',     component: TypographyComponent },
+    { path: 'notificaciones',          component: IconsComponent },
     { path: 'registro-docentes',        component: RegistroDocentePageComponent },
     { path: 'registro-aulas',        component: RegistroAulasPageComponent },
     { path: 'registro-materias',        component: RegistroMateriasPageComponent },
     { path: 'registro-toma',        component: RegistroUsuariosPageComponent },
     { path: 'registro-estudiantes',        component: RegistroEstudiantePageComponent },
-
-
-    
-
 ];
