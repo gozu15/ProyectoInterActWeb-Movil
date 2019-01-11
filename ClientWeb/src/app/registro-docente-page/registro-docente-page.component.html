@@ -22,7 +22,7 @@
           <div class="form-group">
             <label class="col-md-4 control-label" for="textNombres">Nombres: </label>  
             <div class="col-md-4">
-            <input id="textNombres" name="textNombres" type="text" placeholder="Nombres" class="form-control input-md" required="">
+            <input [(ngModel)]="docente.nombre" name="nombre" type="text" placeholder="Nombres" class="form-control input-md" required="">
             </div>
           </div>
           
@@ -30,7 +30,7 @@
           <div class="form-group">
             <label class="col-md-4 control-label" for="txtApellidos">Apellidos: </label>  
             <div class="col-md-4">
-            <input id="txtApellidos" name="txtApellidos" type="text" placeholder="Apellidos" class="form-control input-md" required="">
+            <input [(ngModel)]="docente.apellidos" name="apellidos" type="text" placeholder="Apellidos" class="form-control input-md" required="">
             </div>
           </div>
           
@@ -39,7 +39,7 @@
           <div class="form-group">
             <label class="col-md-4 control-label" for="txtDNI">Ci: </label>  
             <div class="col-md-4">
-            <input id="txtDNI" name="txtDNI" type="text" placeholder="DNI" class="form-control input-md" required="">
+            <input [(ngModel)]="docente.ci" name="ci" type="text" placeholder="DNI" class="form-control input-md" required="">
             </div>
           </div>
           
@@ -47,10 +47,10 @@
           <div class="form-group">
             <label class="col-md-4 control-label" for="selectEstadoCivil">Genero: </label>
             <div class="col-md-4">
-              <select id="selectEstadoCivil" name="selectEstadoCivil" class="form-control">
-                <option value="s">Masculino</option>
-                <option value="c">Femenino</option>
-                <option value="d">Otros</option>
+              <select [(ngModel)]="docente.generos" name="generos" class="form-control">
+                <option value="Maculino">Masculino</option>
+                <option value="Femenino">Femenino</option>
+                <option value="Otros">Otros</option>
                 
               </select>
             </div>
@@ -63,7 +63,7 @@
                   <div class="form-group">
                     <div class="input-group">
                       <input class="form-control" placeholder="yyyy-mm-dd"
-                             name="dp" [(ngModel)]="model" ngbDatepicker #d="ngbDatepicker">
+                               #nacimiento  name="fechadenacimiento" [(ngModel)]="docente.fechadenacimiento" ngbDatepicker #d="ngbDatepicker">
                       <div class="input-group-append">
                         <a class="btnfecha btn btn-outline-secondary calendar" (click)="d.toggle()" >
                             <i class="now-ui-icons arrows-1_cloud-upload-94"></i>
@@ -74,11 +74,24 @@
                 </form>
           </div>
           
+          <div >
+            <label class="col-md-4 control-label" for="lbfoto">Foto: </label>  
+            <div class="col-md-4">
+              <input  id="lbfoto" accept="image/*" (change)="changeListener($event)" name="lbfoto" type="file"  class="form-control input-md" required="">
+            </div>
+          </div>
           <!-- Text input-->
-          
-
+          <div class="alert alert-danger"*ngIf="isError" >
+            <a class="close font-weight-light" data-dismiss="alert" href="#">×</a>Error no se pudo guardar el registro
+        </div>
+        <div class="alert alert-success"*ngIf="isExito" >
+          <a class="close font-weight-light" data-dismiss="alert" href="#">×</a>registro guardado con exito
+      </div>
+        <div class="alert alert-danger" *ngIf="isRequired" >
+            <a class="close font-weight-light" data-dismiss="alert" href="#">×</a>Ingrese datos correctos
+        </div>
           <div>
-              <div class="input-group-append">
+              <div class="input-group-append"(click)="RegistrarDocente(nacimiento.value)"  >
                   <a class="btnfecha btn btn-outline-secondary calendar"  >
                       <i class="now-ui-icons arrows-1_cloud-upload-94"></i>
                       Registrar Docente
@@ -88,8 +101,6 @@
           </div>
           
         
-          
-          
           </fieldset>
           </form>
     </div>
