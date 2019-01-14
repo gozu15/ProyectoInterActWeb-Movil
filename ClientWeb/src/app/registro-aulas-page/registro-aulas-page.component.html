@@ -1,45 +1,244 @@
 <div class="panel-header panel-header-sm">
-  </div>
-  
-  <div class="main-content">
-    <div class="row">
-      <div class="col-md-12">
-        <div class="card">
-  <div class="card-header">
-  <form class="form-horizontal">
-  <fieldset>
-  
-  <!-- Form Name -->
-  <!--<legend>Pre-Inscripción | Doctorado en Derecho y Ciencias Políticas </legend>-->
-  <h1 > Registro de Aulas </h1>
-  <br /> <br />
-  
-  
-  
-  <!-- Text input-->
-  <div class="form-group">
-    <label class="col-md-4 control-label" for="textNombres">Nombre del aula: </label>  
-    <div class="col-md-4">
-    <input id="textNombres" name="textNombres" type="text" placeholder="Nombres" class="form-control input-md" required="">
-    </div>
-  </div>
-  
-  <!-- Text input-->
-  <div class="form-group">
-    <label class="col-md-4 control-label" for="txtApellidos">Cursos asignados: </label>  
-    <div class="col-md-4">
-    <input id="txtApellidos" name="txtApellidos" type="text" placeholder="Apellidos" class="form-control input-md" required="">
-    </div>
-  </div>
-        <input id="filecm" type="file" class="form-control" >
-      seleccionar Foto  
-  
-  </fieldset>
-  </form>
-    </div>
-  
-  </div><!-- div card-->
-  </div><!-- div col-->
-  </div><!-- div row-->
-    </div><!-- div content-->
+</div>
+<div class="main-content">
+  <div class="row">
+    <div class="col-md-12">
+      <div class="card">
+        <div class="card-header">
+          <h4 class="card-title"> AULAS</h4>
+          <!--MODAL AULA-->
+          <ng-template #content let-modal>
+            <div class="modal-header">
+              <h4 class="modal-title" id="modal-basic-title">REGISTRO AULA</h4>
+              <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <!--FORMULARIO DE AULA-->
+              <form>
+                <!-- Text input AULA-->
+                <div class="form-group">
+                  <label class=" control-label">Nombre Aula: </label>
+                  <div class="">
+                    <input id="textAula" name="textAula" type="text" placeholder="CRT-1001" class="form-control input-md"
+                      required="">
+                  </div>
+                </div>
+                <!-- Text input ASIGNAR CURSO-->
+                <div class="form-group">
+                  <label class=" control-label">Asignar Curso: </label>
+                  <div class="">
+                    <select class="form-control" id="selectCurso">
+                      <option>1</option>
+                      <option>2</option>
+                      <option>3</option>
+                      <option>4</option>
+                      <option>5</option>
+                    </select>
+                  </div>
+                </div>
+                <!-- Text input CAPACIDAD-->
+                <div class="form-group">
+                  <label class=" control-label">capacidad: </label>
+                  <div class="">
+                    <input id="textCapacidad" name="textCapacidad" type="text" placeholder="15" class="form-control input-md"
+                      required="">
+                  </div>
+                </div>
+                <!-- Text input DESCRIPCION-->
+                <div class="form-group">
+                  <label class=" control-label">descripcion: </label>
+                  <div class="">
+                    <input id="textDescripcion" name="textDescripcion" type="text" placeholder="Descripcion" class="form-control input-md"
+                      required="">
+                  </div>
+                </div>
+                <!-- LOAD FOTO-->
+                <div>
+                  <label class="lbfoto">Foto: </label>
+                  <input id="lbfoto " name="lbfoto" type="file" class="form-control input-md" required="">
+                </div>
+              </form>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-success" (click)="modal.close('Save click')">GUARDAR</button>
+            </div>
+          </ng-template>
+          <!--END MODAL-->
 
+          <!--Boton registrar estudiante-->
+          <button class="btn btn-lg btn-info btn-icon btn-right" (click)="openModal(content)"><i class='now-ui-icons ui-1_simple-add'></i></button>
+          <!--Mensaje Notifiacion de accion-->
+          <pre>{{closeResult}}</pre>
+        </div>
+
+        <!--FORMULARIO DE ACTUALIZACION-->
+        <ng-template #contentUpdate let-modal>
+          <div class="modal-header">
+            <h4 class="modal-title" id="modal-basic-title">ACTUALIZAR DATOS DEL AULA</h4>
+            <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <!--FORMULARIO DE ACTUALIZACION-->
+            <form>
+              <!-- Text input AULA-->
+              <div class="form-group">
+                <label class=" control-label">Nombre Aula: </label>
+                <div class="">
+                  <input id="textAula" name="textAula" type="text" placeholder="CRT-1001" class="form-control input-md"
+                    required="">
+                </div>
+              </div>
+              <!-- Text input ASIGNAR CURSO-->
+              <div class="form-group">
+                <label class=" control-label">Asignar Curso: </label>
+                <div class="">
+                  <select class="form-control" id="selectCurso">
+                    <option>1</option>
+                    <option>2</option>
+                    <option>3</option>
+                    <option>4</option>
+                    <option>5</option>
+                  </select>
+                </div>
+              </div>
+              <!-- Text input CAPACIDAD-->
+              <div class="form-group">
+                <label class=" control-label">capacidad: </label>
+                <div class="">
+                  <input id="textCapacidad" name="textCapacidad" type="text" placeholder="15" class="form-control input-md"
+                    required="">
+                </div>
+              </div>
+              <!-- Text input DESCRIPCION-->
+              <div class="form-group">
+                <label class=" control-label">descripcion: </label>
+                <div class="">
+                  <input id="textDescripcion" name="textDescripcion" type="text" placeholder="Descripcion" class="form-control input-md"
+                    required="">
+                </div>
+              </div>
+              <!-- LOAD FOTO-->
+              <div>
+                <label class="lbfoto" for="lbfoto ">Foto: </label>
+                <input id="lbfoto " name="lbfoto" type="file" class="form-control input-md" required="">
+              </div>
+            </form>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-success" (click)="modal.close('Save click')">ACTUALIZAR</button>
+          </div>
+        </ng-template>
+        <!--END MODAL-->
+
+        <!--MODAL DE VIEW INFO-->
+        <ng-template #contentModelView let-modal>
+          <div class="modal-header">
+            <h4 class="modal-title">INFORACION DEL AULA</h4>
+            <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <!-- LOAD FOTO-->
+            <div class="form-group">
+              <label for="lbfoto ">Foto: </label>
+
+            </div>
+            <!-- Text input NOMBRES-->
+            <div class="form-group">
+              <label class=" control-label">Nombre Aula: </label>
+
+            </div>
+            <!-- Text input APELLIDOS-->
+            <div class="form-group">
+              <label class=" control-label">Asignar Curso: </label>
+
+            </div>
+            <!-- Text input APELLIDOS-->
+            <div class="form-group">
+              <label class=" control-label">Capacidad: </label>
+
+            </div>
+            <!-- Text input APELLIDOS-->
+            <div class="form-group">
+              <label class=" control-label">Descripcion: </label>
+
+            </div>
+            <!--fin del toggle ROW-->
+          </div>
+        </ng-template>
+
+        <!--Modal de Alertas -->
+        <!--AGREGAR-->
+        <ng-template #contentAdd let-modal>
+          <div class="modal-header">
+            <h4 class="modal-title">Agregar</h4>
+            <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <p>Registro Agregado, sadisfactoriamente.</p>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-light" (click)="modal.close('Close click')">Seguir</button>
+          </div>
+        </ng-template>
+        <!--ELIMINAR-->
+        <ng-template #contentDelete let-modal>
+          <div class="modal-header">
+            <h4 class="modal-title">Eliminar Registro</h4>
+            <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <p>¿Desea eliminar el registro?</p>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-light" (click)="modal.close('Close click')">Cancelar</button>
+            <button type="button" class="btn btn-danger" (click)="c('Save click')">Eliminar</button>
+          </div>
+        </ng-template>
+
+        <!--LISTA AULAS-->
+        <div class="card-body">
+          <div class="table-responsive">
+            <table class="table">
+              <thead class=" text-primary">
+                <th class="hedarTitleTable" *ngFor="let cabezera of headElements">{{cabezera}}</th>
+                <th class="text-right hedarTitleTable">
+                  Opciones
+                </th>
+              </thead>
+              <tbody>
+                <tr *ngFor="let aula of elements">
+                  <td>{{aula.id}}</td>
+                  <td>{{aula.nombre}}</td>
+                  <td>{{aula.cursoAsignado}}</td>
+                  <td>{{aula.capacidad}}</td>
+                  <td>{{aula.descripcion}}</td>
+                  <td class="text-right">
+                    <a class="btn btnOp btn-info btn-icon btn-round" (click)="openModalView(contentModelView)">
+                      <i class='now-ui-icons gestures_tap-01'></i>
+                    </a>
+                    <a class="btn btnOp btn-warning btn-icon btn-round" (click)="openModalUpdate(contentUpdate)">
+                      <i class='now-ui-icons design-2_ruler-pencil'></i>
+                    </a>
+                    <a class="btn btnOp btn-danger btn-icon btn-round" (click)="openDelete(contentDelete)">
+                      <i class='now-ui-icons ui-1_simple-remove'></i>
+                    </a>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
