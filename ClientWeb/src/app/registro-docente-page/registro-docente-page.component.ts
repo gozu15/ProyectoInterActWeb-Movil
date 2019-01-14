@@ -1,7 +1,7 @@
 import { UsuarioService } from './../service/usuario.service';
 import { DocenteService } from './../service/docente.service';
 import { Component, OnInit } from '@angular/core';
-import {NgbModal, ModalDismissReasons} from '@ng-bootstrap/ng-bootstrap';
+import { NgbModal, ModalDismissReasons, NgbModalConfig } from '@ng-bootstrap/ng-bootstrap';
 
 
 import { Docente } from '../models/docente';
@@ -14,32 +14,21 @@ import { DatePipe } from '@angular/common';
 })
 export class RegistroDocentePageComponent implements OnInit {
   closeResult: string;
+  docente: Docente;
+  image: any;
+  isRequired: boolean = false;
+  isError: boolean = false;
+  isExito: boolean = false;
+  recordar: boolean = false;
 
-  
+  constructor(private config: NgbModalConfig, private modalService: NgbModal, private datePipe: DatePipe, private usuarioserv: UsuarioService) {
+    this.docente = new Docente;
+    config.backdrop = 'static';
+    config.keyboard = false;
 
-  open(content) {
-    this.modalService.open(content, {ariaLabelledBy: 'modal-basic-title'}).result.then((result) => {
-      console.log("entro al boton dismiss");
-      //TODO poner codigo de obtencion de datos del formulario y envio al backend
-      var texto= document.getElementById
-      //this.RegistrarDocente()
-      this.closeResult = `Closed with: ${result}`;
-    }, (reason) => {
-      
-      this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
-    });
   }
-docente:Docente;
-image:any;
-isRequired: boolean = false;
-isError: boolean = false;
-isExito:boolean=false;
-recordar: boolean = false;
-  constructor(private modalService: NgbModal ,private datePipe: DatePipe,private usuarioserv:UsuarioService) {
-    this.docente=new Docente;
-    
-   }
 
+  //Funciones del Modal
   private getDismissReason(reason: any): string {
     if (reason === ModalDismissReasons.ESC) {
       return 'by pressing ESC';
@@ -48,60 +37,86 @@ recordar: boolean = false;
       return 'by clicking on a backdrop';
     } else {
       console.log("entro a otro lado")
-      return  `with: ${reason}`;
+      return `with: ${reason}`;
     }
   }
+
+  openModal(content) {
+    this.modalService.open(content, { ariaLabelledBy: 'modal-basic-title' }).result.then((result) => {
+      this.closeResult = `Closed with: ${result}`;
+    }, (reason) => {
+      this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
+    });
+  }
+
+  openAdd(content) {
+    this.modalService.open(content);
+  }
+
+  openModalView(content) {
+    this.modalService.open(content);
+  }
+
+  openModalUpdate(content) {
+    this.modalService.open(content);
+  }
+
+  openDelete(content) {
+    this.modalService.open(content);
+  }
+
   ngOnInit() {
   }
 
-  RegistrarDocente(nacimiento){
+  // FUNCIONES PARA SOLICITAR SERVICIO AL SERVIDOR
+  RegistrarDocente(nacimiento) {
     this.isError = false;
     this.isRequired = false;
-    this.isExito=false;
-  var date = new Date();
-  this.docente.fechadenacimiento=nacimiento;
-  this.docente.creacion={fecha:this.datePipe.transform(date,"yyyy-MM-dd HH:mm:ss"),usuario:"5c34b3a83619a9178c5902f1"};
-  this.docente.modificacion={fecha:this.datePipe.transform(date,"yyyy-MM-dd HH:mm:ss"),usuario:"5c34b3a83619a9178c5902f1"};
+    this.isExito = false;
+    var date = new Date();
+    this.docente.fechadenacimiento = nacimiento;
+    this.docente.creacion = { fecha: this.datePipe.transform(date, "yyyy-MM-dd HH:mm:ss"), usuario: "5c34b3a83619a9178c5902f1" };
+    this.docente.modificacion = { fecha: this.datePipe.transform(date, "yyyy-MM-dd HH:mm:ss"), usuario: "5c34b3a83619a9178c5902f1" };
 
-  
- if(this.docente.nombre){
-  
-  this.usuarioserv.RegistrarDocente(this.docente).subscribe((docente: any) => {
-  
-    if (docente) {
-     
-    this.isExito=true;
-    console.log(docente);
-    this.docente=new Docente;
-    } else {
-      alert('error desconocido');
+
+    if (this.docente.nombre) {
+
+      this.usuarioserv.RegistrarDocente(this.docente).subscribe((docente: any) => {
+
+        if (docente) {
+
+          this.isExito = true;
+          console.log(docente);
+          this.docente = new Docente;
+        } else {
+          alert('error desconocido');
+        }
+      }, (error: any) => {
+        this.isError = true;
+      });
     }
-  }, (error: any) => {
-    this.isError = true;
-  });
- }
- else{
-this.isRequired=true;
- }
+    else {
+      this.isRequired = true;
+    }
   }
 
-  changeListener($event) : void {
+  changeListener($event): void {
     this.readThis($event.target);
   }
-  
+
   readThis(inputValue: any): void {
-    var file:File = inputValue.files[0];
+    var file: File = inputValue.files[0];
     console.log(inputValue.files[0]);
-    this.docente.perfil={tipo:inputValue.files[0].type,foto:"",miniatura:""};
-    var myReader:FileReader = new FileReader();
-  
+    this.docente.perfil = { tipo: inputValue.files[0].type, foto: "", miniatura: "" };
+    var myReader: FileReader = new FileReader();
+
     myReader.onloadend = (e) => {
-      this.docente.perfil.foto=myReader.result.toString();
+      this.docente.perfil.foto = myReader.result.toString();
       resizeBase64(myReader.result, 200, 100).then((result) => {
-       this.docente.perfil.miniatura=result;
+        this.docente.perfil.miniatura = result;
 
       });
-    
+
     }
     myReader.readAsDataURL(file);
   }
