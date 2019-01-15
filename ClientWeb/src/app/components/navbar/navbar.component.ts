@@ -3,6 +3,7 @@ import { ROUTES } from '../sidebar/sidebar.component';
 import {Location, LocationStrategy, PathLocationStrategy} from '@angular/common';
 import { Router } from '@angular/router';
 import Chart from 'chart.js';
+import { UsuarioService } from 'src/app/service/usuario.service';
 
 @Component({
   selector: 'app-navbar',
@@ -18,9 +19,10 @@ export class NavbarComponent implements OnInit {
 
     public isCollapsed = true;
 
-    constructor(location: Location,  private element: ElementRef, private router: Router) {
+    constructor(private rout: Router,public usuarioServ:UsuarioService,location: Location,  private element: ElementRef, private router: Router) {
       this.location = location;
           this.sidebarVisible = false;
+          
     }
 
     ngOnInit(){
@@ -137,6 +139,13 @@ export class NavbarComponent implements OnInit {
 
         }
     };
+    cerrarCesion(){
+     this.usuarioServ.cerrarSecion(this.usuarioServ.UsuarioActual.datos._id).subscribe((dato:any)=>{
+        localStorage.clear();
+        this.usuarioServ.UsuarioActual=undefined;
+        this.rout.navigate(['/home']);
+     }); 
+    }
 
     getTitle(){
       var titlee = this.location.prepareExternalUrl(this.location.path());

@@ -45,10 +45,10 @@
                 <div class="form-group">
                   <label class=" control-label">Generos: </label>
                   <div class="">
-                    <select [(ngModel)]="docente.generos" name="docente.generos" class="form-control" id="selectCurso">
-                      <option>Masculino</option>
-                      <option>Femenino</option>
-                      <option>Otro</option>
+                    <select [(ngModel)]="docente.genero" name="docente.genero" class="form-control" id="selectCurso">
+                      <option value="Masculino">Masculino</option>
+                      <option value="Femenino">Femenino</option>
+                      <option value="Otros">Otro</option>
                     </select>
                   </div>
                 </div>
@@ -72,7 +72,7 @@
                 <!-- LOAD FOTO-->
                 <div>
                   <label class="lbfoto" for="lbfoto ">Foto: </label>
-                  <input id="lbfoto " name="lbfoto" type="file" class="form-control input-md" required="">
+                  <input type="file" name="fileInput" (change)="changeListener($event)" #fileInput class="form-control input-md" required="">
                 </div>
               </form>
             </div>

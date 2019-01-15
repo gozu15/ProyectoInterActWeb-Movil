@@ -5,7 +5,7 @@ var Rol = require("../schemas/rolSchema");
 var bcript = require("bcrypt-nodejs");
 var token =require("../token/token");
 function GetUsuarios(req, res) {
-    var rol={estudent:"Estudiante",edm:"Admin",doc:"Docente",att:"Tutor"};
+    var rol={estudent:"Estudiante",adm:"Admin",doc:"Docente",att:"Tutor"};
     var sort={name:"nombre",surna:"apellidos",nacimiento:"fechadenacimiento"};
     var order={desc:1,asc:-1,default:3}
     var nquery='{"'+sort[req.query.sort]+'":'+parseInt(order[req.query.order])+'}';
@@ -137,27 +137,29 @@ function Login(req,res){
                 //alert("Usuario o Contraseña incorrecta");
                 res.status(404).send({ mensaje: "usuario no existe " })
             } else {
+       
                 // res.status(200).send({ user });
                 if(user.login.estado!=true){
                     var usuario=new Usuario();
                     usuario._id=user._id;
                     usuario.login={usuario:user.login.usuario,password:user.login.password,estado:true}
-                  
-                     Usuario.findByIdAndUpdate(user._id,usuario,{new: true}, function (error, lista) {
+  
+                    bcript.compare(pass, user.login.password, function(error, ok) {
+                        if (ok) {
+                          
+                            Usuario.findByIdAndUpdate(user._id,usuario,{new: true}, function (error, lista) {
                         
                 
-                                bcript.compare(pass, user.login.password, function(error, ok) {
-                                    if (ok) {
-                                      
-                                            res.status(200).send({ token: token.crearToken(user), datos:user });
-                                        
-                                    }
-                                    else{
-                                        res.status(404).send({ mensaje: "usuario o contraseña incorrectas " })
-                                    }
-                                });
-                     
-                    });      
+                                res.status(200).send({ token: token.crearToken(user), datos:user });
+                            }); 
+                                
+                            
+                        }
+                        else{
+                            res.status(404).send({ mensaje: "usuario o contraseña incorrectas " })
+                        }
+                    });
+                        
                 }else{
                     res.status(401).send({ mensaje: "Usuario activo actualmente" })
                 }
@@ -181,7 +183,7 @@ async function LogOut(req,res){
                             if (!lista) {
                                 res.status(404).send({ mensaje: "Error no se  pudo cerrar secion" })
                             } else {
-                                res.status(200).send(true)
+                                res.status(200).send(lista)
                             }
                         }
                     });     
@@ -201,16 +203,14 @@ async function Registrar(req, res) {
     usuario.ci=params.ci;
     usuario.numero_contacto=params.numero_contacto;
     usuario.perfil=params.perfil;
+ 
     usuario.rol=await Rol.findById(params.rol);
+
     usuario.creacion=params.creacion;
     usuario.modificacion=params.modificacion;
     usuario.eliminado={estado:false}
-    
-    console.log(usuario);
     var fecha = new Date(usuario.fechadenacimiento).toJSON().slice(0,10).replace(/-/g,'');
     var login={usuario:params.ci,password:params.nombre.charAt(0)+params.apellidos.charAt(0)+fecha,estado:false}
-    
-   // console.log(usuario.rol);
     if (params.ci) {
         //encripta el pasword del usuario
         bcript.hash(login.password, null, null, function(error, hash) {
@@ -224,7 +224,6 @@ async function Registrar(req, res) {
             
                         res.status(500).send({ mensaje: "error al guradar" })
                     } else {
-                    
                         res.status(200).send(nuevoUsuario)
                     }
                 })

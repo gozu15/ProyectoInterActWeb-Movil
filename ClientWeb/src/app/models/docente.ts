@@ -4,12 +4,12 @@ export class Docente {
     public id: number;
     public nombre: string;
     public apellidos:string;
-    public generos:string;
+    public genero:string;
     public ci:string;
     public login:Login;
     public fechadenacimiento:any;
     public numero_contacto:string;
-    public perfil:{foto:String,tipo:String,miniatura:String};
+    public perfil:{foto:String,tipo:String};
     public rol:Rol;
     public eliminado:{estado:boolean,razon:string};
     public creacion:{fecha:any,usuario:string};
