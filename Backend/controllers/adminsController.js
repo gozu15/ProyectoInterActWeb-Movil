@@ -1,16 +1,11 @@
 "use strict"
-var Usuario = require("../schemas/usuariosSchema");
+var Admins = require("../schemas/adminsSchema");
 //metodo para sacar todos los usuarios de la base de datos
-var Rol = require("../schemas/rolSchema");
 var bcript = require("bcrypt-nodejs");
 var token =require("../token/token");
 function GetUsuarios(req, res) {
-    var rol={estudent:"Estudiante",edm:"Admin",doc:"Docente",att:"Tutor"};
-    var sort={name:"nombre",surna:"apellidos",nacimiento:"fechadenacimiento"};
-    var order={desc:1,asc:-1,default:3}
-    var nquery='{"'+sort[req.query.sort]+'":'+parseInt(order[req.query.order])+'}';
-
-    Usuario.find({'rol.rol':rol[req.query.rol]},{perfil:0,tutores:0},{sort:JSON.parse(nquery)}, function (error, lista) {
+   
+    Admins.find({}, function (error, lista) {
         if (error) {
             res.status(500).send({ mensaje: "Error al listar" })
         } else {
@@ -30,10 +25,10 @@ function GetUsuarios(req, res) {
 
 function Borrar(req,res){
   
-    var datos={eliminado:{estado:true,razon:req.query.razon},modificacion:{fecha:"12-12-5",usuario:"5c34b3a83619a9178c5902f1"
+    var datos={eliminado:{estado:true,razon:req.query.razon},modificacion:{fecha:"12-12-5",Admins:"5c34b3a83619a9178c5902f1"
     }}
    
-    Usuario.findByIdAndUpdate(req.params.id,datos,{new: true}, function (error, lista) {
+    Admins.findByIdAndUpdate(req.params.id,datos,{new: true}, function (error, lista) {
         if (error) {
             res.status(500).send({ mensaje: "Error " })
         } else {
@@ -52,7 +47,7 @@ function Borrar(req,res){
 function Buscar(req,res){
     var termino=req.body.termino;
 
-    Usuario.find({$or:[{nombre: new RegExp(termino, 'i')},{apellidos: new RegExp(termino, 'i')}]},{'perfil.foto':0,tutores:0}, function (error, lista) {
+    Admins.find({$or:[{nombre: new RegExp(termino, 'i')},{apellidos: new RegExp(termino, 'i')}]},{'perfil.foto':0,tutores:0}, function (error, lista) {
         if (error) {
             res.status(500).send({ mensaje: "Error al listar" })
         } else {
@@ -70,23 +65,23 @@ function Buscar(req,res){
 }
 function Actualizar(req,res){
        //console.log(req.body);
-    var usuario = new Usuario();
+    var Admins = new Admins();
     var params = req.body;
-    usuario._id=req.params.id;
-    usuario.nombre = params.nombre;
-    usuario.apellidos=params.apellidos;
-    usuario.genero=params.genero;
-    usuario.fechadenacimiento=params.fechadenacimiento;
-    usuario.ci=params.ci;
-    usuario.login=params.login;
-    usuario.numero_contacto=params.numero_contacto;
-    usuario.perfil=params.perfil;
-    usuario.modificacion=params.modificacion;
+    Admins._id=req.params.id;
+    Admins.nombre = params.nombre;
+    Admins.apellidos=params.apellidos;
+    Admins.genero=params.genero;
+    Admins.fechadenacimiento=params.fechadenacimiento;
+    Admins.ci=params.ci;
+    Admins.login=params.login;
+    Admins.numero_contacto=params.numero_contacto;
+    Admins.perfil=params.perfil;
+    Admins.modificacion=params.modificacion;
 //someString.replace(/cat/g, 'dog');
-    var login={usuario:params.ci,password:params.nombre.charAt(0)+params.apellidos.charAt(0)+params.fechadenacimiento.replace(/-/g, '')}
-        //usuario:carnet
+    var login={Admins:params.ci,password:params.nombre.charAt(0)+params.apellidos.charAt(0)+params.fechadenacimiento.replace(/-/g, '')}
+        //Admins:carnet
     //pass:primer caracter nombre y apellido mas fecha nacmeinto
-          Usuario.findByIdAndUpdate(req.params.id,usuario,{new: true}, function (error, lista) {
+          Admins.findByIdAndUpdate(req.params.id,Admins,{new: true}, function (error, lista) {
               if (error) {
                   res.status(500).send({ mensaje: "Error desconocido" })
               } else {
@@ -105,12 +100,12 @@ function Actualizar(req,res){
 }
 function GetUsuario(req,res){
     var id=req.params.id;
-    Usuario.findById(id, function (error, lista) {
+    Admins.findById(id, function (error, lista) {
         if (error) {
             res.status(500).send({ mensaje: "Error" })
         } else {
             if (!lista) {
-                res.status(404).send({ mensaje: "usuario no existe" })
+                res.status(404).send({ mensaje: "Admins no existe" })
             } else {
 
 
@@ -124,26 +119,26 @@ function GetUsuario(req,res){
 
 function Login(req,res){
     var params = req.body;
-    var usuario = params.usuario;
+    var usuario = params.Admins;
     var pass = params.password;
     
-    Usuario.findOne({ 'login.usuario': usuario },{perfil:0,tutores:0}, (error, user) => {
+    Admins.findOne({ 'login.usuario': usuario }, (error, user) => {
        
         if (error) {
-            res.status(500).send({ mensaje: "Error al buscar usuario" })
+            res.status(500).send({ mensaje: "Error al buscar Admins" })
         } else {
            
             if (user==null) {
-                //alert("Usuario o Contraseña incorrecta");
-                res.status(404).send({ mensaje: "usuario no existe " })
+                //alert("Admins o Contraseña incorrecta");
+                res.status(404).send({ mensaje: "Admins no existe " })
             } else {
                 // res.status(200).send({ user });
                 if(user.login.estado!=true){
-                    var usuario=new Usuario();
-                    usuario._id=user._id;
-                    usuario.login={usuario:user.login.usuario,password:user.login.password,estado:true}
+                    var admins=new Admins();
+                    admins._id=user._id;
+                    admins.login={usuario:user.login.usuario,password:user.login.password,estado:true}
                   
-                     Usuario.findByIdAndUpdate(user._id,usuario,{new: true}, function (error, lista) {
+                     Admins.findByIdAndUpdate(user._id,admins,{new: true}, function (error, lista) {
                         
                 
                                 bcript.compare(pass, user.login.password, function(error, ok) {
@@ -153,13 +148,13 @@ function Login(req,res){
                                         
                                     }
                                     else{
-                                        res.status(404).send({ mensaje: "usuario o contraseña incorrectas " })
+                                        res.status(404).send({ mensaje: "Admins o contraseña incorrectas " })
                                     }
                                 });
                      
                     });      
                 }else{
-                    res.status(401).send({ mensaje: "Usuario activo actualmente" })
+                    res.status(401).send({ mensaje: "Admins activo actualmente" })
                 }
             }
         }
@@ -168,12 +163,12 @@ function Login(req,res){
 
 async function LogOut(req,res){
 
-    var datos= await Usuario.findById(req.params.id);
-    var usuario=new Usuario();
-                    usuario._id=req.params.id;
-                    usuario.login={usuario:datos.login.usuario,password:datos.login.password,estado:false};
+    var datos= await Admins.findById(req.params.id);
+    var admins=new Admins();
+                    admins._id=req.params.id;
+                    admins.login={usuario:datos.login.usuario,password:datos.login.password,estado:false};
                   
-                     Usuario.findByIdAndUpdate(req.params.id,usuario,{new: true}, function (error, lista) {
+                     admins.findByIdAndUpdate(req.params.id,admins,{new: true}, function (error, lista) {
                          console.log(lista);
                         if (error) {
                             res.status(500).send({ mensaje: "Error desconocido" })
@@ -190,35 +185,32 @@ async function Registrar(req, res) {
    
 
     //console.log(req.body);
-    var usuario = new Usuario();
+    var admins = new Admins();
     var params = req.body;
-    usuario.colegio=params.colegio;
-    usuario.nombre = params.nombre;
-    usuario.apellidos=params.apellidos;
-    usuario.genero=params.genero;
-    usuario.colegio=params.colegio;
-    usuario.fechadenacimiento=params.fechadenacimiento;
-    usuario.ci=params.ci;
-    usuario.numero_contacto=params.numero_contacto;
-    usuario.perfil=params.perfil;
-    usuario.rol=await Rol.findById(params.rol);
-    usuario.creacion=params.creacion;
-    usuario.modificacion=params.modificacion;
-    usuario.eliminado={estado:false}
-    var fecha = new Date(usuario.fechadenacimiento).toJSON().slice(0,10).replace(/-/g,'');
+    admins.nombre = params.nombre;
+    admins.apellidos=params.apellidos;
+    admins.genero=params.genero;
+    admins.ci=params.ci;
+    admins.numero_contacto=params.numero_contacto;
+    admins.perfil=params.perfil;
+    admins.fechadenacimiento=params.fechadenacimiento;
+    admins.creacion=params.creacion;
+    admins.modificacion=params.modificacion;
+    admins.eliminado={estado:false}
+    var fecha = new Date(admins.fechadenacimiento).toJSON().slice(0,10).replace(/-/g,'');
 
     var login={usuario:params.ci,password:params.nombre.charAt(0)+params.apellidos.charAt(0)+fecha,estado:false}
     
-   // console.log(usuario.rol);
+   // console.log(Admins.rol);
     if (params.ci) {
-        //encripta el pasword del usuario
+        //encripta el pasword del Admins
         bcript.hash(login.password, null, null, function(error, hash) {
             login.password=hash;
-            usuario.login=login
+            admins.login=login
             if (login.usuario != null) {
-                //guarda al nuevo usuario en la bd
+                //guarda al nuevo Admins en la bd
             
-                usuario.save((error, nuevoUsuario) => {
+                admins.save((error, nuevoUsuario) => {
                     if (error) {
             
                         res.status(500).send({ mensaje: "error al guradar" })
@@ -228,7 +220,6 @@ async function Registrar(req, res) {
                     }
                 })
             }
-
       });
     } 
    

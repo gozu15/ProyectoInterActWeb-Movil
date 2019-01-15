@@ -2,6 +2,7 @@
 var mongose = require("mongoose");
 var Schema = mongose.Schema;
 var cursoSchema = Schema({
+  colegio:{ type: Schema.Types.ObjectId, ref: 'colegios' },
    nombre:String,
    paralelo:String,
    materias: [{ type: Schema.Types.ObjectId, ref: 'materias' }],

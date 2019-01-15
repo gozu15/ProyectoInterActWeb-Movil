@@ -3,7 +3,8 @@ var Cursos = require("../schemas/cursoSchema");
 
 function GetCursos(req, res) {
 
-    Cursos.find({}, function (error, lista) {
+    Cursos.find({}).populate('materias').
+    exec(function (error, lista) {
         if (error) {
             res.status(500).send({ mensaje: "Error desconocido" })
         } else {
@@ -23,6 +24,7 @@ function Registrar(req, res) {
    
     var curso = new Cursos();
     var params = req.body;
+    curso.colegio=params.colegio;
     curso.nombre = params.nombre;
     curso.paralelo=params.paralelo;
     curso.materias=params.materias;

@@ -6,6 +6,8 @@ app.use(bodypaserser.urlencoded({limit: '50mb'}));
 app.use(bodypaserser.json({limit: '50mb'}));
 // middleware para permitir o denegar acceso a pagias usar la API
 
+
+
 app.use(function (req, res, next) {
 
     // Sitio web que desea permitir que se conecte
@@ -46,5 +48,16 @@ app.use("/api/aulas",aulaRoute);
 var loginRoute=require("./routes/login");
 app.use("/api/inicio",loginRoute);
 
+
+var tomasRoute=require("./routes/tomaMateriaRoute");
+app.use("/api/tomas/",tomasRoute);
+//Modulo a exportar
+
+var AdminRoute=require("./routes/admins");
+app.use("/api/admins/",AdminRoute);
+
+
+var ColegioRoute=require("./routes/colegioRoute");
+app.use("/api/colegios/",ColegioRoute);
 //Modulo a exportar
 module.exports = app;

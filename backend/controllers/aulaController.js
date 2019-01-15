@@ -44,6 +44,8 @@ var aula = new Aula();
 var params = req.body;
 aula._id=req.params.id;
 aula.nombre=params.nombre;
+aula.foto=params.foto;
+aula.capacidad=params.capacidad;
 aula.materias=params.materias;
 aula.descripcion=params.descripcion;
 aula.modificacion=params.modificacion;
@@ -107,11 +109,15 @@ function Registrar(req, res) {
   
     var aula = new Aula();
     var params = req.body;
+    aula.colegio=params.colegio;
     aula.nombre = params.nombre;
     aula.materias=params.materias;
-    materia.creacion=params.creacion;
-    materia.modificacion=params.modificacion;
-    materia.eliminado={estado:false}
+    aula.creacion=params.creacion;
+    aula.modificacion=params.modificacion;
+    aula.eliminado={estado:false};
+    aula.descripcion=params.descripcion;
+    aula.foto=params.foto;
+    aula.capacidad=params.capacidad;
                
                 aula.save((error, nuevaAula) => {
                     if (error) {

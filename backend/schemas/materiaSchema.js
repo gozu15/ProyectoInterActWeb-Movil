@@ -2,6 +2,7 @@
 var mongose = require("mongoose");
 var Schema = mongose.Schema;
 var MateriaSchema = Schema({
+   colegio:{ type: Schema.Types.ObjectId, ref: 'colegios' },
    nombre:String,
    descripcion:String,
    eliminado:{estado:Boolean,razon:String},

@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { NgbModal, ModalDismissReasons, NgbModalConfig} from '@ng-bootstrap/ng-bootstrap';
+import { UsuarioService } from '../service/usuario.service';
+import { Estudiante } from '../models/estudiante';
 
 
 @Component({
@@ -30,12 +32,22 @@ export class RegistroEstudiantePageComponent implements OnInit {
   // Cabezeras de los elementos
   headElements = ['Id', 'Apellidos', 'Nombres', 'CI', 'Genero', 'Contacto', 'Curso'];
 
-  constructor(config: NgbModalConfig, private modalService: NgbModal) {
+  constructor( private UserServ:UsuarioService, config: NgbModalConfig, private modalService: NgbModal) {
     // Declarancion de variables para modal alerts
     config.backdrop = 'static';
     config.keyboard = false;
+    this.getStudents();
   }
 
+  getStudents(){
+   let parametro={sort:"name",order:"des"};
+    this.UserServ.getEstudiantes(parametro).subscribe((estudiantes:Estudiante[])=>{
+      if(estudiantes){
+        console.log(estudiantes);
+      }
+
+    });
+  }
   ngOnInit() {
   }
 
