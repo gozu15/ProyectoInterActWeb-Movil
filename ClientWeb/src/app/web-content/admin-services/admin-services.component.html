@@ -1,0 +1,295 @@
+<app-navbar-web></app-navbar-web>
+<div class="row">
+  <div class="card">
+    <div class="card-header">
+      <h4 class="card-title"> ADMINISTRACION</h4>
+      <!--MODAL DOCENTE-->
+      <ng-template #content let-modal>
+        <div class="modal-header">
+          <h4 class="modal-title" id="modal-basic-title">REGISTRO COLEGIO/ADMIISTRADOR</h4>
+          <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <!--FORMULARIO DE Docente-->
+          <form>
+            <!-- Text input Nombre-->
+            <div class="form-group">
+              <label class=" control-label">Nombre: </label>
+              <div class="">
+                <input name="docente.nombre" type="text" placeholder="Nombre" class="form-control input-md" required="">
+              </div>
+            </div>
+            <!-- LOAD FOTO-->
+            <div>
+              <label class="lbfoto" for="lbfoto ">Foto: </label>
+              <input id="lbfoto " name="lbfoto" type="file" class="form-control input-md" required="">
+            </div>
+          </form>
+        </div>
+        <div class="row">
+          <div class="col-md-12">
+            <a class="btn btn-info btn-block" (click)="isCollapsed = !isCollapsed" [attr.aria-expanded]="!isCollapsed"
+              aria-controls="collapseExample">
+              REGISTRO DE ADMINISTRADOR
+            </a>
+            <div id="collapseExample" [ngbCollapse]="isCollapsed">
+              <div>
+                <div class="card-body">
+                  <form>
+                    <!-- Text input NOMBRE TUTOR-->
+                    <div class="form-group">
+                      <label for="textNombres">Nombres: </label>
+                      <input id="textNombres" name="textNombres" type="text" placeholder="Ingrese Nombres" class="form-control input-md"
+                        required="">
+                    </div>
+                    <!-- Text input APELLIDO TUTOR-->
+                    <div class="form-group">
+                      <label for="textapellidos">Apellidos: </label>
+                      <input id="textapellidos" name="textapellidos" type="text" placeholder="Ingrese Apellidos" class="form-control input-md"
+                        required="">
+                    </div>
+                    <!-- Text input GENERO TUTOR-->
+                    <div class="form-group">
+                      <label for="selecGenero">Genero: </label>
+                      <select id="selectEstadoCivil" name="selecGenero" class="form-control">
+                        <option value="s">Masculino</option>
+                        <option value="c">Femenino</option>
+                        <option value="d">Otros</option>
+                      </select>
+                    </div>
+                    <!-- Text input CI TUTOR-->
+                    <div class="form-group">
+                      <label for="textci">CI: </label>
+                      <input id="textci" name="textci" type="text" placeholder="Ingrese Ci" class="form-control input-md"
+                        required="">
+                    </div>
+                    <!-- LOAD FOTO Adminstrador-->
+                    <div>
+                      <label for="textcontact">Foto: </label>
+                      <input class="form-control input-md" id="txtfotopadre" name="txtfotopadre" type="file" required="">
+                    </div>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!--Notificaciones-->
+        <div class="alert alert-danger" *ngIf="isError">
+          <a class="close font-weight-light" data-dismiss="alert" href="#">×</a>Error no se pudo guardar el
+          registro
+        </div>
+        <div class="alert alert-success" *ngIf="isExito">
+          <a class="close font-weight-light" data-dismiss="alert" href="#">×</a>registro guardado con exito
+        </div>
+        <div class="alert alert-danger" *ngIf="isRequired">
+          <a class="close font-weight-light" data-dismiss="alert" href="#">×</a>Ingrese datos correctos
+        </div>
+        <!--btnGuardar-->
+        <div class="modal-footer">
+          <button type="button" class="btn btn-success" (click)="add()">GUARDAR</button>
+        </div>
+      </ng-template>
+      <!--END MODAL-->
+
+      <!--Boton registrar docente-->
+      <button class="btn btn-lg btn-info btn-icon btn-right" (click)="openModal(content)"><i class='now-ui-icons ui-1_simple-add'></i></button>
+      <!--Mensaje Notifiacion de accion-->
+      <pre>{{closeResult}}</pre>
+    </div>
+
+    <!--FORMULARIO DE ACTUALIZACION-->
+    <ng-template #contentUpdate let-modal>
+      <div class="modal-header">
+        <h4 class="modal-title" id="modal-basic-title">ACTUALIZAR DATOS DEL COLEGIO/ADMINISTRADOR</h4>
+        <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <!--FORMULARIO DE ACTUALIZACION-->
+        <form>
+          <!-- Text input Nombre-->
+          <div class="form-group">
+            <label class=" control-label">Nombres: </label>
+            <div class="">
+              <input id="textAula" name="textAula" type="text" placeholder="Nombre" class="form-control input-md"
+                required="">
+            </div>
+          </div>
+          <!-- LOAD FOTO-->
+          <div>
+            <label class="lbfoto" for="lbfoto ">Foto: </label>
+            <input id="lbfoto " name="lbfoto" type="file" class="form-control input-md" required="">
+          </div>
+        </form>
+      </div>
+      <div class="row">
+        <div class="col-md-12">
+          <a class="btn btn-info btn-block" (click)="isCollapsed = !isCollapsed" [attr.aria-expanded]="!isCollapsed"
+            aria-controls="collapseExample">
+            ACTUALIZACION DE ADMINISTRADOR
+          </a>
+          <div id="collapseExample" [ngbCollapse]="isCollapsed">
+            <div>
+              <div class="card-body">
+                <form>
+                  <!-- Text input NOMBRE TUTOR-->
+                  <div class="form-group">
+                    <label for="textNombres">Nombres: </label>
+                    <input id="textNombres" name="textNombres" type="text" placeholder="Ingrese Nombres" class="form-control input-md"
+                      required="">
+                  </div>
+                  <!-- Text input APELLIDO TUTOR-->
+                  <div class="form-group">
+                    <label for="textapellidos">Apellidos: </label>
+                    <input id="textapellidos" name="textapellidos" type="text" placeholder="Ingrese Apellidos" class="form-control input-md"
+                      required="">
+                  </div>
+                  <!-- Text input GENERO TUTOR-->
+                  <div class="form-group">
+                    <label for="selecGenero">Genero: </label>
+                    <select id="selectEstadoCivil" name="selecGenero" class="form-control">
+                      <option value="s">Masculino</option>
+                      <option value="c">Femenino</option>
+                      <option value="d">Otros</option>
+                    </select>
+                  </div>
+                  <!-- Text input CI TUTOR-->
+                  <div class="form-group">
+                    <label for="textci">CI: </label>
+                    <input id="textci" name="textci" type="text" placeholder="Ingrese Ci" class="form-control input-md"
+                      required="">
+                  </div>
+                  <!-- LOAD FOTO Adminstrador-->
+                  <div>
+                    <label for="textcontact">Foto: </label>
+                    <input class="form-control input-md" id="txtfotopadre" name="txtfotopadre" type="file" required="">
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-success" (click)="modal.close('Save click')">ACTUALIZAR</button>
+      </div>
+    </ng-template>
+    <!--END MODAL-->
+
+    <!--MODAL DE VIEW INFO-->
+    <ng-template #contentModelView let-modal>
+      <div class="modal-header">
+        <h4 class="modal-title">INFORACION DEL DOCENTE</h4>
+        <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <!-- LOAD FOTO-->
+        <div class="form-group">
+          <label for="lbfoto ">Foto: </label>
+
+        </div>
+        <!-- Text input NOMBRES-->
+        <div class="form-group">
+          <label class=" control-label">Nombres: </label>
+
+        </div>
+        <!-- Text input APELLIDOS-->
+        <div class="form-group">
+          <label class=" control-label">Apellidos: </label>
+
+        </div>
+        <!-- Text input APELLIDOS-->
+        <div class="form-group">
+          <label class=" control-label">Ci: </label>
+
+        </div>
+        <!-- Text input APELLIDOS-->
+        <div class="form-group">
+          <label class=" control-label">Genero: </label>
+
+        </div>
+        <!-- Text input APELLIDOS-->
+        <div class="form-group">
+          <label class=" control-label">Fecha de Nacimineto: </label>
+
+        </div>
+        <!--fin del toggle ROW-->
+      </div>
+    </ng-template>
+
+    <!--Modal de Alertas -->
+    <!--AGREGAR-->
+    <ng-template #contentAdd let-modal>
+      <div class="modal-header">
+        <h4 class="modal-title">Agregar</h4>
+        <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p>Registro Agregado, sadisfactoriamente.</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-light" (click)="modal.close('Close click')">Seguir</button>
+      </div>
+    </ng-template>
+    <!--ELIMINAR-->
+    <ng-template #contentDelete let-modal>
+      <div class="modal-header">
+        <h4 class="modal-title">Eliminar Registro</h4>
+        <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p>¿Desea eliminar el registro?</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-light" (click)="modal.close('Close click')">Cancelar</button>
+        <button type="button" class="btn btn-danger" (click)="c('Save click')">Eliminar</button>
+      </div>
+    </ng-template>
+
+    <!--LISTA DOCENTES-->
+    <div class="card-body">
+      <div class="table-responsive">
+        <table class="table">
+          <thead class=" text-primary">
+            <th class="hedarTitleTable" *ngFor="let cabezera of headElements" (click)="ordenar('surna', 'desc')">{{cabezera}}</th>
+            <th class="text-right hedarTitleTable">
+              Opciones
+            </th>
+          </thead>
+          <tbody>
+            <tr *ngFor="let aula of docentesList, let i=index">
+              <td>{{i+1}}</td>
+              <td>{{aula.ci}}</td>
+              <td>{{aula.nombre}}</td>
+              <td>{{aula.apellidos}}</td>
+              <td>{{aula.genero}}</td>
+              <td class="text-right">
+                <a class="btn btnOp btn-info btn-icon btn-round" (click)="openModalView(contentModelView)">
+                  <i class='now-ui-icons gestures_tap-01'></i>
+                </a>
+                <a class="btn btnOp btn-warning btn-icon btn-round" (click)="openModalUpdate(contentUpdate)">
+                  <i class='now-ui-icons design-2_ruler-pencil'></i>
+                </a>
+                <a class="btn btnOp btn-danger btn-icon btn-round" (click)="openDelete(contentDelete)">
+                  <i class='now-ui-icons ui-1_simple-remove'></i>
+                </a>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+
+<app-footer-web></app-footer-web>

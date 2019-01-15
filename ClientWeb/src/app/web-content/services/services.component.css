@@ -1,18 +1,16 @@
-.plantel{
-    padding-top: 1% ;
-    padding-bottom: 1%;
+.Servicio{
     text-align: center;
     background-color:rgba(95, 189, 243, 0.527);
     width: 100%;
 }
-  .plantel .col-lg-4 {
+  .servicio .col-lg-4 {
     margin-bottom: 1.5rem;
     text-align: center;
   }
-  .plantel h2 {
+  .servicio h2 {
     font-weight: normal;
   }
-  .plantel .col-lg-4 p {
+  .servicio .col-lg-4 p {
     margin-right: .75rem;
     margin-left: .75rem;
   }
