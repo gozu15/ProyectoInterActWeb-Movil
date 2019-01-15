@@ -7,7 +7,6 @@ import { NgbModal, ModalDismissReasons, NgbModalConfig } from '@ng-bootstrap/ng-
 import { Docente } from '../models/docente';
 import { getBase64, resizeBase64 } from 'base64js-es6';
 import { DatePipe } from '@angular/common';
-import { join } from 'path';
 
 @Component({
   selector: 'app-registro-docente-page',
