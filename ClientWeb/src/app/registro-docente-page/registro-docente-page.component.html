@@ -1,158 +1,3 @@
-<!--INICIO de la cuadro general-->
-<div class="panel-header panel-header-sm">
-</div>
-<div class="main-content">
-  <div class="row">
-    <div class="col-md-12">
-      <div class="card">
-        <div class="card-header">
-
-          <!--Inicio del modal-->
-          <ng-template #content let-modal>
-            <div class="modal-header">
-              <h4 class="modal-title" id="modal-basic-title">Registro de Docentes</h4>
-              <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
-                <span aria-hidden="true">&times;</span>
-              </button>
-            </div>
-            <div class="modal-body">
-              <!--NUEVO FORMULARIO PARA UNIR-->
-              <form class="form-horizontal">
-                  <!-- Text input-->
-                  <div class="form-group">
-                    <label class="col-md-4 control-label" for="textNombres">Nombres: </label>
-                    <div class="col-md-4">
-                      <input [(ngModel)]="docente.nombre" name="nombre" type="text" placeholder="Nombres" class="form-control input-md"
-                        required="">
-                    </div>
-                  </div>
-                  <!-- Text input-->
-                  <div class="form-group">
-                    <label class="col-md-4 control-label" for="txtApellidos">Apellidos: </label>
-                    <div class="col-md-4">
-                      <input [(ngModel)]="docente.apellidos" name="apellidos" type="text" placeholder="Apellidos" class="form-control input-md"
-                        required="">
-                    </div>
-                  </div>
-                  <!-- Text input-->
-                  <div class="form-group">
-                    <label class="col-md-4 control-label" for="txtDNI">Ci: </label>
-                    <div class="col-md-4">
-                      <input [(ngModel)]="docente.ci" name="ci" type="text" placeholder="DNI" class="form-control input-md"
-                        required="">
-                    </div>
-                  </div>
-                  <!-- Select Basic -->
-                  <div class="form-group">
-                    <label class="col-md-4 control-label" for="selectEstadoCivil">Genero: </label>
-                    <div class="col-md-4">
-                      <select [(ngModel)]="docente.generos" name="generos" class="form-control">
-                        <option value="Maculino">Masculino</option>
-                        <option value="Femenino">Femenino</option>
-                        <option value="Otros">Otros</option>
-                      </select>
-                    </div>
-                  </div>
-                  <!-- Text input-->
-                  <div>
-                    <label class="col-md-4 control-label" for="selectEstadoCivil">Fecha de nacimiento: </label>
-                    <form class="form-inline">
-                      <div class="form-group">
-                        <div class="input-group">
-                          <input class="form-control" placeholder="yyyy-mm-dd" #nacimiento name="fechadenacimiento"
-                            [(ngModel)]="docente.fechadenacimiento" ngbDatepicker #d="ngbDatepicker">
-                          <div class="input-group-append">
-                            <a class="btnfecha btn btn-outline-secondary calendar" (click)="d.toggle()">
-                              <i class="now-ui-icons arrows-1_cloud-upload-94"></i>
-                            </a>
-                          </div>
-                        </div>
-                      </div>
-                    </form>
-                  </div>
-                  <div>
-                    <label class="col-md-4 control-label" for="lbfoto">Foto: </label>
-                    <div class="col-md-4">
-                      <input id="lbfoto" accept="image/*" (change)="changeListener($event)" name="lbfoto" type="file"
-                        class="form-control input-md" required="">
-                    </div>
-                  </div>
-              </form>
-              <!--FINAL DE FORMULARIO NUEVO-->
-            </div>
-
-            <div class="modal-footer">
-              <!-- <button type="button" class="btn btn-outline-dark" (click)="modal.close('Save click')">Guardar</button> RegistrarDocente(nacimiento.value) -->
-              <div>
-                <div class="input-group-append" (click)="modal.close('Save click')">
-                  <a class="btnfecha btn btn-outline-secondary calendar">
-                    <i class="now-ui-icons arrows-1_cloud-upload-94"></i>
-                    Registrar Docente
-                  </a>
-                </div>
-
-              </div>
-
-
-            </div>
-          </ng-template>
-
-          <button class="btn btn-lg btn-outline-primary" (click)="open(content)">Launch demo modal</button>
-
-          <!--Fin del modal-->
-          <div class="table-responsive">
-            <table class="table">
-              <thead class=" text-primary">
-                <th>
-                  Nombres
-                </th>
-                <th>
-                  Apellidos
-                </th>
-                <th>
-                  Ci
-                </th>
-                <th>
-                  Numeros de contacto
-                </th>
-                <th>
-                  Direccion
-                </th>
-                <th>
-                  Materias en curso
-                </th>
-              </thead>
-              <tbody>
-                <tr>
-                  <td>
-                    Dakota Rice
-                  </td>
-                  <td>
-                    Niger
-                  </td>
-                  <td>
-                    Oud-Turnhout
-                  </td>
-                  <td class="text-right">
-                    $36,738
-                  </td>
-                </tr>
-
-
-              </tbody>
-            </table>
-          </div>
-
-
-
-        </div>
-
-      </div><!-- div card-->
-    </div><!-- div col-->
-  </div><!-- div row-->
-</div><!-- div content-->
-<!--Fin del cuadro general del formulario de Docentes-->
-
 <div class="panel-header panel-header-sm">
 </div>
 <div class="main-content">
@@ -161,7 +6,7 @@
       <div class="card">
         <div class="card-header">
           <h4 class="card-title"> DOCENTES</h4>
-          <!--MODAL AULA-->
+          <!--MODAL DOCENTE-->
           <ng-template #content let-modal>
             <div class="modal-header">
               <h4 class="modal-title" id="modal-basic-title">REGISTRO DOCENTE</h4>
@@ -176,7 +21,7 @@
                 <div class="form-group">
                   <label class=" control-label">Nombres: </label>
                   <div class="">
-                    <input id="textAula" name="textAula" type="text" placeholder="Nombre" class="form-control input-md"
+                    <input [(ngModel)]="docente.nombre" id="textAula" name="docente.nombre" type="text" placeholder="Nombre" class="form-control input-md"
                       required="">
                   </div>
                 </div>
@@ -184,7 +29,7 @@
                 <div class="form-group">
                   <label class=" control-label">Apellidos: </label>
                   <div class="">
-                    <input id="textAula" name="textAula" type="text" placeholder="Apellido" class="form-control input-md"
+                    <input [(ngModel)]="docente.apellidos" id="textAula" name="docente.apellidos" type="text" placeholder="Apellido" class="form-control input-md"
                       required="">
                   </div>
                 </div>
@@ -192,15 +37,15 @@
                 <div class="form-group">
                   <label class=" control-label">Ci: </label>
                   <div class="">
-                    <input id="textAula" name="textAula" type="text" placeholder="Ci" class="form-control input-md"
+                    <input [(ngModel)]="docente.ci" id="textAula" name="docente.ci" type="text" placeholder="Ci" class="form-control input-md"
                       required="">
                   </div>
                 </div>
-                <!-- Text input ASIGNAR Apellido-->
+                <!-- Text input ASIGNAR Genero-->
                 <div class="form-group">
-                  <label class=" control-label">Genero: </label>
+                  <label class=" control-label">Generos: </label>
                   <div class="">
-                    <select class="form-control" id="selectCurso">
+                    <select [(ngModel)]="docente.generos" name="docente.generos" class="form-control" id="selectCurso">
                       <option>Masculino</option>
                       <option>Femenino</option>
                       <option>Otro</option>
@@ -213,7 +58,7 @@
                   <form class="form-inline">
                     <div class="form-group">
                       <div class="input-group">
-                        <input class="form-control" placeholder="yyyy-mm-dd" name="dp" [(ngModel)]="model"
+                        <input class="form-control" placeholder="yyyy-mm-dd" name="dp" [(ngModel)]="docente.fechadenacimiento"
                           ngbDatepicker #d="ngbDatepicker">
                         <div class="input-group-append">
                           <a class="btnfecha btn btn-info calendar" (click)="d.toggle()">
@@ -227,7 +72,7 @@
                 <!-- LOAD FOTO-->
                 <div>
                   <label class="lbfoto" for="lbfoto ">Foto: </label>
-                  <input id="lbfoto " name="lbfoto" type="file" class="form-control input-md" required="">
+                  <input id="lbfoto "  name="lbfoto" type="file" class="form-control input-md" required="">
                 </div>
               </form>
             </div>
@@ -237,7 +82,7 @@
           </ng-template>
           <!--END MODAL-->
 
-          <!--Boton registrar estudiante-->
+          <!--Boton registrar docente-->
           <button class="btn btn-lg btn-info btn-icon btn-right" (click)="openModal(content)"><i class='now-ui-icons ui-1_simple-add'></i></button>
           <!--Mensaje Notifiacion de accion-->
           <pre>{{closeResult}}</pre>
@@ -400,18 +245,18 @@
           <div class="table-responsive">
             <table class="table">
               <thead class=" text-primary">
-                <th class="hedarTitleTable" *ngFor="let cabezera of headElements">{{cabezera}}</th>
+                <th class="hedarTitleTable" *ngFor="let cabezera of headElements" (click)="ordenar('surna', 'desc')">{{cabezera}}</th>
                 <th class="text-right hedarTitleTable">
                   Opciones
                 </th>
               </thead>
               <tbody>
-                <tr *ngFor="let aula of elements">
-                  <td>{{aula.id}}</td>
+                <tr *ngFor="let aula of docentesList, let i=index">
+                  <td>{{i+1}}</td>
+                  <td>{{aula.ci}}</td>
                   <td>{{aula.nombre}}</td>
-                  <td>{{aula.apellido}}</td>
+                  <td>{{aula.apellidos}}</td>
                   <td>{{aula.genero}}</td>
-                  <td>{{aula.contacto}}</td>
                   <td class="text-right">
                     <a class="btn btnOp btn-info btn-icon btn-round" (click)="openModalView(contentModelView)">
                       <i class='now-ui-icons gestures_tap-01'></i>

@@ -7,6 +7,8 @@ import { NgbModal, ModalDismissReasons, NgbModalConfig } from '@ng-bootstrap/ng-
 import { Docente } from '../models/docente';
 import { getBase64, resizeBase64 } from 'base64js-es6';
 import { DatePipe } from '@angular/common';
+import { join } from 'path';
+
 @Component({
   selector: 'app-registro-docente-page',
   templateUrl: './registro-docente-page.component.html',
@@ -21,11 +23,13 @@ export class RegistroDocentePageComponent implements OnInit {
   isExito: boolean = false;
   recordar: boolean = false;
 
+  docentesList: any = [];
+  headElements = ['N°', 'Ci', 'Apellidos', 'Nombres', 'Genero'];
+
   constructor(private config: NgbModalConfig, private modalService: NgbModal, private datePipe: DatePipe, private usuarioserv: UsuarioService) {
     this.docente = new Docente;
     config.backdrop = 'static';
     config.keyboard = false;
-
   }
 
   //Funciones del Modal
@@ -66,9 +70,45 @@ export class RegistroDocentePageComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.getDocentes();
   }
 
   // FUNCIONES PARA SOLICITAR SERVICIO AL SERVIDOR
+  add(){
+
+  }
+
+  getDocentes(){
+    this.docentesList = [];
+    let parametros = {sort: "docente", order: "desc"}
+    this.usuarioserv.getDocentes(parametros).subscribe((docente: Docente[])=>{ 
+      this.docentesList = docente;
+      console.log(this.docentesList);
+    });
+  }
+
+  update(){
+
+  }
+
+  see(id){
+
+  }
+
+  delete(id){
+
+  }
+
+  ordenar(apellidos, asc){
+    console.log(apellidos, asc)
+    this.docentesList = [];
+    let parametros = {sort: apellidos, order: asc}
+    this.usuarioserv.getDocentes(parametros).subscribe((docente: Docente[])=>{ 
+      this.docentesList = docente;
+      console.log(this.docentesList);
+    });
+  }
+  
   RegistrarDocente(nacimiento) {
     this.isError = false;
     this.isRequired = false;
@@ -77,14 +117,10 @@ export class RegistroDocentePageComponent implements OnInit {
     this.docente.fechadenacimiento = nacimiento;
     this.docente.creacion = { fecha: this.datePipe.transform(date, "yyyy-MM-dd HH:mm:ss"), usuario: "5c34b3a83619a9178c5902f1" };
     this.docente.modificacion = { fecha: this.datePipe.transform(date, "yyyy-MM-dd HH:mm:ss"), usuario: "5c34b3a83619a9178c5902f1" };
-
-
+    
     if (this.docente.nombre) {
-
       this.usuarioserv.RegistrarDocente(this.docente).subscribe((docente: any) => {
-
         if (docente) {
-
           this.isExito = true;
           console.log(docente);
           this.docente = new Docente;
@@ -114,9 +150,7 @@ export class RegistroDocentePageComponent implements OnInit {
       this.docente.perfil.foto = myReader.result.toString();
       resizeBase64(myReader.result, 200, 100).then((result) => {
         this.docente.perfil.miniatura = result;
-
       });
-
     }
     myReader.readAsDataURL(file);
   }

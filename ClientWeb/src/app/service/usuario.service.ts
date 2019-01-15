@@ -61,8 +61,8 @@ export class UsuarioService {
   RegistrarDocente(docente: Docente) {
     return this.http.post<Docente>(this.urlUsuarios, docente, this.httpOptions);
   }
-  getDocentes(parametro: any): Observable<any[]> {
-    return this.http.get<any[]>(this.urlUsuarios + '?rol=doc&sort=' + parametro.sort + '&order=' + parametro.order);
+  getDocentes(parametro: any): Observable<Docente[]> {
+    return this.http.get<Docente[]>(this.urlUsuarios + '?rol=doc&sort=' + parametro.sort + '&order=' + parametro.order);
   }
 
 }
