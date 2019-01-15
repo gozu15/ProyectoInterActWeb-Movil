@@ -15,47 +15,54 @@ export class UsuarioService {
 
   urlUsuarios: string;
   urlDocente: string;
-  urlLogin:string;
+  urlLogin: string;
   httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' })
   };
 
   constructor(private http: HttpClient) {
     this.httpOptions = {
-      headers: new HttpHeaders({ 'Content-Type': 'application/json'})
+      headers: new HttpHeaders({ 'Content-Type': 'application/json' })
     };
-    this.urlLogin= Ruta.url+'inicio';
+    this.urlLogin = Ruta.url + 'inicio';
     this.urlUsuarios = Ruta.url + 'usuarios/';
     // this.urlDocente = Ruta.url + "docentes";
   }
 
-  getEstudiantes(parametro:any): Observable<Estudiante[]> {
-    return this.http.get<Estudiante[]>(this.urlUsuarios+'?rol=estudent&sort='+parametro.sort+'&order='+parametro.order);
+
+  //USUARIO SOLO CAMBIA PARAMETROS.
+  BorrarUsuario(id, razon) {
+    return this.http.delete<Usuario>(this.urlUsuarios + id + "/?razon=" + razon);
+  }
+  ActualizarUsuario(id, datos): Observable<any> {
+    return this.http.post<any>(this.urlUsuarios + id, datos, this.httpOptions);
+  }
+  BuscarUsuario(parametro: any): Observable<any> {
+    return this.http.post<any>(this.urlUsuarios, parametro, this.httpOptions);
   }
 
-  getDocentes(parametro:any): Observable<any[]> {
-    return this.http.get<any[]>(this.urlUsuarios+'?rol=doc&sort='+parametro.sort+'&order='+parametro.order);
+  //ESTUDIANTE
+  RegistrarEstudiante(estudiante: Estudiante): Observable<Estudiante> {
+    return this.http.post<Estudiante>(this.urlUsuarios, estudiante, this.httpOptions);
   }
-  BorrarUsuario(id,razon){
-    return this.http.delete<Usuario>(this.urlUsuarios+id+"/?razon="+razon);
+  getEstudiantes(parametro: any): Observable<Estudiante[]> {
+    return this.http.get<Estudiante[]>(this.urlUsuarios + '?rol=estudent&sort=' + parametro.sort + '&order=' + parametro.order);
   }
-  ActualizarUsuario(id,datos): Observable<any>{
-    return this.http.post<any>(this.urlUsuarios+id,datos, this.httpOptions);
+  RegistrarTutor(tutor: Tutor) {
+    return this.http.post<Estudiante>(this.urlUsuarios, tutor, this.httpOptions);
   }
-BuscarUsuario(parametro:any): Observable<any>{
-  return this.http.post<any>(this.urlUsuarios,parametro, this.httpOptions);
-}
-  RegistrarEstudiante(estudiante:Estudiante): Observable<Estudiante> {
-    return this.http.post<Estudiante>(this.urlUsuarios,estudiante, this.httpOptions);
-  }
-  RegistrarTutor(tutor:Tutor){
-    return this.http.post<Estudiante>(this.urlUsuarios,tutor, this.httpOptions);
-  }
-  RegistrarDocente(docente:Docente){
-    return this.http.post<Docente>(this.urlUsuarios,docente, this.httpOptions);
-  }
+
+  //LOGIN
   Login(login: Login): Observable<any> {
     return this.http.post<any>(this.urlLogin, login, this.httpOptions);
+  }
+
+  // DOCENTE
+  RegistrarDocente(docente: Docente) {
+    return this.http.post<Docente>(this.urlUsuarios, docente, this.httpOptions);
+  }
+  getDocentes(parametro: any): Observable<any[]> {
+    return this.http.get<any[]>(this.urlUsuarios + '?rol=doc&sort=' + parametro.sort + '&order=' + parametro.order);
   }
 
 }
