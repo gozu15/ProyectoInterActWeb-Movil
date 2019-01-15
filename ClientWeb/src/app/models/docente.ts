@@ -4,7 +4,7 @@ export class Docente {
     public id: number;
     public nombre: string;
     public apellidos:string;
-    public generos:string;
+    public genero:string;
     public ci:string;
     public login:Login;
     public fechadenacimiento:any;
