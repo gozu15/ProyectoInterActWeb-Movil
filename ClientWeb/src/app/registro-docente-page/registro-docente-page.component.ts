@@ -1,6 +1,6 @@
 import { UsuarioService } from './../service/usuario.service';
 import { DocenteService } from './../service/docente.service';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ɵConsole } from '@angular/core';
 import { NgbModal, ModalDismissReasons, NgbModalConfig } from '@ng-bootstrap/ng-bootstrap';
 
 
@@ -20,6 +20,7 @@ export class RegistroDocentePageComponent implements OnInit {
   isRequired: boolean = false;
   isError: boolean = false;
   isExito: boolean = false;
+  UsuarioActual:any;
   recordar: boolean = false;
 
   docentesList: any = [];
@@ -29,6 +30,7 @@ export class RegistroDocentePageComponent implements OnInit {
     this.docente = new Docente;
     config.backdrop = 'static';
     config.keyboard = false;
+    this.UsuarioActual=this.usuarioserv.UsuarioActual.datos._id;
   }
 
   //Funciones del Modal
@@ -80,18 +82,18 @@ export class RegistroDocentePageComponent implements OnInit {
     this.isExito = false;
     // registro
     var date = new Date();
-    this.docente.creacion = { fecha: this.datePipe.transform(date, "yyyy-MM-dd HH:mm:ss"), usuario: "5c34b3a83619a9178c5902f1" };
-    this.docente.modificacion = { fecha: this.datePipe.transform(date, "yyyy-MM-dd HH:mm:ss"), usuario: "5c34b3a83619a9178c5902f1" };
+    this.docente.rol="5c3de049236f591facfa2b60" as any;
+    this.docente.creacion = { fecha: this.datePipe.transform(date, "yyyy-MM-dd HH:mm:ss"), usuario: this.UsuarioActual };
+    this.docente.modificacion = { fecha: this.datePipe.transform(date, "yyyy-MM-dd HH:mm:ss"), usuario: this.UsuarioActual };
     this.docente.fechadenacimiento = fechaNacimiento;
 
-    console.log("listo para if")
+   
     if (this.docente.nombre) {
-      console.log("2 if")
+     
       this.usuarioserv.RegistrarDocente(this.docente).subscribe((docente: any) => {
         if (docente) {
           this.isExito = true;
-          console.log("entro")
-          console.log(docente);
+         
           this.docentesList.push(docente);
           this.docente = new Docente;
         } else {
@@ -154,7 +156,6 @@ export class RegistroDocentePageComponent implements OnInit {
       this.usuarioserv.RegistrarDocente(this.docente).subscribe((docente: any) => {
         if (docente) {
           this.isExito = true;
-          console.log(docente);
           this.docente = new Docente;
         } else {
           alert('error desconocido');
@@ -175,13 +176,14 @@ export class RegistroDocentePageComponent implements OnInit {
   readThis(inputValue: any): void {
     var file: File = inputValue.files[0];
     console.log(inputValue.files[0]);
-    this.docente.perfil = { tipo: inputValue.files[0].type, foto: "", miniatura: "" };
+    this.docente.perfil = { tipo: inputValue.files[0].type, foto: ""};
     var myReader: FileReader = new FileReader();
 
     myReader.onloadend = (e) => {
-      this.docente.perfil.foto = myReader.result.toString();
-      resizeBase64(myReader.result, 200, 100).then((result) => {
-        this.docente.perfil.miniatura = result;
+     // this.docente.perfil.foto = myReader.result.toString();
+      resizeBase64(myReader.result, 150, 150).then((result) => {
+        this.docente.perfil.foto = result
+       
       });
     }
     myReader.readAsDataURL(file);

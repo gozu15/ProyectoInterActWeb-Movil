@@ -11,7 +11,7 @@ var UsuariosSchema = Schema({
     ci:String,
     login:{usuario:String,password:String,estado:Boolean},
     numero_contacto:String,
-    perfil:{foto:String,tipo:String,miniatura:String},
+    perfil:{foto:String,tipo:String},
     tutores:[String],
     rol:rolSchema,
     eliminado:{estado:Boolean,razon:String},

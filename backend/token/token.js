@@ -13,6 +13,7 @@ MÉTODO DEL TOKEN
 =============================================*/
 
 exports.crearToken = function(selectet){
+	console.log(selectet);
 
 	//Datos que vamos a codificar
         
@@ -21,6 +22,7 @@ exports.crearToken = function(selectet){
 		id: selectet._id,
 		usuario: selectet.login.usuario,
 		rol:selectet.rol.rol,
+		colegio:selectet.colegio,
 		//unix() formato timestamp actual
 		now: moment().unix(),
 		exp: moment().add(30, "days").unix()

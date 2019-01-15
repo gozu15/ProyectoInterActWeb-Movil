@@ -8,7 +8,7 @@ export class Tutor {
     public ci:string;
     public login:Login;
     public numero_contacto:string;
-    public perfil:{foto:String,tipo:String,miniatura:String};
+    public perfil:{foto:String,tipo:String};
     public rol:Rol;
     public eliminado:{estado:boolean,razon:string};
     public colegio: string;

@@ -9,7 +9,7 @@ export class Docente {
     public login:Login;
     public fechadenacimiento:any;
     public numero_contacto:string;
-    public perfil:{foto:String,tipo:String,miniatura:String};
+    public perfil:{foto:String,tipo:String};
     public rol:Rol;
     public eliminado:{estado:boolean,razon:string};
     public creacion:{fecha:any,usuario:string};

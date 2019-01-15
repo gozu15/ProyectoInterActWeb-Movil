@@ -19,7 +19,7 @@ export class UsuarioService {
   httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' })
   };
-
+  public UsuarioActual:any;
   constructor(private http: HttpClient) {
     this.httpOptions = {
       headers: new HttpHeaders({ 'Content-Type': 'application/json' })
@@ -56,6 +56,10 @@ export class UsuarioService {
   Login(login: Login): Observable<any> {
     return this.http.post<any>(this.urlLogin, login, this.httpOptions);
   }
+//LOGIN
+cerrarSecion(id:string):Observable<any> {
+  return this.http.post<any>(this.urlLogin+"/"+id, this.httpOptions);
+}
 
   // DOCENTE
   RegistrarDocente(docente: Docente) {

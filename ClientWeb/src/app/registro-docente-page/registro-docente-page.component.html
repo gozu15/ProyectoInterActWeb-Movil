@@ -72,7 +72,7 @@
                 <!-- LOAD FOTO-->
                 <div>
                   <label class="lbfoto" for="lbfoto ">Foto: </label>
-                  <input id="lbfoto " name="lbfoto" type="file" class="form-control input-md" required="">
+                  <input type="file" name="fileInput" (change)="changeListener($event)" #fileInput class="form-control input-md" required="">
                 </div>
               </form>
             </div>
