@@ -20,6 +20,7 @@ export class RegistroDocentePageComponent implements OnInit {
   isExito: boolean = false;
   UsuarioActual:any;
   Razoneliminado:string;
+  eliminado:string;
   recordar: boolean = false;
 
   docentesList: any = [];
@@ -34,6 +35,7 @@ export class RegistroDocentePageComponent implements OnInit {
 
   //Funciones del Modal
   private getDismissReason(reason: any): string {
+    this.eliminado=undefined;
     if (reason === ModalDismissReasons.ESC) {
       return 'by pressing ESC';
     } else if (reason === ModalDismissReasons.BACKDROP_CLICK) {
@@ -41,6 +43,7 @@ export class RegistroDocentePageComponent implements OnInit {
       return 'by clicking on a backdrop';
     } else {
       console.log("entro a otro lado")
+    
       return `with: ${reason}`;
     }
   }
@@ -65,7 +68,8 @@ export class RegistroDocentePageComponent implements OnInit {
     this.modalService.open(content);
   }
 
-  openDelete(content) {
+  openDelete(content,id) {
+    this.eliminado=id;
     this.modalService.open(content);
   }
 
@@ -73,9 +77,9 @@ export class RegistroDocentePageComponent implements OnInit {
     this.getDocentes();
   }
 borrar(){
-// this.usuarioserv.cerrarSecion(this.usuarioserv.UsuarioActual.datos._id).subscribe((data)=>{
+ this.usuarioserv.BorrarUsuario(this.eliminado,this.Razoneliminado).subscribe((data)=>{
 
-// });
+});
 }
   // FUNCIONES PARA SOLICITAR SERVICIO AL SERVIDOR
   add(fechaNacimiento){

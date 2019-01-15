@@ -30,7 +30,7 @@ function GetUsuarios(req, res) {
 
 function Borrar(req,res){
   
-    var datos={eliminado:{estado:true,razon:req.query.razon},modificacion:{fecha:"12-12-5",usuario:"5c34b3a83619a9178c5902f1"
+    var datos={eliminado:{estado:true,razon:req.query.razon},modificacion:{fecha:"12-12-5",usuario:"5c3e05b56d2134200c43fae9"
     }}
    
     Usuario.findByIdAndUpdate(req.params.id,datos,{new: true}, function (error, lista) {
