@@ -2,7 +2,11 @@
 var mongose = require("mongoose");
 var Schema = mongose.Schema;
 var aulaSchema = Schema({
+   colegio:{ type: Schema.Types.ObjectId, ref: 'colegios' },
    nombre:String,
+   capacidad:String,
+   descripcion:String,
+   foto:{foto:String,tipo:String},
    materias: [{ type: Schema.Types.ObjectId, ref: 'materias' }],
    eliminado:{estado:Boolean,razon:String},
    creacion: {usuario:{type: Schema.ObjectId, ref: "Usuarios"},fecha:Date },

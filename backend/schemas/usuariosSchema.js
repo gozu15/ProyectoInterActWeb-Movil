@@ -3,6 +3,7 @@ var mongose = require("mongoose");
 var Schema = mongose.Schema;
 var rolSchema=require("./rolSchema").schema;
 var UsuariosSchema = Schema({
+    colegio:{ type: Schema.Types.ObjectId, ref: 'colegios' },
     nombre:String,
     apellidos:String,
     genero:String,
