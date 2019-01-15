@@ -205,8 +205,9 @@ async function Registrar(req, res) {
     usuario.creacion=params.creacion;
     usuario.modificacion=params.modificacion;
     usuario.eliminado={estado:false}
+    
+    console.log(usuario);
     var fecha = new Date(usuario.fechadenacimiento).toJSON().slice(0,10).replace(/-/g,'');
-
     var login={usuario:params.ci,password:params.nombre.charAt(0)+params.apellidos.charAt(0)+fecha,estado:false}
     
    // console.log(usuario.rol);

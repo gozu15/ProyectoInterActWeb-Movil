@@ -74,8 +74,41 @@ export class RegistroDocentePageComponent implements OnInit {
   }
 
   // FUNCIONES PARA SOLICITAR SERVICIO AL SERVIDOR
-  add(){
+  add(fechaNacimiento){
+    // opciones para los mensajes
+    this.isError = false;
+    this.isRequired = false;
+    this.isExito = false;
+    // registro
+    var date = new Date();
+    this.docente.creacion = { fecha: this.datePipe.transform(date, "yyyy-MM-dd HH:mm:ss"), usuario: "5c34b3a83619a9178c5902f1" };
+    this.docente.modificacion = { fecha: this.datePipe.transform(date, "yyyy-MM-dd HH:mm:ss"), usuario: "5c34b3a83619a9178c5902f1" };
+    this.docente.fechadenacimiento = fechaNacimiento;
 
+    console.log("listo para if")
+    if (this.docente.nombre) {
+      console.log("2 if")
+      this.usuarioserv.RegistrarDocente(this.docente).subscribe((docente: any) => {
+        if (docente) {
+          this.isExito = true;
+          console.log("entro")
+          console.log(docente);
+          this.docentesList.push(docente);
+          this.docente = new Docente;
+        } else {
+          alert('error desconocido');
+        }
+      }, (error: any) => {
+        this.isError = true;
+        
+        console.log("entro a error")
+      });
+    }
+    else {
+      this.isRequired = true;
+      
+      console.log("requiere")
+    }
   }
 
   getDocentes(){
