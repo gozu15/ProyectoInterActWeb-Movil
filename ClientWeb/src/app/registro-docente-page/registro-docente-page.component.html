@@ -244,11 +244,18 @@
             </button>
           </div>
           <div class="modal-body">
-            <p>¿Desea eliminar el registro?</p>
+            <p>escriba la razon por la cual se esta eliminando al docente</p>
+            <div class="form-group">
+              
+              <div class="">
+                <input [(ngModel)]="Razoneliminado" id="textAula" name="docente.apellidos" type="text"
+                  placeholder="razon" class="form-control input-md" required="">
+              </div>
+            </div>
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-light" (click)="modal.close('Close click')">Cancelar</button>
-            <button type="button" class="btn btn-danger" (click)="c('Save click')">Eliminar</button>
+            <button type="button" class="btn btn-danger" (click)="borrar()">Eliminar</button>
           </div>
         </ng-template>
 

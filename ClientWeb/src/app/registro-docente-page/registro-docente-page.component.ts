@@ -2,8 +2,6 @@ import { UsuarioService } from './../service/usuario.service';
 import { DocenteService } from './../service/docente.service';
 import { Component, OnInit, ɵConsole } from '@angular/core';
 import { NgbModal, ModalDismissReasons, NgbModalConfig } from '@ng-bootstrap/ng-bootstrap';
-
-
 import { Docente } from '../models/docente';
 import { getBase64, resizeBase64 } from 'base64js-es6';
 import { DatePipe } from '@angular/common';
@@ -21,6 +19,7 @@ export class RegistroDocentePageComponent implements OnInit {
   isError: boolean = false;
   isExito: boolean = false;
   UsuarioActual:any;
+  Razoneliminado:string;
   recordar: boolean = false;
 
   docentesList: any = [];
@@ -73,7 +72,11 @@ export class RegistroDocentePageComponent implements OnInit {
   ngOnInit() {
     this.getDocentes();
   }
+borrar(){
+// this.usuarioserv.cerrarSecion(this.usuarioserv.UsuarioActual.datos._id).subscribe((data)=>{
 
+// });
+}
   // FUNCIONES PARA SOLICITAR SERVICIO AL SERVIDOR
   add(fechaNacimiento){
     // opciones para los mensajes
@@ -129,8 +132,8 @@ export class RegistroDocentePageComponent implements OnInit {
 
   }
 
-  delete(id){
-
+  delete(){
+console.log(this.Razoneliminado);
   }
 
   ordenar(apellidos, asc){
