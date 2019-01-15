@@ -11,4 +11,5 @@ export class Tutor {
     public perfil:{foto:String,tipo:String,miniatura:String};
     public rol:Rol;
     public eliminado:{estado:boolean,razon:string};
+    public colegio: string;
 }

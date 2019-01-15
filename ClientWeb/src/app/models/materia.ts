@@ -5,4 +5,5 @@ export class Materia {
     public creacion:{fecha:any,usuario:string};
     public modificacion:{fecha:any,usuario:string};
     public eliminado:{estado:boolean,razon:string};
+    public colegio: string;
 }

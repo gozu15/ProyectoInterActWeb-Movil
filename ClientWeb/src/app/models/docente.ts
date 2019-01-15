@@ -14,5 +14,5 @@ export class Docente {
     public eliminado:{estado:boolean,razon:string};
     public creacion:{fecha:any,usuario:string};
     public modificacion:{fecha:any,usuario:string};
-
+    public colegio: string;
 }

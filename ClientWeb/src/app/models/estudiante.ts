@@ -14,4 +14,5 @@ export class Estudiante {
     public rol:Rol;
     public eliminado:{estado:boolean,razon:string};
     public tutores:[Tutor];
+    public colegio: string;
 }

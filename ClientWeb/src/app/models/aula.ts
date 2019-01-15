@@ -7,4 +7,5 @@ export class Aula {
     public modificacion:{fecha,usuarios:string};
     public eliminado:{estado:boolean,razon:string};
     public materias:[Materia];
+    public colegio: string;
 }
