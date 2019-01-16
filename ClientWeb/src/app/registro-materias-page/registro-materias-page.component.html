@@ -5,41 +5,96 @@
   <div class="row">
     <div class="col-md-12">
       <div class="card">
-<div class="card-header">
+        <div class="card-header">
 
-  <form >
-    <fieldset>    
-    
-    <!-- Text input-->
-    <div class="form-group">
-      <label class="col-md-4 control-label" >Nombre de la materia: </label>  
-      <div class="col-md-4">
-      <input  name="nombre" [(ngModel)]="materia.nombre" type="text" placeholder="Nombres" class="form-control input-md" required="">
-      </div>
-    </div>
-    
-    <!-- Text input-->
-    <div class="form-group">
-      <label class="col-md-4 control-label" >Descripcion </label>  
-      <div class="col-md-4">
-      <input [(ngModel)]="materia.descripcion" name="Descripcion" type="text" placeholder="Descripcion" class="form-control input-md" required="">
-      </div>
-    </div>
-    <div class="alert alert-danger"*ngIf="isError" >
-      <a class="close font-weight-light" data-dismiss="alert" href="#">×</a>Error no se pudo guardar el registro
-  </div>
-  <div class="alert alert-success"*ngIf="isExito" >
-    <a class="close font-weight-light" data-dismiss="alert" href="#">×</a>registro guardado con exito
-</div>
-  <div class="alert alert-danger" *ngIf="isRequired" >
-      <a class="close font-weight-light" data-dismiss="alert" href="#">×</a>Ingrese datos correctos
-  </div>
-      <button (click)="registrarMateria()"  class="btn btn-default">Registrar</button>
-    </fieldset>
-    </form>
-</div>
+          <!--Inicio del Modal-->
+          <ng-template #content let-modal>
+            <div class="modal-header">
+              <h4 class="modal-title">Registro Materias</h4>
+              <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <form>
+                <fieldset>
 
-  </div><!-- div card-->
-  </div><!-- div col-->
+                  <!-- Text input-->
+                  <div class="form-group">
+                    <label class="col-md-6 control-label">Nombre de la materia: </label>
+                    <div class="col-md-4">
+                      <input name="nombre" [(ngModel)]="materia.nombre" type="text" placeholder="Nombres" class="form-control input-md"
+                        required="">
+                    </div>
+                  </div>
+
+                  <!-- Text input-->
+                  <div class="form-group">
+                    <label class="col-md-4 control-label">Descripcion </label>
+                    <div class="col-md-4">
+                      <input [(ngModel)]="materia.descripcion" name="Descripcion" type="text" placeholder="Descripcion"
+                        class="form-control input-md" required="">
+                    </div>
+                  </div>
+                  <div class="alert alert-danger" *ngIf="isError">
+                    <a class="close font-weight-light" data-dismiss="alert" href="#">×</a>Error no se pudo guardar el
+                    registro
+                  </div>
+                  <div class="alert alert-success" *ngIf="isExito">
+                    <a class="close font-weight-light" data-dismiss="alert" href="#">×</a>registro guardado con exito
+                  </div>
+                  <div class="alert alert-danger" *ngIf="isRequired">
+                    <a class="close font-weight-light" data-dismiss="alert" href="#">×</a>Ingrese datos correctos
+                  </div>
+                  <button (click)="registrarMateria()" class="btn btn-default">Registrar</button>
+                </fieldset>
+              </form>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-light" (click)="modal.close('Close click')">Close</button>
+            </div>
+          </ng-template>
+          <!--Fin del Modal-->
+
+          <button class="btn btn-outline-primary mb-2 mr-2" (click)="openLg(content)">Large modal</button>
+
+          <!--inicio de la tabla-->
+          <div class="card-body">
+            <div class="table-responsive">
+              <table class="table">
+                <thead class=" text-primary">
+                  <th class="hedarTitleTable" *ngFor="let cabezera of headElements">{{cabezera}}</th>
+                  <th class="text-right hedarTitleTable">
+                    Opciones
+                  </th>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let el of ListMaterias, let i=index">
+                    <td>{{i+1}}</td>
+                    <td>{{el.nombre}}</td>
+                    <td>{{el.descripcion}}</td>
+
+                    <td class="text-right">
+                      <a class="btn btnOp btn-info btn-icon btn-round" (click)="openModalView(contentModelView)">
+                        <i class='now-ui-icons gestures_tap-01'></i>
+                      </a>
+                      <a class="btn btnOp btn-warning btn-icon btn-round" (click)="openModalUpdate(contentUpdate)">
+                        <i class='now-ui-icons design-2_ruler-pencil'></i>
+                      </a>
+                      <a class="btn btnOp btn-danger btn-icon btn-round" (click)="openDelete(contentDelete)">
+                        <i class='now-ui-icons ui-1_simple-remove'></i>
+                      </a>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+          <!--Fin de la tabla-->
+
+        </div>
+
+      </div><!-- div card-->
+    </div><!-- div col-->
   </div><!-- div row-->
-    </div><!-- div content-->
+</div><!-- div content-->
