@@ -4,6 +4,8 @@ import { Component, OnInit } from '@angular/core';
 import { DatePipe } from '@angular/common';
 import { Tree } from '@angular/router/src/utils/tree';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { UsuarioService } from '../service/usuario.service';
+import { pipe } from 'rxjs';
 
 @Component({
   selector: 'app-registro-materias-page',
@@ -25,9 +27,16 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 export class RegistroMateriasPageComponent implements OnInit {
 
 
+
+  nombreinfo:string;
+  descripcioninfo;
+  fechacreacioninfo;
   flag=0;
 
   ListMaterias=[];
+
+  colegio:any;
+  UsuarioActual:any;
 
   materia:Materia;
   isRequired: boolean = false;
@@ -39,8 +48,11 @@ export class RegistroMateriasPageComponent implements OnInit {
 
   closeResult: string;
 
-  constructor(private modalService: NgbModal,private datePipe: DatePipe,private materriaserv:MateriaService) { 
+  constructor(private usuarioserv:UsuarioService,private modalService: NgbModal,private datePipe: DatePipe,private materriaserv:MateriaService) { 
     this.materia=new Materia;
+    this.UsuarioActual=this.usuarioserv.UsuarioActual.datos._id;
+    this.colegio=this.usuarioserv.UsuarioActual.datos.colegio;
+    this.limpiarArray(this.materia);
 
   }
 
@@ -74,15 +86,56 @@ openVerticallyCentered(content) {
   /**
    * CODIFICACION DE FUNCIONES
    */
-
-  openModalActualizar(change,content){
-    this.flag=change;
-    this.openLg(content);
-
-
+  limpiarArray(materia:Materia){
+    materia.nombre="";
+    materia.descripcion="";
+    materia._id=0;
   }
-  openModalBorrar(change, content){
+
+  openModalActualizar(change,content,materia:Materia){
+    
+    this.limpiarArray(this.materia);
+
     this.flag=change;
+    this.materia.nombre=materia.nombre;
+
+    let fecha= new Date().toUTCString();
+    console.log(fecha)
+    this.materia.modificacion.fecha=fecha;
+    this.materia.modificacion.usuario=this.UsuarioActual;
+
+    this.materia.descripcion=materia.descripcion;
+    this.materia._id=materia._id;
+    console.log(materia);
+
+    this.openLg(content);
+  }
+
+  
+
+  openModalMostrarInfo(materia:Materia,modal){
+    var fecha;
+    fecha =  this.datePipe.transform( materia.creacion.fecha,"yyyy-MM-dd");
+    //console.log(fecha);    
+    this.nombreinfo=materia.nombre;
+    this.descripcioninfo=materia.descripcion;
+    this.fechacreacioninfo=fecha;
+    console.log(this.nombreinfo);
+    this.openLg(modal);
+  
+  }
+  openModalBorrar(change, content, materia:Materia){
+    this.materia.nombre=materia.nombre;
+    this.materia.descripcion=materia.descripcion;
+    this.materia._id=materia._id;
+
+    let fecha= new Date().toUTCString();
+    console.log(fecha)
+    this.materia.modificacion.fecha=fecha;
+    this.materia.modificacion.usuario=this.UsuarioActual;
+    this.flag=change;
+
+   
     this.openLg(content);
   }
 
@@ -91,9 +144,10 @@ registrarMateria(){
   this.isError = false;
     this.isRequired = false;
     this.isExito=false;
+    this.materia.colegio=this.colegio;
   var date = new Date();
-  this.materia.creacion={fecha:this.datePipe.transform(date,"yyyy-MM-dd HH:mm:ss"),usuario:"5c34b3a83619a9178c5902f1"};
-  this.materia.modificacion={fecha:this.datePipe.transform(date,"yyyy-MM-dd HH:mm:ss"),usuario:"5c34b3a83619a9178c5902f1"};
+  this.materia.creacion={fecha:this.datePipe.transform(date,"yyyy-MM-dd HH:mm:ss"),usuario:this.UsuarioActual};
+  this.materia.modificacion={fecha:this.datePipe.transform(date,"yyyy-MM-dd HH:mm:ss"),usuario:this.UsuarioActual};
 
  if(this.materia.nombre){
   this.materriaserv.CrearMateria(this.materia).subscribe((materia: any) => {
@@ -103,7 +157,7 @@ registrarMateria(){
     this.isExito=true;
     this.materia.nombre="";
     this.materia.descripcion="";
-    this.ListMaterias.push(materia);
+    this.listarMaterias();
     } else {
       alert('error desconocido');
     }
@@ -114,6 +168,33 @@ registrarMateria(){
  else{
 this.isRequired=true;
  }
+}
+
+actualizarMateria(materia:Materia){
+  
+  console.log(materia);
+  var id=""+materia._id;
+  console.log(id);
+  this.materriaserv.ActualizarMateria(materia, id).subscribe((materia:Materia)=>{
+    if(materia){
+      this.isExito=true;
+    this.materia.nombre="";
+    this.materia.descripcion="";
+    //this.materia.modificacion.fecha="";
+    this.listarMaterias();
+    //this.ListMaterias.push(materia);
+    }
+    else
+    {
+      alert("error desconocido");
+    }
+  },(error:any)=>{
+    this.isError=true;
+  });
+}
+
+borrarMateria(materia:Materia){
+  console.log(materia);
 }
 
 

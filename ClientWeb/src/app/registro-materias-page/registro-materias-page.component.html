@@ -47,8 +47,7 @@
                     <a class="close font-weight-light" data-dismiss="alert" href="#">×</a>Ingrese datos correctos
                   </div>
                   <button *ngIf="(flag==0)" (click)="registrarMateria()" class="btn btn-default">Registrar</button>
-                  <button *ngIf="(flag==1)" (click)="actualizarMateria()" class="btn btn-default">Actualizar</button>
-                  <button *ngIf="(flag==2)"(click)="borrarMateria()" class="btn btn-default">Borrar</button>
+                  <button *ngIf="(flag==1)" (click)="actualizarMateria(materia)" class="btn btn-default">Actualizar</button>
                 </fieldset>
               </form>
             </div>
@@ -59,6 +58,74 @@
           <!--Fin del Modal-->
 
           <button class="btn btn-outline-primary mb-2 mr-2" (click)="openLg(content)">Large modal</button>
+
+
+          <!--inicio modal Borrar-->
+          <ng-template #contentDelete let-modal>
+            <div class="modal-header">
+              <h4 class="modal-title">Eliminar Registro</h4>
+              <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <p>escriba la razon por la cual se esta eliminando al docente</p>
+              <div class="form-group">
+                
+                <div class="">
+                  <input [(ngModel)]="Razoneliminado" name="razon" type="text"
+                    placeholder="razon" class="form-control input-md" required="">
+                </div>
+              </div>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-light" (click)="modal.close('Close click')">Cancelar</button>
+              <button type="button" class="btn btn-danger" (click)="borrarMateria(materia)">Eliminar</button>
+            </div>
+          </ng-template>
+          <!--FIN MODEL ELIMINAR-->
+
+
+
+          <!--INICIO DE MODAL INFO-->
+
+          <ng-template #contentinfo let-modal>
+            <div class="modal-header">
+              <h4 class="modal-title">Registro Materias</h4>
+              <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <form>
+                <fieldset>
+
+                  <!-- Text input-->
+                  <div class="form-group">
+            <label class=" control-label">Nombre:{{nombreinfo}} </label>
+            
+          </div>
+
+                  <!-- Text input-->
+                  <div class="form-group">
+                    <label class=" control-label">Descripcion: {{descripcioninfo}} </label>
+                    
+                  </div>
+
+                  <div class="form-group">
+                    <label class=" control-label">Fecha de creacion: {{fechacreacioninfo}} </label>
+                    
+                  </div>                  
+                </fieldset>
+              </form>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-light" (click)="modal.close('Close click')">Close</button>
+            </div>
+          </ng-template>
+
+          
+          <!--FIN DE MODAL INFO-->
 
           <!--inicio de la tabla-->
           <div class="card-body">
@@ -77,13 +144,13 @@
                     <td>{{el.descripcion}}</td>
 
                     <td class="text-right">
-                      <a class="btn btnOp btn-info btn-icon btn-round" (click)="openModalMostrarInfo()">
+                      <a class="btn btnOp btn-info btn-icon btn-round" (click)="openModalMostrarInfo(el,contentinfo)">
                         <i class='now-ui-icons gestures_tap-01'></i>
                       </a>
-                      <a class="btn btnOp btn-warning btn-icon btn-round" (click)="openModalActualizar(1,content)">
+                      <a class="btn btnOp btn-warning btn-icon btn-round" (click)="openModalActualizar(1,content,el)">
                         <i class='now-ui-icons design-2_ruler-pencil'></i>
                       </a>
-                      <a class="btn btnOp btn-danger btn-icon btn-round" (click)="openModalBorrar(2,content)">
+                      <a class="btn btnOp btn-danger btn-icon btn-round" (click)="openModalBorrar(2,contentDelete,el)">
                         <i class='now-ui-icons ui-1_simple-remove'></i>
                       </a>
                     </td>
