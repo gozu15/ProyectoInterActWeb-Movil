@@ -31,7 +31,7 @@ exports.autentication = function(req, res, next){
 		try{
 
 			var loadToken = token.decode(tokensent, claveSecreta);
-			console.log(loadToken);
+		
 
 			//Comparar la fecha actual con la expiración del token
 			if(loadToken.exp <= moment().unix()){

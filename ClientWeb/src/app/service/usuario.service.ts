@@ -7,6 +7,7 @@ import { Ruta } from './../layouts/web-layout/ruta-global';
 import { Observable } from 'rxjs';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Estudiante } from '../models/estudiante';
+import { AbstractWebDriver } from 'protractor/built/browser';
 
 @Injectable({
   providedIn: 'root'
@@ -21,9 +22,11 @@ export class UsuarioService {
   };
   public UsuarioActual:any;
   constructor(private http: HttpClient) {
+    if(this.UsuarioActual !=undefined){
     this.httpOptions = {
-      headers: new HttpHeaders({ 'Content-Type': 'application/json' })
+      headers: new HttpHeaders({ 'Content-Type': 'application/json',"Authorization":this.UsuarioActual})
     };
+  };
     this.urlLogin = Ruta.url + 'inicio';
     this.urlUsuarios = Ruta.url + 'usuarios/';
     // this.urlDocente = Ruta.url + "docentes";
@@ -31,14 +34,21 @@ export class UsuarioService {
 
 
   //USUARIO SOLO CAMBIA PARAMETROS.
-  BorrarUsuario(id, razon) {
-    return this.http.delete<Usuario>(this.urlUsuarios + id + "/?razon=" + razon);
+  BorrarUsuario(id, razon,modificacion) {
+    this.httpOptions = {
+      headers: new HttpHeaders({ 'Content-Type': 'application/json',"Authorization":this.UsuarioActual.token})
+    };
+    return this.http.delete<Usuario>(this.urlUsuarios + id + "/?razon=" + razon+"&fecha="+modificacion,this.httpOptions);
   }
   ActualizarUsuario(id, datos): Observable<any> {
     return this.http.post<any>(this.urlUsuarios + id, datos, this.httpOptions);
   }
   BuscarUsuario(parametro: any): Observable<any> {
     return this.http.post<any>(this.urlUsuarios, parametro, this.httpOptions);
+  }
+
+  getUsuario(id){
+     return this.http.get<any>(this.urlUsuarios+id);
   }
 
   //ESTUDIANTE
@@ -63,10 +73,20 @@ cerrarSecion(id:string):Observable<any> {
 
   // DOCENTE
   RegistrarDocente(docente: Docente) {
+    console.log(this.UsuarioActual.token);
+    this.httpOptions = {
+      headers: new HttpHeaders({ 'Content-Type': 'application/json',"Authorization":this.UsuarioActual.token})
+    };
+
+    console.log(this.httpOptions);
     return this.http.post<Docente>(this.urlUsuarios, docente, this.httpOptions);
   }
   getDocentes(parametro: any): Observable<Docente[]> {
-    return this.http.get<Docente[]>(this.urlUsuarios + '?rol=doc&sort=' + parametro.sort + '&order=' + parametro.order);
+    this.httpOptions = {
+      headers: new HttpHeaders({ 'Content-Type': 'application/json',"Authorization":this.UsuarioActual.token})
+    };
+
+    return this.http.get<Docente[]>(this.urlUsuarios + '?rol=doc&sort=' + parametro.sort + '&order=' + parametro.order,this.httpOptions);
   }
 
 }

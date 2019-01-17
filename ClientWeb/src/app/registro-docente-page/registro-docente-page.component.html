@@ -72,7 +72,7 @@
                 <!-- LOAD FOTO-->
                 <div>
                   <label class="lbfoto" for="lbfoto ">Foto: </label>
-                  <input type="file" name="fileInput" accept="image/*"  (change)="changeListener($event)" #fileInput class="form-control input-md" required="">
+                  <input type="file"  (change)="changeListener($event)" #fileInput name="fileInput" accept="image/*" class="form-control input-md" required="">
                 </div>
               </form>
             </div>
@@ -105,7 +105,7 @@
           <div class="modal-header">
             <h4 class="modal-title" id="modal-basic-title">ACTUALIZAR DATOS DEL DOCENTE</h4>
             <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
-              <span aria-hidden="true">&times;</span>
+              <span (click)="borrarDatos()" aria-hidden="true">&times;</span>
             </button>
           </div>
           <div class="modal-body">
@@ -115,7 +115,7 @@
               <div class="form-group">
                 <label class=" control-label">Nombres: </label>
                 <div class="">
-                  <input id="textAula" name="textAula" type="text" placeholder="Nombre" class="form-control input-md"
+                  <input  name="nombre" [(ngModel)]="DatosActualizado.nombre" type="text" placeholder="Nombre" class="form-control input-md"
                     required="">
                 </div>
               </div>
@@ -123,7 +123,7 @@
               <div class="form-group">
                 <label class=" control-label">Apellidos: </label>
                 <div class="">
-                  <input id="textAula" name="textAula" type="text" placeholder="Apellido" class="form-control input-md"
+                  <input [(ngModel)]="DatosActualizado.apellidos" name="aula" type="text" placeholder="Apellido" class="form-control input-md"
                     required="">
                 </div>
               </div>
@@ -131,7 +131,7 @@
               <div class="form-group">
                 <label class=" control-label">Ci: </label>
                 <div class="">
-                  <input id="textAula" name="textAula" type="text" placeholder="Ci" class="form-control input-md"
+                  <input [(ngModel)]="DatosActualizado.ci" name="ci" type="text" placeholder="Ci" class="form-control input-md"
                     required="">
                 </div>
               </div>
@@ -139,10 +139,10 @@
               <div class="form-group">
                 <label class=" control-label">Genero: </label>
                 <div class="">
-                  <select class="form-control" id="selectCurso">
-                    <option>Masculino</option>
-                    <option>Femenino</option>
-                    <option>Otro</option>
+                  <select [(ngModel)]="DatosActualizado.genero" name="genero" class="form-control" id="selectCurso">
+                    <option value="Masculino">Masculino</option>
+                    <option value="Femenino">Femenino</option>
+                    <option value="Otros">Otro</option>
                   </select>
                 </div>
               </div>
@@ -166,7 +166,7 @@
               <!-- LOAD FOTO-->
               <div>
                 <label class="lbfoto" for="lbfoto ">Foto: </label>
-                <input id="lbfoto " name="lbfoto" type="file" class="form-control input-md" required="">
+                <input  (change)="changeListener2($event)" #fileInput name="fileInput" type="file" class="form-control input-md" required="">
               </div>
             </form>
           </div>
@@ -280,7 +280,7 @@
                     <a class="btn btnOp btn-info btn-icon btn-round" (click)="openModalView(contentModelView)">
                       <i class='now-ui-icons gestures_tap-01'></i>
                     </a>
-                    <a class="btn btnOp btn-warning btn-icon btn-round" (click)="openModalUpdate(contentUpdate)">
+                    <a class="btn btnOp btn-warning btn-icon btn-round" (click)="openModalUpdate(contentUpdate,aula._id)">
                       <i class='now-ui-icons design-2_ruler-pencil'></i>
                     </a>
                     <a class="btn btnOp btn-danger btn-icon btn-round" (click)="openDelete(contentDelete,aula._id,i)">

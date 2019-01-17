@@ -24,21 +24,28 @@ export class RegistroDocentePageComponent implements OnInit {
   recordar: boolean = false;
   colegio:string;
   docentesList: any = [];
+  DatosActualizado:Docente;
   headElements = ['N°', 'Ci', 'Apellidos', 'Nombres', 'Genero'];
   indexEliminar:number;
 
   constructor(private config: NgbModalConfig, private modalService: NgbModal, private datePipe: DatePipe, private usuarioserv: UsuarioService) {
     this.docente = new Docente;
+    this.DatosActualizado=new Docente;
     config.backdrop = 'static';
     config.keyboard = false;
     this.UsuarioActual=this.usuarioserv.UsuarioActual.datos._id;
     this.colegio=this.usuarioserv.UsuarioActual.datos.colegio;
   }
-
+  borrarDatos(){
+    console.log("cdrrororror");
+    this.DatosActualizado=new Docente;
+  }
   //Funciones del Modal
   private getDismissReason(reason: any): string {
+    console.log("cdrrororror");
     this.eliminado=undefined;
     this.indexEliminar=undefined;
+    this.DatosActualizado=undefined;
     if (reason === ModalDismissReasons.ESC) {
       return 'by pressing ESC';
     } else if (reason === ModalDismissReasons.BACKDROP_CLICK) {
@@ -67,7 +74,13 @@ export class RegistroDocentePageComponent implements OnInit {
     this.modalService.open(content);
   }
 
-  openModalUpdate(content) {
+  openModalUpdate(content,id) {
+ /*  this.usuarioserv.getUsuario(id).subscribe((docente:Docente)=>{
+     this.DatosActualizado=docente;
+     console.log(this.DatosActualizado);
+   });*/
+
+   this.DatosActualizado=this.docentesList.filter(docente => docente._id === id)[0];
     this.modalService.open(content);
   }
 
@@ -80,8 +93,9 @@ export class RegistroDocentePageComponent implements OnInit {
     this.getDocentes();
   }
 borrar(){
-  
- this.usuarioserv.BorrarUsuario(this.eliminado,this.Razoneliminado).subscribe((data)=>{
+  var date = new Date();
+  let fecha= this.datePipe.transform(date, "yyyy-MM-dd HH:mm:ss");
+ this.usuarioserv.BorrarUsuario(this.eliminado,this.Razoneliminado,fecha).subscribe((data)=>{
   this.docentesList.splice(this.indexEliminar,1);
 });
 }
@@ -155,36 +169,12 @@ console.log(this.Razoneliminado);
     });
   }
   
-  RegistrarDocente(nacimiento) {
-    this.isError = false;
-    this.isRequired = false;
-    this.isExito = false;
-    var date = new Date();
-    this.docente.fechadenacimiento = nacimiento;
-    this.docente.creacion = { fecha: this.datePipe.transform(date, "yyyy-MM-dd HH:mm:ss"), usuario: "5c34b3a83619a9178c5902f1" };
-    this.docente.modificacion = { fecha: this.datePipe.transform(date, "yyyy-MM-dd HH:mm:ss"), usuario: "5c34b3a83619a9178c5902f1" };
-    
-    if (this.docente.nombre) {
-      this.usuarioserv.RegistrarDocente(this.docente).subscribe((docente: any) => {
-        if (docente) {
-          this.isExito = true;
-          this.docente = new Docente;
-        } else {
-          alert('error desconocido');
-        }
-      }, (error: any) => {
-        this.isError = true;
-      });
-    }
-    else {
-      this.isRequired = true;
-    }
-  }
-
+  //funcion que se carga cuando el usuario clickkea en seleccionar foto
   changeListener($event): void {
     this.readThis($event.target);
   }
 
+  //funcion que sirve para buscar la foto en la maquina y convertirlo a base64
   readThis(inputValue: any): void {
     var file: File = inputValue.files[0];
     console.log(inputValue.files[0]);
@@ -196,6 +186,28 @@ console.log(this.Razoneliminado);
       resizeBase64(myReader.result, 150, 150).then((result) => {
         this.docente.perfil.foto = result
        
+      });
+    }
+    myReader.readAsDataURL(file);
+  }
+
+   //funcion que se carga cuando el usuario clickkea en seleccionar foto en el modal actualizar
+   changeListener2($event): void {
+     console.log("llega aqui");
+    this.readThis2($event.target);
+  }
+
+  //funcion que sirve para buscar la foto en la maquina y convertirlo a base64 en el modal actualizar
+  readThis2(inputValue: any): void {
+    var file: File = inputValue.files[0];
+    console.log(inputValue.files[0]);
+    this.docente.perfil = { tipo: inputValue.files[0].type, foto: ""};
+    var myReader: FileReader = new FileReader();
+
+    myReader.onloadend = (e) => {
+     // this.docente.perfil.foto = myReader.result.toString();
+      resizeBase64(myReader.result, 150, 150).then((result) => {
+        this.DatosActualizado.perfil.foto=result  
       });
     }
     myReader.readAsDataURL(file);

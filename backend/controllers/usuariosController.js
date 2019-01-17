@@ -30,23 +30,24 @@ function GetUsuarios(req, res) {
 
 function Borrar(req,res){
   
-    var datos={eliminado:{estado:true,razon:req.query.razon},modificacion:{fecha:"12-12-5",usuario:"5c3e05b56d2134200c43fae9"
+    var datos={eliminado:{estado:true,razon:req.query.razon},modificacion:{fecha:req.query.fecha,usuario:req.userToken.usuario
     }}
    
-    Usuario.findByIdAndUpdate(req.params.id,datos,{new: true}, function (error, lista) {
-        if (error) {
-            res.status(500).send({ mensaje: "Error " })
-        } else {
-            if (!lista) {
-                res.status(404).send({ mensaje: "Error no de pudo borrar" })
-            } else {
-                console.log(lista);
-                res.status(200).send(lista)
+  
+     Usuario.findByIdAndUpdate(req.params.id,datos,{new: true}, function (error, lista) {
+         if (error) {
+             res.status(500).send({ mensaje: "Error " })
+         } else {
+             if (!lista) {
+                 res.status(404).send({ mensaje: "Error no de pudo borrar" })
+             } else {
+               
+                 res.status(200).send(lista)
 
 
-            }
-        }
-    });
+             }
+         }
+     });
 }
 function Buscar(req,res){
     var termino=req.body.termino;
@@ -142,7 +143,7 @@ function Login(req,res){
                     var usuario=new Usuario();
                     usuario._id=user._id;
                     usuario.login={usuario:user.login.usuario,password:user.login.password,estado:true}
-  
+                  
                     bcript.compare(pass, user.login.password, function(error, ok) {
                         if (ok) {
                           
@@ -173,9 +174,9 @@ async function LogOut(req,res){
     var usuario=new Usuario();
                     usuario._id=req.params.id;
                     usuario.login={usuario:datos.login.usuario,password:datos.login.password,estado:false};
-                  
+                    console.log(lista);
                      Usuario.findByIdAndUpdate(req.params.id,usuario,{new: true}, function (error, lista) {
-                         console.log(lista);
+                       
                         if (error) {
                             res.status(500).send({ mensaje: "Error desconocido" })
                         } else {
@@ -210,6 +211,7 @@ async function Registrar(req, res) {
     usuario.eliminado={estado:false}
     var fecha = new Date(usuario.fechadenacimiento).toJSON().slice(0,10).replace(/-/g,'');
     var login={usuario:params.ci,password:params.nombre.charAt(0)+params.apellidos.charAt(0)+fecha,estado:false}
+    console.log(login);
     if (params.ci) {
         //encripta el pasword del usuario
         bcript.hash(login.password, null, null, function(error, hash) {
