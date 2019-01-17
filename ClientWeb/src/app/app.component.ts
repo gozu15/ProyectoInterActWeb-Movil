@@ -9,10 +9,10 @@ import * as CryptoJS from 'crypto-js';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-constructor(private usuarioServ:UsuarioService){
+ constructor(private usuarioServ:UsuarioService){
   let cache=localStorage.getItem("usuario");
   if(cache!=undefined){
-  this.usuarioServ.UsuarioActual= this.decryptData(cache);
+  this.usuarioServ.UsuarioActual=  this.decryptData(cache);
   console.log(this.usuarioServ.UsuarioActual);
   }else{
 

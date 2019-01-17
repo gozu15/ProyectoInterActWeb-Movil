@@ -2,15 +2,15 @@
 var express = require("express");
 var usuariosController = require("../controllers/usuariosController");
 var api = express.Router();
-//var md_aut = require("../token/token");
+var md_aut = require("../token/aut.js");
 //Rutas de usado en el HTTP para acceder a los metodos del controlador de producto
 //llamar usando url/api/productos -- debuelve lista de producto
-api.post("/",usuariosController.Registrar);
+api.post("/",md_aut.autentication,usuariosController.Registrar);
 api.post("/buscar",usuariosController.Buscar);
-api.get("/",usuariosController.GetUsuarios)
+api.get("/",md_aut.autentication,usuariosController.GetUsuarios)
 api.get("/:id",usuariosController.GetUsuario);
-api.delete("/:id",usuariosController.Borrar);
-api.put("/:id",usuariosController.Actualizar);
+api.delete("/:id",md_aut.autentication,usuariosController.Borrar);
+api.put("/:id",md_aut.autentication,usuariosController.Actualizar);
 /*api.get("/:id",md_aut.autentication,ventasController.getVenta);
 api.post("/",md_aut.autentication,ventasController.addVentas);
 api.put("/:id",md_aut.autentication,ventasController.updated);
