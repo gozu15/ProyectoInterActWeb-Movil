@@ -46,7 +46,9 @@
                   <div class="alert alert-danger" *ngIf="isRequired">
                     <a class="close font-weight-light" data-dismiss="alert" href="#">×</a>Ingrese datos correctos
                   </div>
-                  <button (click)="registrarMateria()" class="btn btn-default">Registrar</button>
+                  <button *ngIf="(flag==0)" (click)="registrarMateria()" class="btn btn-default">Registrar</button>
+                  <button *ngIf="(flag==1)" (click)="actualizarMateria()" class="btn btn-default">Actualizar</button>
+                  <button *ngIf="(flag==2)"(click)="borrarMateria()" class="btn btn-default">Borrar</button>
                 </fieldset>
               </form>
             </div>
@@ -75,13 +77,13 @@
                     <td>{{el.descripcion}}</td>
 
                     <td class="text-right">
-                      <a class="btn btnOp btn-info btn-icon btn-round" (click)="openModalView(contentModelView)">
+                      <a class="btn btnOp btn-info btn-icon btn-round" (click)="openModalMostrarInfo()">
                         <i class='now-ui-icons gestures_tap-01'></i>
                       </a>
-                      <a class="btn btnOp btn-warning btn-icon btn-round" (click)="openModalUpdate(contentUpdate)">
+                      <a class="btn btnOp btn-warning btn-icon btn-round" (click)="openModalActualizar(1,content)">
                         <i class='now-ui-icons design-2_ruler-pencil'></i>
                       </a>
-                      <a class="btn btnOp btn-danger btn-icon btn-round" (click)="openDelete(contentDelete)">
+                      <a class="btn btnOp btn-danger btn-icon btn-round" (click)="openModalBorrar(2,content)">
                         <i class='now-ui-icons ui-1_simple-remove'></i>
                       </a>
                     </td>

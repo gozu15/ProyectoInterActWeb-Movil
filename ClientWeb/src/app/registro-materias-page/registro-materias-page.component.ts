@@ -25,7 +25,7 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 export class RegistroMateriasPageComponent implements OnInit {
 
 
-
+  flag=0;
 
   ListMaterias=[];
 
@@ -74,6 +74,18 @@ openVerticallyCentered(content) {
   /**
    * CODIFICACION DE FUNCIONES
    */
+
+  openModalActualizar(change,content){
+    this.flag=change;
+    this.openLg(content);
+
+
+  }
+  openModalBorrar(change, content){
+    this.flag=change;
+    this.openLg(content);
+  }
+
 registrarMateria(){
  
   this.isError = false;
