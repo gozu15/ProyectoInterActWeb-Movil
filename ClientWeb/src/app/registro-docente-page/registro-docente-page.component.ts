@@ -22,20 +22,23 @@ export class RegistroDocentePageComponent implements OnInit {
   Razoneliminado:string;
   eliminado:string;
   recordar: boolean = false;
-
+  colegio:string;
   docentesList: any = [];
   headElements = ['N°', 'Ci', 'Apellidos', 'Nombres', 'Genero'];
+  indexEliminar:number;
 
   constructor(private config: NgbModalConfig, private modalService: NgbModal, private datePipe: DatePipe, private usuarioserv: UsuarioService) {
     this.docente = new Docente;
     config.backdrop = 'static';
     config.keyboard = false;
     this.UsuarioActual=this.usuarioserv.UsuarioActual.datos._id;
+    this.colegio=this.usuarioserv.UsuarioActual.datos.colegio;
   }
 
   //Funciones del Modal
   private getDismissReason(reason: any): string {
     this.eliminado=undefined;
+    this.indexEliminar=undefined;
     if (reason === ModalDismissReasons.ESC) {
       return 'by pressing ESC';
     } else if (reason === ModalDismissReasons.BACKDROP_CLICK) {
@@ -77,8 +80,9 @@ export class RegistroDocentePageComponent implements OnInit {
     this.getDocentes();
   }
 borrar(){
+  
  this.usuarioserv.BorrarUsuario(this.eliminado,this.Razoneliminado).subscribe((data)=>{
-
+  this.docentesList.splice(this.indexEliminar,1);
 });
 }
   // FUNCIONES PARA SOLICITAR SERVICIO AL SERVIDOR
@@ -89,6 +93,7 @@ borrar(){
     this.isExito = false;
     // registro
     var date = new Date();
+    this.docente.colegio=this.colegio;
     this.docente.rol="5c3de049236f591facfa2b60" as any;
     this.docente.creacion = { fecha: this.datePipe.transform(date, "yyyy-MM-dd HH:mm:ss"), usuario: this.UsuarioActual };
     this.docente.modificacion = { fecha: this.datePipe.transform(date, "yyyy-MM-dd HH:mm:ss"), usuario: this.UsuarioActual };

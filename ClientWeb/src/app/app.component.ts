@@ -13,6 +13,7 @@ constructor(private usuarioServ:UsuarioService){
   let cache=localStorage.getItem("usuario");
   if(cache!=undefined){
   this.usuarioServ.UsuarioActual= this.decryptData(cache);
+  console.log(this.usuarioServ.UsuarioActual);
   }else{
 
   }

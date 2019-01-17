@@ -72,7 +72,7 @@
                 <!-- LOAD FOTO-->
                 <div>
                   <label class="lbfoto" for="lbfoto ">Foto: </label>
-                  <input type="file" name="fileInput" (change)="changeListener($event)" #fileInput class="form-control input-md" required="">
+                  <input type="file" name="fileInput" accept="image/*"  (change)="changeListener($event)" #fileInput class="form-control input-md" required="">
                 </div>
               </form>
             </div>
@@ -248,7 +248,7 @@
             <div class="form-group">
               
               <div class="">
-                <input [(ngModel)]="Razoneliminado" id="textAula" name="docente.apellidos" type="text"
+                <input [(ngModel)]="Razoneliminado" name="razon" type="text"
                   placeholder="razon" class="form-control input-md" required="">
               </div>
             </div>
@@ -283,7 +283,7 @@
                     <a class="btn btnOp btn-warning btn-icon btn-round" (click)="openModalUpdate(contentUpdate)">
                       <i class='now-ui-icons design-2_ruler-pencil'></i>
                     </a>
-                    <a class="btn btnOp btn-danger btn-icon btn-round" (click)="openDelete(contentDelete,aula._id)">
+                    <a class="btn btnOp btn-danger btn-icon btn-round" (click)="openDelete(contentDelete,aula._id,i)">
 
                       <i class='now-ui-icons ui-1_simple-remove'></i>
                     </a>

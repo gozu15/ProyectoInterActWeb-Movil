@@ -10,7 +10,7 @@ function GetUsuarios(req, res) {
     var order={desc:1,asc:-1,default:3}
     var nquery='{"'+sort[req.query.sort]+'":'+parseInt(order[req.query.order])+'}';
 
-    Usuario.find({'rol.rol':rol[req.query.rol]},{perfil:0,tutores:0},{sort:JSON.parse(nquery)}, function (error, lista) {
+    Usuario.find({'rol.rol':rol[req.query.rol],'eliminado.estado':false},{perfil:0,tutores:0},{sort:JSON.parse(nquery)}, function (error, lista) {
         if (error) {
             res.status(500).send({ mensaje: "Error al listar" })
         } else {
@@ -40,8 +40,7 @@ function Borrar(req,res){
             if (!lista) {
                 res.status(404).send({ mensaje: "Error no de pudo borrar" })
             } else {
-
-
+                console.log(lista);
                 res.status(200).send(lista)
 
 
