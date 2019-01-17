@@ -2,11 +2,11 @@
 var mongose = require("mongoose");
 var Schema = mongose.Schema;
 var cursoSchema = Schema({
-  colegio:{ type: Schema.Types.ObjectId, ref: 'colegios' },
+   colegio:{ type: Schema.Types.ObjectId, ref: 'colegios' },
    nombre:String,
    paralelo:String,
    materias: [{ type: Schema.Types.ObjectId, ref: 'materias' }],
-    eliminado:{estado:Boolean,razon:String},
+   eliminado:{estado:Boolean,razon:String},
    creacion: {usuario:{type: Schema.ObjectId, ref: "Usuarios"},fecha:Date },
    modificacion:{fecha:Date,usuario:{ type: Schema.ObjectId, ref: "Usuarios" }}
 

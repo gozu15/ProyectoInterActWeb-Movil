@@ -19,8 +19,6 @@ function GetColegio(req,res){
         }
     });
 }
-
-
 function Registrar(req, res) {
 
     var colegio = new Colegio();
@@ -38,13 +36,7 @@ function Registrar(req, res) {
                     } else {
                         res.status(200).send(nuevoColegio)
                     }
-                })
-         
-    
-
-   
+                })   
 }
-
-
 
 module.exports = {Registrar,GetColegio}
