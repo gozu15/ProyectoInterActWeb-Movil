@@ -41,10 +41,15 @@ export class UsuarioService {
     return this.http.delete<Usuario>(this.urlUsuarios + id + "/?razon=" + razon+"&fecha="+modificacion,this.httpOptions);
   }
   ActualizarUsuario(id, datos): Observable<any> {
-    return this.http.post<any>(this.urlUsuarios + id, datos, this.httpOptions);
+    console.log(id,datos);
+    this.httpOptions = {
+      headers: new HttpHeaders({ 'Content-Type': 'application/json',"Authorization":this.UsuarioActual.token})
+    };
+
+    return this.http.put<any>(this.urlUsuarios + id, datos, this.httpOptions);
   }
   BuscarUsuario(parametro: any): Observable<any> {
-    return this.http.post<any>(this.urlUsuarios, parametro, this.httpOptions);
+    return this.http.put<any>(this.urlUsuarios, parametro, this.httpOptions);
   }
 
   getUsuario(id){

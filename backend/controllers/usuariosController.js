@@ -94,7 +94,7 @@ function Actualizar(req,res){
                       res.status(404).send({ mensaje: "Error no se pudo actualizar" })
                   } else {
       
-      
+        console.log(lista);
                       res.status(200).send(lista)
       
       

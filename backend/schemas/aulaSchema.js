@@ -7,8 +7,7 @@ var aulaSchema = Schema({
    nombre:String,
    capacidad:String,
    descripcion:String,
-
-   foto:{foto:String,tipo:String},
+   foto:String,
    cursos: [curso],
    eliminado:{estado:Boolean,razon:String},
    creacion: {usuario:{type: Schema.ObjectId, ref: "Usuarios"},fecha:Date },

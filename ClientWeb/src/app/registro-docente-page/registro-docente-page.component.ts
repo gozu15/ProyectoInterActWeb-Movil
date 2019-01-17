@@ -1,7 +1,7 @@
 import { UsuarioService } from './../service/usuario.service';
 import { DocenteService } from './../service/docente.service';
 import { Component, OnInit, ɵConsole } from '@angular/core';
-import { NgbModal, ModalDismissReasons, NgbModalConfig } from '@ng-bootstrap/ng-bootstrap';
+import { NgbModal, ModalDismissReasons, NgbModalConfig, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 import { Docente } from '../models/docente';
 import { getBase64, resizeBase64 } from 'base64js-es6';
 import { DatePipe } from '@angular/common';
@@ -27,7 +27,8 @@ export class RegistroDocentePageComponent implements OnInit {
   DatosActualizado:Docente;
   headElements = ['N°', 'Ci', 'Apellidos', 'Nombres', 'Genero'];
   indexEliminar:number;
-
+  modalReference: NgbModalRef;
+  modalReference2: NgbModalRef;
   constructor(private config: NgbModalConfig, private modalService: NgbModal, private datePipe: DatePipe, private usuarioserv: UsuarioService) {
     this.docente = new Docente;
     this.DatosActualizado=new Docente;
@@ -35,6 +36,8 @@ export class RegistroDocentePageComponent implements OnInit {
     config.keyboard = false;
     this.UsuarioActual=this.usuarioserv.UsuarioActual.datos._id;
     this.colegio=this.usuarioserv.UsuarioActual.datos.colegio;
+
+    
   }
   borrarDatos(){
     console.log("cdrrororror");
@@ -67,7 +70,13 @@ export class RegistroDocentePageComponent implements OnInit {
   }
 
   openAdd(content) {
-    this.modalService.open(content);
+    console.log("dfhjk");
+    this.modalReference2 = this.modalService.open(content);
+this.modalReference2.result.then((result) => {
+  this.closeResult = `Closed with: ${result}`;
+}, (reason) => {
+  this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
+});
   }
 
   openModalView(content) {
@@ -81,22 +90,38 @@ export class RegistroDocentePageComponent implements OnInit {
    });*/
 
    this.DatosActualizado=this.docentesList.filter(docente => docente._id === id)[0];
-    this.modalService.open(content);
+   this.modalService.open(content);
+
   }
 
   openDelete(content,id) {
     this.eliminado=id;
-    this.modalService.open(content);
-  }
+    this.modalReference = this.modalService.open(content);
+this.modalReference.result.then((result) => {
+  this.closeResult = `Closed with: ${result}`;
+}, (reason) => {
+  this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
+});
+}
+  
 
   ngOnInit() {
     this.getDocentes();
   }
 borrar(){
-  var date = new Date();
-  let fecha= this.datePipe.transform(date, "yyyy-MM-dd HH:mm:ss");
+
+ /* console.log(new Date().toISOString());
+
+  let fecha2= new Date().toISOString();
+
+  console.log(new Date(fecha2).toString());*/
+  var date = new Date().toUTCString();
+  let fecha= date;
+
  this.usuarioserv.BorrarUsuario(this.eliminado,this.Razoneliminado,fecha).subscribe((data)=>{
+ 
   this.docentesList.splice(this.indexEliminar,1);
+  this.modalReference.close();
 });
 }
   // FUNCIONES PARA SOLICITAR SERVICIO AL SERVIDOR
@@ -106,11 +131,11 @@ borrar(){
     this.isRequired = false;
     this.isExito = false;
     // registro
-    var date = new Date();
+    var date = new Date().toUTCString();
     this.docente.colegio=this.colegio;
     this.docente.rol="5c3de049236f591facfa2b60" as any;
-    this.docente.creacion = { fecha: this.datePipe.transform(date, "yyyy-MM-dd HH:mm:ss"), usuario: this.UsuarioActual };
-    this.docente.modificacion = { fecha: this.datePipe.transform(date, "yyyy-MM-dd HH:mm:ss"), usuario: this.UsuarioActual };
+    this.docente.creacion = { fecha: date, usuario: this.UsuarioActual };
+    this.docente.modificacion = { fecha: date, usuario: this.UsuarioActual };
     this.docente.fechadenacimiento = fechaNacimiento;
 
    
@@ -121,6 +146,7 @@ borrar(){
           this.isExito = true;
          
           this.docentesList.push(docente);
+         // this.modalReference2.close();
           this.docente = new Docente;
         } else {
           alert('error desconocido');
@@ -148,7 +174,13 @@ borrar(){
   }
 
   update(){
-
+    var date = new Date().toUTCString();
+      this.DatosActualizado.modificacion = { fecha: date, usuario: this.UsuarioActual };
+    this.usuarioserv.ActualizarUsuario(this.DatosActualizado._id,this.DatosActualizado).subscribe((docente:string)=>{
+     this.docentesList.filter(docente => docente._id === docente._id)[0]=docente;
+     
+    });
+console.log(this.DatosActualizado);
   }
 
   see(id){

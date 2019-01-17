@@ -1,7 +1,7 @@
 import { Rol } from './rol';
 import { Login } from './login';
 export class Docente {
-    public id: number;
+    public _id: number;
     public nombre: string;
     public apellidos:string;
     public genero:string;
