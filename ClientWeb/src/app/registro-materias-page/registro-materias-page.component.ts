@@ -32,6 +32,7 @@ export class RegistroMateriasPageComponent implements OnInit {
   descripcioninfo;
   fechacreacioninfo;
   flag=0;
+  Razoneliminado;
 
   ListMaterias=[];
 
@@ -97,16 +98,14 @@ openVerticallyCentered(content) {
     this.limpiarArray(this.materia);
 
     this.flag=change;
-    this.materia.nombre=materia.nombre;
+    this.materia=materia;
 
     let fecha= new Date().toUTCString();
+    this.materia.modificacion.fecha=fecha
+    
     console.log(fecha)
-    this.materia.modificacion.fecha=fecha;
-    this.materia.modificacion.usuario=this.UsuarioActual;
-
-    this.materia.descripcion=materia.descripcion;
-    this.materia._id=materia._id;
-    console.log(materia);
+   
+    console.log(this.materia);
 
     this.openLg(content);
   }
@@ -114,25 +113,28 @@ openVerticallyCentered(content) {
   
 
   openModalMostrarInfo(materia:Materia,modal){
+ 
     var fecha;
     fecha =  this.datePipe.transform( materia.creacion.fecha,"yyyy-MM-dd");
     //console.log(fecha);    
-    this.nombreinfo=materia.nombre;
-    this.descripcioninfo=materia.descripcion;
-    this.fechacreacioninfo=fecha;
-    console.log(this.nombreinfo);
+    console.log(materia);
+    console.log(this.materia);
+    this.materia=materia;
+    // this.materia.nombre=materia.nombre;
+    // this.materia.descripcion=materia.descripcion;
+    // this.materia.modificacion.fecha=fecha;
+    console.log(this.materia);
     this.openLg(modal);
   
   }
   openModalBorrar(change, content, materia:Materia){
-    this.materia.nombre=materia.nombre;
-    this.materia.descripcion=materia.descripcion;
-    this.materia._id=materia._id;
-
-    let fecha= new Date().toUTCString();
+    this.materia=materia
+     let fecha= new Date().toUTCString();
     console.log(fecha)
     this.materia.modificacion.fecha=fecha;
     this.materia.modificacion.usuario=this.UsuarioActual;
+    this.materia.eliminado.estado=true;
+    this.materia.eliminado.razon=materia.eliminado.razon;
     this.flag=change;
 
    
@@ -155,6 +157,7 @@ registrarMateria(){
     if (materia) {
      
     this.isExito=true;
+    console.log(this.isExito);
     this.materia.nombre="";
     this.materia.descripcion="";
     this.listarMaterias();
@@ -195,11 +198,33 @@ actualizarMateria(materia:Materia){
 
 borrarMateria(materia:Materia){
   console.log(materia);
+  
+  var id=""+materia._id;
+  console.log(id);
+  this.materriaserv.BorrarMateria(materia._id,materia.eliminado.razon,materia.modificacion.fecha).subscribe((materia:Materia)=>{
+    if(materia){
+      this.isExito=true;
+    this.materia.nombre="";
+    this.materia.descripcion=""
+    this.materia.eliminado.razon="";
+    //this.materia.modificacion.fecha="";
+    this.listarMaterias();
+    //this.ListMaterias.push(materia);
+    }
+    else
+    {
+      alert("error desconocido");
+    }
+  },(error:any)=>{
+    this.isError=true;
+  });
+
 }
 
 
 listarMaterias(){
   this.ListMaterias=[];
+  this.isExito=false;
   this.materriaserv.getMaterias().subscribe((materias:Materia[])=>{
 
     this.ListMaterias=materias;

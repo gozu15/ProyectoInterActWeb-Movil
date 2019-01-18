@@ -36,6 +36,8 @@
                         class="form-control input-md" required="">
                     </div>
                   </div>
+
+
                   <div class="alert alert-danger" *ngIf="isError">
                     <a class="close font-weight-light" data-dismiss="alert" href="#">×</a>Error no se pudo guardar el
                     registro
@@ -69,11 +71,11 @@
               </button>
             </div>
             <div class="modal-body">
-              <p>escriba la razon por la cual se esta eliminando al docente</p>
+              <p>escriba la razon por la cual se esta eliminando la materia</p>
               <div class="form-group">
                 
                 <div class="">
-                  <input [(ngModel)]="Razoneliminado" name="razon" type="text"
+                  <input [(ngModel)]="materia.eliminado.razon" name="razon" type="text"
                     placeholder="razon" class="form-control input-md" required="">
                 </div>
               </div>
@@ -82,7 +84,22 @@
               <button type="button" class="btn btn-light" (click)="modal.close('Close click')">Cancelar</button>
               <button type="button" class="btn btn-danger" (click)="borrarMateria(materia)">Eliminar</button>
             </div>
+
+            <!--Mensajes de atencion-->
+            <div class="alert alert-danger" *ngIf="isError">
+              <a class="close font-weight-light" data-dismiss="alert" href="#">×</a>Error no se pudo guardar el
+              registro
+            </div>
+            <div class="alert alert-success" *ngIf="isExito">
+              <a class="close font-weight-light" data-dismiss="alert" href="#">×</a>registro guardado con exito
+            </div>
+            <div class="alert alert-danger" *ngIf="isRequired">
+              <a class="close font-weight-light" data-dismiss="alert" href="#">×</a>Ingrese datos correctos
+            </div>
+            
           </ng-template>
+
+          
           <!--FIN MODEL ELIMINAR-->
 
 
@@ -102,18 +119,18 @@
 
                   <!-- Text input-->
                   <div class="form-group">
-            <label class=" control-label">Nombre:{{nombreinfo}} </label>
+            <label class=" control-label">Nombre:{{materia.nombre}} </label>
             
           </div>
 
                   <!-- Text input-->
                   <div class="form-group">
-                    <label class=" control-label">Descripcion: {{descripcioninfo}} </label>
+                    <label class=" control-label">Descripcion: {{materia.descripcion}} </label>
                     
                   </div>
 
                   <div class="form-group">
-                    <label class=" control-label">Fecha de creacion: {{fechacreacioninfo}} </label>
+                    <label class=" control-label">Fecha de creacion: {{materia.modificacion.fecha}} </label>
                     
                   </div>                  
                 </fieldset>

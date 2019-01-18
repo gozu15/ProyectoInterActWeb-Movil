@@ -36,4 +36,12 @@ export class MateriaService {
   ActualizarMateria(materia: Materia, id: string): Observable<Materia> {
     return this.http.put<Materia>(this.urlMateria + '/' + id, materia, httpOptions);
   }
+
+  
+  BorrarMateria(id, razon,modificacion) {
+    // this.httpOptions = {
+    //   headers: new HttpHeaders({ 'Content-Type': 'application/json',"Authorization":this.UsuarioActual.token})
+    // };
+    return this.http.delete<Materia>(this.urlMateria +"/"+ id + "/?razon=" + razon+"&fecha="+modificacion,httpOptions);
+  }
 }

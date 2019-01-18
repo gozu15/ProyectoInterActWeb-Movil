@@ -4,7 +4,7 @@ var Materia = require("../schemas/materiaSchema");
 
 function GetMaterias(req, res) {
 
-    Materia.find({}, function (error, lista) {
+    Materia.find({"eliminado.estado":false}, function (error, lista) {
         if (error) {
             res.status(500).send({ mensaje: "Error al listar" })
         } else {
